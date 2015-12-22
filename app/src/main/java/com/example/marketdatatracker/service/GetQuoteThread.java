@@ -3,9 +3,13 @@ package com.example.marketdatatracker.service;
 
 import android.util.Log;
 
+import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.event.FetchStockQuoteEvent;
+
 import java.io.IOException;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
@@ -23,14 +27,14 @@ public class GetQuoteThread extends Thread{
             // query multiple stocks
             String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO"};
             Map<String, Stock> stocks = YahooFinance.get(query);
-            for (String str : query) {
-                Stock stock = stocks.get(str);
-                Log.d("THREAD", stock.getName() + " price " + stock.getQuote().getPrice());
-            }
+            if(stocks != null)
+                EventBus.getDefault().post(new FetchStockQuoteEvent(stocks));
+            else
+                EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));
 
         } catch (IOException e) {
-            // TODO post error message to the bus
             Log.e("THREAD", "Failed to retrieve quote data");
+            EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));
         }
     }
 
