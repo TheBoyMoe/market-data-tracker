@@ -21,20 +21,17 @@ public class GetQuoteThread extends Thread{
         super.run();
 
         try {
-            // single stock quote
-            //Stock stock = YahooFinance.get("INTC");
-            //Log.d("THREAD", stock.toString());
-
             // query multiple stocks
             String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO"};
             Map<String, Stock> stocks = YahooFinance.get(query);
             if(stocks != null) {
                 EventBus.getDefault().post(new FetchStockQuoteEvent(stocks));
+
+                // DEBUG
                 for (String symbol : query) {
                     Timber.i("%s : %.2f", symbol, stocks.get(symbol).getQuote().getPrice());
                 }
             }
-
             else
                 EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));
 
