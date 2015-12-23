@@ -50,7 +50,6 @@ public class QuoteListActivity extends AppCompatActivity {
 
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
-        Timber.i("%s", event.getMessage());
         Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 

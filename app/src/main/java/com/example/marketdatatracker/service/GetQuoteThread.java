@@ -1,8 +1,6 @@
 package com.example.marketdatatracker.service;
 
 
-import android.util.Log;
-
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.FetchStockQuoteEvent;
 
@@ -26,11 +24,6 @@ public class GetQuoteThread extends Thread{
             Map<String, Stock> stocks = YahooFinance.get(query);
             if(stocks != null) {
                 EventBus.getDefault().post(new FetchStockQuoteEvent(stocks));
-
-                // DEBUG
-                for (String symbol : query) {
-                    Timber.i("%s : %.2f", symbol, stocks.get(symbol).getQuote().getPrice());
-                }
             }
             else
                 EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));

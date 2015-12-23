@@ -75,7 +75,7 @@ public class QuoteListFragment extends Fragment{
             Stock stock = mQuotes.get(symbol);
             mStocks.add(stock);
         }
-
+        Timber.i(mStocks.toString());
         // TODO populate the adapter
 
     }
