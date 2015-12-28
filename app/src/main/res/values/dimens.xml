@@ -12,6 +12,7 @@
     <dimen name="dimen_xlarge">48dp</dimen>
     <dimen name="dimen_xxlarge">56dp</dimen>
     <dimen name="dimen_xxxlarge">96dp</dimen>
+
     <dimen name="dimen_thumbnail">60dp</dimen>
 
 

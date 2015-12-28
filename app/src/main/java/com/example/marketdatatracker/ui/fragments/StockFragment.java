@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.ui;
+package com.example.marketdatatracker.ui.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,36 +7,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.FetchStockQuoteEvent;
-import com.example.marketdatatracker.service.GetQuoteThread;
+import com.example.marketdatatracker.service.GetStockQuoteThread;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 import yahoofinance.Stock;
 
-public class QuoteListFragment extends Fragment{
+public class StockFragment extends Fragment{
 
     private HashMap<String, Stock> mQuotes;
     private List<Stock> mStocks = new ArrayList<>();
 
-    public QuoteListFragment() {}
+    public StockFragment() {}
 
-    public static QuoteListFragment newInstance() {
-        return new QuoteListFragment();
+    public static StockFragment newInstance() {
+        return new StockFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        new GetQuoteThread().start();
+        new GetStockQuoteThread().start();
     }
 
     @Nullable

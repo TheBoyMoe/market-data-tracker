@@ -12,7 +12,7 @@ import timber.log.Timber;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
-public class GetQuoteThread extends Thread{
+public class GetStockQuoteThread extends Thread{
 
     @Override
     public void run() {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/action_stock"
+            android:checked="true"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="Stocks" />
+
+        <item
+            android:id="@+id/action_currency"
+            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:title="Currency" />
+
+        <item
+            android:id="@+id/action_news"
+            android:icon="@drawable/ic_view_headline_black_24dp"
+            android:title="News" />
+
+    </group>
+
+    <item android:title="Sub items">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/action_about"
+                    android:icon="@drawable/ic_info_outline_black_24dp"
+                    android:title="About" />
+
+                <item
+                    android:id="@+id/action_settings"
+                    android:icon="@drawable/ic_settings_black_24dp"
+                    android:title="Settings" />
+
+            </group>
+
+        </menu>
+    </item>
+
+</menu>
