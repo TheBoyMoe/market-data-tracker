@@ -42,7 +42,6 @@ public class QuoteListFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        EventBus.getDefault().post(new AppMessageEvent("Executing quote thread"));
         return super.onCreateView(inflater, container, savedInstanceState);
 
         // TODO set up the view
