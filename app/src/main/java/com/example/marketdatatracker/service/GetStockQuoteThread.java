@@ -75,11 +75,10 @@ public class GetStockQuoteThread extends Thread{
                 stock.getQuote().getPreviousClose(),
                 stock.getQuote().getLastTradeTime(),
                 stock.getStats().getMarketCap(),
-                stock.getStats().getEps()
+                stock.getStats().getEps(),
+                stock.getQuote().getChange(),
+                stock.getQuote().getChangeInPercent()
         );
-
     }
-
-
 
 }

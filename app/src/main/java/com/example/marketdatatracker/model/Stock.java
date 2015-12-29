@@ -28,6 +28,8 @@ public class Stock implements Parcelable {
     private Calendar mLastTradeDateTime;
     private BigDecimal mMarketCapitalisation;
     private BigDecimal mEarningsPerShare;
+    private BigDecimal mChange;
+    private BigDecimal mChangeInPercent;
 
     public Stock(String name,
                  String currency,
@@ -44,7 +46,9 @@ public class Stock implements Parcelable {
                  BigDecimal previousClose,
                  Calendar lastTradeDateTime,
                  BigDecimal marketCapitalisation,
-                 BigDecimal earningsPerShare) {
+                 BigDecimal earningsPerShare,
+                 BigDecimal change,
+                 BigDecimal changeInPercent) {
 
         mName = name;
         mCurrency = currency;
@@ -62,6 +66,8 @@ public class Stock implements Parcelable {
         mLastTradeDateTime = lastTradeDateTime;
         mMarketCapitalisation = marketCapitalisation;
         mEarningsPerShare = earningsPerShare;
+        mChange = change;
+        mChangeInPercent = changeInPercent;
     }
 
 
@@ -129,11 +135,20 @@ public class Stock implements Parcelable {
         return mEarningsPerShare;
     }
 
+    public BigDecimal getChange() {
+        return mChange;
+    }
+
+    public BigDecimal getChangeInPercent() {
+        return mChangeInPercent;
+    }
+
     @Override
     public String toString() {
         return String.format("%s %s %.2f %.2f %.2f",
                 getName(), getSymbol(), getPrice(), getDayLow(), getDayHigh());
     }
+
 
     @Override
     public int describeContents() {
@@ -158,6 +173,8 @@ public class Stock implements Parcelable {
         dest.writeSerializable(this.mLastTradeDateTime);
         dest.writeSerializable(this.mMarketCapitalisation);
         dest.writeSerializable(this.mEarningsPerShare);
+        dest.writeSerializable(this.mChange);
+        dest.writeSerializable(this.mChangeInPercent);
     }
 
     protected Stock(Parcel in) {
@@ -177,6 +194,8 @@ public class Stock implements Parcelable {
         this.mLastTradeDateTime = (Calendar) in.readSerializable();
         this.mMarketCapitalisation = (BigDecimal) in.readSerializable();
         this.mEarningsPerShare = (BigDecimal) in.readSerializable();
+        this.mChange = (BigDecimal) in.readSerializable();
+        this.mChangeInPercent = (BigDecimal) in.readSerializable();
     }
 
     public static final Parcelable.Creator<Stock> CREATOR = new Parcelable.Creator<Stock>() {
@@ -188,4 +207,6 @@ public class Stock implements Parcelable {
             return new Stock[size];
         }
     };
+
+
 }
