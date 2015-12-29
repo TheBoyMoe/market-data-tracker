@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Stock Tracker</string>
+    <string name="nav_title_stocks">Stocks</string>
+    <string name="nav_title_currencies">Currencies</string>
+    <string name="nav_title_news">News</string>
+    <string name="nav_title_about">About</string>
+    <string name="nav_title_settings">Settings</string>
+    <string name="nav_sub_title">Sub items</string>
 </resources>

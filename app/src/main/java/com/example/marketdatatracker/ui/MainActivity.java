@@ -159,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
             case "Stocks":
                 mCurrentTitle = "Current prices";
                 break;
-            case "Currency":
-                mCurrentTitle = "Currency exchange";
+            case "Currencies":
+                mCurrentTitle = "Foreign exchange";
                 break;
             case "News":
                 mCurrentTitle = "Financial headlines";
@@ -191,8 +191,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    // TODO EventBus not registered ???
     @Override
     protected void onResume() {
         super.onResume();

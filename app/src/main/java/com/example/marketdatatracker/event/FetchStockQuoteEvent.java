@@ -1,18 +1,20 @@
 package com.example.marketdatatracker.event;
 
-import java.util.Map;
+import com.example.marketdatatracker.model.Stock;
 
-import yahoofinance.Stock;
+import java.util.List;
 
 public class FetchStockQuoteEvent {
 
-    private Map<String, Stock> mQuotes;
+    private List<Stock> mStocks;
 
-    public FetchStockQuoteEvent(Map<String, Stock> quotes) {
-        this.mQuotes = quotes;
+    public FetchStockQuoteEvent(List<Stock> stocks) {
+        mStocks = stocks;
     }
 
-    public Map<String, Stock> getQuotes() {
-        return mQuotes;
+    public List<Stock> getStocks() {
+        return mStocks;
     }
+
+
 }
