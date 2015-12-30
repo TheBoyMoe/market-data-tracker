@@ -2,7 +2,7 @@ package com.example.marketdatatracker.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,13 +11,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.service.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.fragments.AboutFragment;
 import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;
@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState == null) {
+            // fetch stock data
+            new GetStockQuoteThread().start();
+        }
 
         // cache the req'd layout elements
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
@@ -206,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
+        // display any posted messages to the user
         Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 

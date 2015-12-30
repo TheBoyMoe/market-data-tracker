@@ -2,7 +2,7 @@ package com.example.marketdatatracker.service;
 
 
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.event.FetchStockQuoteEvent;
+import com.example.marketdatatracker.model.StockDataCache;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class GetStockQuoteThread extends Thread{
             // query multiple stocks
             String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO", "BP", "BT"};
             Map<String, Stock> stocks = YahooFinance.get(query);
-            Stock stock = null;
+            Stock stock;
 
             List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
             com.example.marketdatatracker.model.Stock stockItem;
@@ -43,16 +43,17 @@ public class GetStockQuoteThread extends Thread{
                     Timber.i("Stock: %s", stockItem);
                     stockList.add(stockItem);
                 }
-                // TODO save the stocks to persistent storage
-                // post the stock list
-                EventBus.getDefault().post(new FetchStockQuoteEvent(stockList));
+
+                // stash the data to the cache, let any interested parties know
+                StockDataCache.getStockDataCache().setStocks(stockList);
+                EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE));
             }
             else
-                EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));
+                EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));
 
         } catch (IOException e) {
             Timber.e(e, "Failed to retrieve quote data: %s", e.getMessage());
-            EventBus.getDefault().post(new AppMessageEvent("Failed to retrieve quote data"));
+            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));
         }
     }
 

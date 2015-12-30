@@ -2,7 +2,6 @@ package com.example.marketdatatracker.ui.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -15,20 +14,17 @@ import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.event.FetchStockQuoteEvent;
 import com.example.marketdatatracker.model.Stock;
-import com.example.marketdatatracker.service.GetStockQuoteThread;
+import com.example.marketdatatracker.model.StockDataCache;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 
 public class StockFragment extends Fragment{
 
-    private static final String STOCK_LIST = "stock_list";
+
     private List<Stock> mStocks;
     private ListView mListView;
     private StockAdapter mStockAdapter;
@@ -43,13 +39,13 @@ public class StockFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        new GetStockQuoteThread().start();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mListView = (ListView) inflater.inflate(R.layout.stock_list_view, container, false);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -61,24 +57,15 @@ public class StockFragment extends Fragment{
         });
 
         // restore the array adapter on device rotation
-        if(savedInstanceState != null) {
-            Timber.i("Stocks list is %s", mStocks);
-            mStocks = savedInstanceState.getParcelableArrayList(STOCK_LIST);
-            if(mStocks != null) {
-                mStockAdapter = new StockAdapter(mStocks);
-                mListView.setAdapter(mStockAdapter);
-            }
+        mStocks = StockDataCache.getStockDataCache().getStocks();
+        if(mStocks != null) {
+            mStockAdapter = new StockAdapter(mStocks);
+            mListView.setAdapter(mStockAdapter);
         }
 
         return mListView;
     }
 
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(STOCK_LIST, (ArrayList<? extends Parcelable>) mStocks);
-    }
 
     @Override
     public void onResume() {
@@ -94,15 +81,17 @@ public class StockFragment extends Fragment{
 
 
     @SuppressWarnings("unused")
-    public void onEventMainThread(FetchStockQuoteEvent event) {
+    public void onEventMainThread(AppMessageEvent event) {
 
-        // TODO fetch the stocks from persistent storage instead of posting/fetching from eventbus
-        // display the stock data
-        mStocks = event.getStocks();
-        if(mStocks != null) {
-            mStockAdapter = new StockAdapter(mStocks);
-            mListView.setAdapter(mStockAdapter);
+        // fetch data from the cache when confirmation of successful download received
+        if(event.getMessage().equals(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE)) {
+            mStocks = StockDataCache.getStockDataCache().getStocks();
+            if(mStocks != null) {
+                mStockAdapter = new StockAdapter(mStocks);
+                mListView.setAdapter(mStockAdapter);
+            }
         }
+
     }
 
 
