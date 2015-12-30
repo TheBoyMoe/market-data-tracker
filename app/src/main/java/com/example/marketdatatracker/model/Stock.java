@@ -31,6 +31,7 @@ public class Stock implements Parcelable {
     private BigDecimal mChange;
     private BigDecimal mChangeInPercent;
 
+
     public Stock(String name,
                  String currency,
                  String symbol,
@@ -145,8 +146,9 @@ public class Stock implements Parcelable {
 
     @Override
     public String toString() {
-        return String.format("%s %s %.2f %.2f %.2f",
-                getName(), getSymbol(), getPrice(), getDayLow(), getDayHigh());
+        return String.format("Name: %s symbol: %s currency: %s price: %.2f open: %.2f previous close: %.2f change: %.2f percent: %.2f",
+                getName(), getSymbol(), getCurrency(), getPrice(),
+                getOpen(), getPreviousClose(), getChange(), getChangeInPercent());
     }
 
 

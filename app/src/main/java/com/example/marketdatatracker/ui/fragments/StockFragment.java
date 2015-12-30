@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,10 +127,74 @@ public class StockFragment extends Fragment{
                 convertView.setTag(holder);
             }
 
-            // populate the holder elements
             Stock stock = getItem(position);
+
+            // determine currency
+            String currencySymbol;
+            String currency = stock.getCurrency();
+
+            switch (currency) {
+                case "EUR":
+                    currencySymbol = "€";
+                    break;
+                case "USD":
+                    currencySymbol = "$";
+                    break;
+                default:
+                    currencySymbol = "£";
+            }
+
+            // comparing closing and current prices to determine +/- change
+            String changeSymbol;
+            if (stock.getPrice().doubleValue() > stock.getPreviousClose().doubleValue()) {
+                changeSymbol = "+";
+                holder.stockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
+                holder.stockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_up_green_18dp, 0, 0, 0);
+                holder.stockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
+            }
+            else if (stock.getPrice().doubleValue() < stock.getPreviousClose().doubleValue()) {
+                changeSymbol = "";
+                holder.stockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
+                holder.stockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down_red_18dp, 0, 0, 0);
+                holder.stockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
+            }
+            else {
+                changeSymbol = "";
+                holder.stockChange.setPadding(18, 0, 0, 0);
+            }
+
+            // populate the holder elements
             holder.stockName.setText(stock.getName());
-            holder.stockPrice.setText(String.valueOf(stock.getPrice()));
+            holder.stockExchange.setText(stock.getStockExchange());
+            holder.stockSymbol.setText(stock.getSymbol());
+            holder.stockPrice.setText(String.format("%s%.2f", currencySymbol, stock.getPrice()));
+            holder.stockChange.setText(String.format("%s%.2f", changeSymbol, stock.getChange()) );
+            holder.stockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, stock.getChangeInPercent()));
+            holder.stockDayHi.setText(String.valueOf(stock.getDayHigh()));
+            holder.stockDayLo.setText(String.valueOf(stock.getDayLow()));
+
+
+            // Handles the price change info
+//            public int getPriceChangeDirection() {
+//
+//                if(mPriceChange.length() > 0) {
+//
+//                    String d = priceChange.substring(0, 1);
+//
+//                    if (d.equals("-"))
+//                    {
+//                        return -1;
+//                    }
+//                    else if (d.equals("+"))
+//                    {
+//                        return 1;
+//                    }
+//
+//                }
+//                return 0;
+//
+//            }
+
 
             return convertView;
         }
@@ -138,11 +203,23 @@ public class StockFragment extends Fragment{
 
     private class ViewHolder {
         TextView stockName;
+        TextView stockExchange;
+        TextView stockSymbol;
         TextView stockPrice;
+        TextView stockChange;
+        TextView stockChangeInPercent;
+        TextView stockDayHi;
+        TextView stockDayLo;
 
         public ViewHolder(View listItem) {
             stockName = (TextView) listItem.findViewById(R.id.stock_name);
+            stockExchange = (TextView) listItem.findViewById(R.id.stock_exchange);
+            stockSymbol = (TextView) listItem.findViewById(R.id.stock_symbol);
             stockPrice = (TextView) listItem.findViewById(R.id.stock_price);
+            stockChange = (TextView) listItem.findViewById(R.id.stock_change);
+            stockChangeInPercent = (TextView) listItem.findViewById(R.id.stock_change_in_percent);
+            stockDayHi = (TextView) listItem.findViewById(R.id.stock_day_hi);
+            stockDayLo = (TextView) listItem.findViewById(R.id.stock_day_lo);
         }
     }
 

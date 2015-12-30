@@ -25,7 +25,7 @@ public class GetStockQuoteThread extends Thread{
         // TODO check shared preferences for stock choices - pass into query
         try {
             // query multiple stocks
-            String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO"};
+            String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO", "BP", "BT"};
             Map<String, Stock> stocks = YahooFinance.get(query);
             Stock stock = null;
 

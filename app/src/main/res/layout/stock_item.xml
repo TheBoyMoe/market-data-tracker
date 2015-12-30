@@ -1,28 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
               android:padding="@dimen/dimen_normal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        o<TextView
+            android:id="@+id/stock_name"
+            tools:text="Apple Computers"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/stock_exchange"
+            tools:text="NYSE"
+            android:singleLine="true"
+            android:textAllCaps="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
     <TextView
-        android:id="@+id/stock_name"
-        tools:text="Microsoft inc"
+        android:id="@+id/stock_symbol"
+        tools:text="AAPL"
         android:singleLine="true"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 
     <TextView
-        android:id="@+id/stock_price"
-        tools:text="$121.35"
+        android:id="@+id/stock_day_hi_lo"
+        android:text="@string/stock_day_hi_lo"
         android:gravity="end"
-        android:layout_marginLeft="@dimen/dimen_normal"
-        android:layout_marginStart="@dimen/dimen_normal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/stock_price"
+            tools:text="$1210.35"
+            android:singleLine="true"
+            android:textSize="28sp"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/stock_change"
+                tools:text="-2.00"
+                tools:drawableLeft="@drawable/ic_arrow_drop_up_green_18dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/stock_change_in_percent"
+                tools:text="-1.12"
+                android:paddingLeft="@dimen/dimen_normal"
+                android:paddingStart="@dimen/dimen_normal"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/dimen_small"
+            android:paddingRight="@dimen/dimen_small"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/stock_day_hi"
+                tools:text="133.10"
+                android:singleLine="true"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/stock_day_lo"
+                tools:text="121.23"
+                android:singleLine="true"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
 
 
 </LinearLayout>
