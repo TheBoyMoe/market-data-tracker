@@ -173,29 +173,6 @@ public class StockFragment extends Fragment{
             holder.stockDayHi.setText(String.valueOf(stock.getDayHigh()));
             holder.stockDayLo.setText(String.valueOf(stock.getDayLow()));
 
-
-            // Handles the price change info
-//            public int getPriceChangeDirection() {
-//
-//                if(mPriceChange.length() > 0) {
-//
-//                    String d = priceChange.substring(0, 1);
-//
-//                    if (d.equals("-"))
-//                    {
-//                        return -1;
-//                    }
-//                    else if (d.equals("+"))
-//                    {
-//                        return 1;
-//                    }
-//
-//                }
-//                return 0;
-//
-//            }
-
-
             return convertView;
         }
     }
