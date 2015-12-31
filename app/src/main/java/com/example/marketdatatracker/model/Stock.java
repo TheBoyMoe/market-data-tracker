@@ -9,7 +9,7 @@ import java.util.Calendar;
 /**
  * Custom stock object POJO
  */
-public class Stock implements Parcelable {
+public class Stock {
 
 
     private String mName;
@@ -150,65 +150,6 @@ public class Stock implements Parcelable {
                 getName(), getSymbol(), getCurrency(), getPrice(),
                 getOpen(), getPreviousClose(), getChange(), getChangeInPercent());
     }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.mName);
-        dest.writeString(this.mCurrency);
-        dest.writeString(this.mSymbol);
-        dest.writeString(this.mStockExchange);
-        dest.writeSerializable(this.mPrice);
-        dest.writeLong(this.mAvgVolume);
-        dest.writeLong(this.mVolume);
-        dest.writeSerializable(this.mDayHigh);
-        dest.writeSerializable(this.mDayLow);
-        dest.writeSerializable(this.mYearHigh);
-        dest.writeSerializable(this.mYearLow);
-        dest.writeSerializable(this.mOpen);
-        dest.writeSerializable(this.mPreviousClose);
-        dest.writeSerializable(this.mLastTradeDateTime);
-        dest.writeSerializable(this.mMarketCapitalisation);
-        dest.writeSerializable(this.mEarningsPerShare);
-        dest.writeSerializable(this.mChange);
-        dest.writeSerializable(this.mChangeInPercent);
-    }
-
-    protected Stock(Parcel in) {
-        this.mName = in.readString();
-        this.mCurrency = in.readString();
-        this.mSymbol = in.readString();
-        this.mStockExchange = in.readString();
-        this.mPrice = (BigDecimal) in.readSerializable();
-        this.mAvgVolume = in.readLong();
-        this.mVolume = in.readLong();
-        this.mDayHigh = (BigDecimal) in.readSerializable();
-        this.mDayLow = (BigDecimal) in.readSerializable();
-        this.mYearHigh = (BigDecimal) in.readSerializable();
-        this.mYearLow = (BigDecimal) in.readSerializable();
-        this.mOpen = (BigDecimal) in.readSerializable();
-        this.mPreviousClose = (BigDecimal) in.readSerializable();
-        this.mLastTradeDateTime = (Calendar) in.readSerializable();
-        this.mMarketCapitalisation = (BigDecimal) in.readSerializable();
-        this.mEarningsPerShare = (BigDecimal) in.readSerializable();
-        this.mChange = (BigDecimal) in.readSerializable();
-        this.mChangeInPercent = (BigDecimal) in.readSerializable();
-    }
-
-    public static final Parcelable.Creator<Stock> CREATOR = new Parcelable.Creator<Stock>() {
-        public Stock createFromParcel(Parcel source) {
-            return new Stock(source);
-        }
-
-        public Stock[] newArray(int size) {
-            return new Stock[size];
-        }
-    };
 
 
 }

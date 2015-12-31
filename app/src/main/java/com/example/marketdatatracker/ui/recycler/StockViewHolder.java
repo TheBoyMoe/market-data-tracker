@@ -98,6 +98,6 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
         // display the item position and stock name
         Snackbar.make(view, String.format("#%d %s", getAdapterPosition(), mStock.getName()),
                                                                 Snackbar.LENGTH_SHORT).show();
-        // TODO launch the StockDetailActivity
+        // TODO launch the StockDetailActivity passing in the stock symbol to id stock
     }
 }
