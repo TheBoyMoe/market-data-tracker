@@ -1,6 +1,7 @@
 package com.example.marketdatatracker.ui.recycler;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,7 +10,10 @@ import android.widget.TextView;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 
-public class StockViewHolder extends RecyclerView.ViewHolder{
+public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    private Stock mStock;
+    private Context mContext;
 
     TextView mStockName;
     TextView mStockExchange;
@@ -20,8 +24,11 @@ public class StockViewHolder extends RecyclerView.ViewHolder{
     TextView mStockDayHi;
     TextView mStockDayLo;
 
+
+    // enable the viewholder to handle click events & cache references to the view's elements
     public StockViewHolder(View view) {
         super(view);
+        view.setOnClickListener(this);
 
         mStockName = (TextView) view.findViewById(R.id.stock_name);
         mStockExchange = (TextView) view.findViewById(R.id.stock_exchange);
@@ -36,10 +43,12 @@ public class StockViewHolder extends RecyclerView.ViewHolder{
 
     // populate the viewHolder
     public void bindStock(Stock stock, Context context) {
+        mStock = stock;
+        mContext = context;
 
         // determine currency
         String currencySymbol;
-        String currency = stock.getCurrency();
+        String currency = mStock.getCurrency();
 
         switch (currency) {
             case "EUR":
@@ -54,17 +63,17 @@ public class StockViewHolder extends RecyclerView.ViewHolder{
 
         // comparing closing and current prices to determine +/- change
         String changeSymbol;
-        if (stock.getPrice().doubleValue() > stock.getPreviousClose().doubleValue()) {
+        if (mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue()) {
             changeSymbol = "+";
-            mStockChange.setTextColor(ContextCompat.getColor(context, android.R.color.holo_green_light));
+            mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
             mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_up_green_18dp, 0, 0, 0);
-            mStockChangeInPercent.setTextColor(ContextCompat.getColor(context, android.R.color.holo_green_light));
+            mStockChangeInPercent.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
         }
-        else if (stock.getPrice().doubleValue() < stock.getPreviousClose().doubleValue()) {
+        else if (mStock.getPrice().doubleValue() < mStock.getPreviousClose().doubleValue()) {
             changeSymbol = "";
-            mStockChange.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_light));
+            mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_red_light));
             mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down_red_18dp, 0, 0, 0);
-            mStockChangeInPercent.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_light));
+            mStockChangeInPercent.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_red_light));
         }
         else {
             changeSymbol = "";
@@ -72,15 +81,23 @@ public class StockViewHolder extends RecyclerView.ViewHolder{
         }
 
         // populate the holder elements
-        mStockName.setText(stock.getName());
-        mStockExchange.setText(stock.getStockExchange());
-        mStockSymbol.setText(stock.getSymbol());
-        mStockPrice.setText(String.format("%s%.2f", currencySymbol, stock.getPrice()));
-        mStockChange.setText(String.format("%s%.2f", changeSymbol, stock.getChange()));
-        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, stock.getChangeInPercent()));
-        mStockDayHi.setText(String.valueOf(stock.getDayHigh()));
-        mStockDayLo.setText(String.valueOf(stock.getDayLow()));
+        mStockName.setText(mStock.getName());
+        mStockExchange.setText(mStock.getStockExchange());
+        mStockSymbol.setText(mStock.getSymbol());
+        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
+        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
+        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
+        mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
+        mStockDayLo.setText(String.valueOf(mStock.getDayLow()));
     }
 
 
+    // handle click events
+    @Override
+    public void onClick(View view) {
+        // display the item position and stock name
+        Snackbar.make(view, String.format("#%d %s", getAdapterPosition(), mStock.getName()),
+                                                                Snackbar.LENGTH_SHORT).show();
+        // TODO launch the StockDetailActivity
+    }
 }
