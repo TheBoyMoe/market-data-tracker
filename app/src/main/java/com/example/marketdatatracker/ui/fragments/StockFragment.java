@@ -1,13 +1,16 @@
 package com.example.marketdatatracker.ui.fragments;
 
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
@@ -26,6 +29,7 @@ public class StockFragment extends Fragment{
     private List<Stock> mStocks;
     private RecyclerView mRecyclerView;
     private StockAdapter mStockAdapter;
+    private ProgressBar mProgressBar;
 
     public StockFragment() {}
 
@@ -45,8 +49,42 @@ public class StockFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.stock_recycler_view, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
+        // set the layout for the appropriate size
+        Configuration config = getResources().getConfiguration();
+
+        if(config.screenWidthDp >= 540) {
+            // use a two col grid layout on all screens with a width >= 540dp
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+            mRecyclerView.setLayoutManager(gridLayoutManager);
+        }
+        else {
+            LinearLayoutManager linearLayoutMgr = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(linearLayoutMgr);
+        }
+
+//         if(config.smallestScreenWidthDp >= 600){
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+//            mRecyclerView.setLayoutManager(linearLayoutMgr);
+//        }
+
+//        else {
+//            // on phones - portrait orientation
+//            if((config.orientation == Configuration.ORIENTATION_PORTRAIT)) {
+//                LinearLayoutManager linearLayoutMgr = new LinearLayoutManager(getActivity());
+//                mRecyclerView.setLayoutManager(linearLayoutMgr);
+//            }
+//            else {
+//                // landscape orientation
+//                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+//                mRecyclerView.setLayoutManager(gridLayoutManager);
+//            }
+//        }
+
+        mRecyclerView.setHasFixedSize(true);
+
+        // populate and bind the adapter to the view
         updateUI();
 
         return view;
@@ -81,6 +119,7 @@ public class StockFragment extends Fragment{
         if(mStocks != null) {
             mStockAdapter = new StockAdapter(mStocks, getActivity());
             mRecyclerView.setAdapter(mStockAdapter);
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 

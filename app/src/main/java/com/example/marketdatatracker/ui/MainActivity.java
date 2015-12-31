@@ -1,5 +1,6 @@
 package com.example.marketdatatracker.ui;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,6 +25,7 @@ import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;
 import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
+import com.example.marketdatatracker.util.ScreenUtility;
 
 import de.greenrobot.event.EventBus;
 import timber.log.Timber;
@@ -97,15 +100,50 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        // open the drawer on clicking the 'hamburger'
-        if(item.getItemId() == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_screen_dimensions:
+                // determine the devices dimensions in dp
+                ScreenUtility utility = new ScreenUtility(this);
+                String output = String.format("Width: %d Height: %d",
+                        (int)utility.getWidth(), (int)utility.getHeight());
+
+                // display them on screen
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(output)
+                        .setTitle("Dimensions")
+                        .create()
+                        .show();
+                return true;
+
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        // open the drawer on clicking the 'hamburger'
+//        if(item.getItemId() == android.R.id.home) {
+//            mDrawerLayout.openDrawer(GravityCompat.START);
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
