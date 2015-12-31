@@ -64,24 +64,6 @@ public class StockFragment extends Fragment{
             mRecyclerView.setLayoutManager(linearLayoutMgr);
         }
 
-//         if(config.smallestScreenWidthDp >= 600){
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-//            mRecyclerView.setLayoutManager(linearLayoutMgr);
-//        }
-
-//        else {
-//            // on phones - portrait orientation
-//            if((config.orientation == Configuration.ORIENTATION_PORTRAIT)) {
-//                LinearLayoutManager linearLayoutMgr = new LinearLayoutManager(getActivity());
-//                mRecyclerView.setLayoutManager(linearLayoutMgr);
-//            }
-//            else {
-//                // landscape orientation
-//                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-//                mRecyclerView.setLayoutManager(gridLayoutManager);
-//            }
-//        }
-
         mRecyclerView.setHasFixedSize(true);
 
         // populate and bind the adapter to the view
