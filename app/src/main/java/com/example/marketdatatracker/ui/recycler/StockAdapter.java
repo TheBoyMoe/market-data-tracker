@@ -1,7 +1,6 @@
 package com.example.marketdatatracker.ui.recycler;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
     private List<Stock> mStocks;
     private Context mContext;
+    private StockViewHolder mStockViewHolder;
 
     public StockAdapter(List<Stock> stocks, Context context) {
         mStocks = stocks;
@@ -27,17 +27,22 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.stock_item, parent, false);
+        mStockViewHolder = new StockViewHolder(view);
 
-        return new StockViewHolder(view);
+        return mStockViewHolder;
     }
 
     @Override
     public void onBindViewHolder(StockViewHolder holder, int position) {
-        Stock stock = mStocks.get(position);
+        Stock mStock = mStocks.get(position);
+        mStockViewHolder.bindStock(mStock, mContext);
 
-        // determine currency
+        /**
+         * refactored to the bindStock() in the ViewHolder
+         */
+        /*// determine currency
         String currencySymbol;
-        String currency = stock.getCurrency();
+        String currency = mStock.getCurrency();
 
         switch (currency) {
             case "EUR":
@@ -52,13 +57,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
         // comparing closing and current prices to determine +/- change
         String changeSymbol;
-        if (stock.getPrice().doubleValue() > stock.getPreviousClose().doubleValue()) {
+        if (mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue()) {
             changeSymbol = "+";
             holder.mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
             holder.mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_up_green_18dp, 0, 0, 0);
             holder.mStockChangeInPercent.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
         }
-        else if (stock.getPrice().doubleValue() < stock.getPreviousClose().doubleValue()) {
+        else if (mStock.getPrice().doubleValue() < mStock.getPreviousClose().doubleValue()) {
             changeSymbol = "";
             holder.mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_red_light));
             holder.mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down_red_18dp, 0, 0, 0);
@@ -70,14 +75,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
         }
 
         // populate the holder elements
-        holder.mStockName.setText(stock.getName());
-        holder.mStockExchange.setText(stock.getStockExchange());
-        holder.mStockSymbol.setText(stock.getSymbol());
-        holder.mStockPrice.setText(String.format("%s%.2f", currencySymbol, stock.getPrice()));
-        holder.mStockChange.setText(String.format("%s%.2f", changeSymbol, stock.getChange()));
-        holder.mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, stock.getChangeInPercent()));
-        holder.mStockDayHi.setText(String.valueOf(stock.getDayHigh()));
-        holder.mStockDayLo.setText(String.valueOf(stock.getDayLow()));
+        holder.mStockName.setText(mStock.getName());
+        holder.mStockExchange.setText(mStock.getStockExchange());
+        holder.mStockSymbol.setText(mStock.getSymbol());
+        holder.mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
+        holder.mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
+        holder.mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
+        holder.mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
+        holder.mStockDayLo.setText(String.valueOf(mStock.getDayLow()));*/
 
     }
 
