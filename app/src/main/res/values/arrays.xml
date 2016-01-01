@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="stocks_array">
+        <item>Achillion Pharmaceuticals, Inc.</item>
+        <item>ACI Worldwide, Inc.</item>
+        <item>ACNB Corporation</item>
+        <item>Acorda Therapeutics, Inc.</item>
+        <item>Acorn Energy, Inc.</item>
+        <item>Actions Semiconductor Co</item>
+        <item>Active Power, Inc.</item>
+        <item>Activision Blizzard, Inc</item>
+        <item>Actua Corporation</item>
+        <item>Acura Pharmaceuticals, Inc</item>
+        <item>Acxiom Corporation</item>
+        <item>Adamas Pharmaceuticals, Inc</item>
+        <item>Adamis Pharmaceuticals Corporat</item>
+        <item>Addus HomeCare Corporation</item>
+        <item>ADDvantage Technologies Group</item>
+        <item>Adept Technology, Inc</item>
+        <item>ADMA Biologics Inc</item>
+        <item>Adobe Systems Inc</item>
+        <item>ADTRAN, Inc.</item>
+        <item>Advanced Energy Industries, Inc</item>
+        <item>Advanced Micro Devices, Inc</item>
+        <item>Advaxis, Inc</item>
+        <item>Advent Software, Inc.</item>
+        <item>AdvisorShares Sunrise Global Mu</item>
+        <item>AdvisorShares YieldPro ETF</item>
+        <item>Aegerion Pharmaceuticals, Inc</item>
+        <item>Aegion Corp</item>
+        <item>Aehr Test Systems</item>
+        <item>Aemetis, Inc</item>
+        <item>AEP Industries Inc</item>
+        <item>Aerie Pharmaceuticals, Inc</item>
+        <item>AeroVironment, Inc</item>
+        <item>AEterna Zentaris Inc</item>
+        <item>Affimed N.V.</item>
+        <item>Affymetrix, Inc</item>
+        <item>Agenus Inc.</item>
+        <item>Agile Therapeutics, Inc</item>
+        <item>Agilysys, Inc.</item>
+        <item>Agios Pharmaceuticals, Inc.</item>
+        <item>Air Methods Corporation</item>
+        <item>Air T, Inc</item>
+        <item>Air Transport Services Group</item>
+        <item>AirMedia Group Inc</item>
+        <item>Aixtron SE</item>
+        <item>Akamai Technologies, Inc</item>
+        <item>Akebia Therapeutics, Inc</item>
+        <item>Akers Biosciences Inc</item>
+        <item>Akorn, Inc</item>
+        <item>Alaska Communications Systems</item>
+    </string-array>
+
+
+    <string-array name="symbols_array">
+        <item>ACHN</item>
+        <item>ACIW</item>
+        <item>ACNB</item>
+        <item>ACOR</item>
+        <item>ACFN</item>
+        <item>ACTS</item>
+        <item>ACPW</item>
+        <item>ATVI</item>
+        <item>ACTA</item>
+        <item>ACUR</item>
+        <item>ACXM</item>
+        <item>ADMS</item>
+        <item>ADMP</item>
+        <item>ADUS</item>
+        <item>AEY</item>
+        <item>ADEP</item>
+        <item>ADMA</item>
+        <item>ADBE</item>
+        <item>ADTN</item>
+        <item>AEIS</item>
+        <item>AMD</item>
+        <item>ADXS</item>
+        <item>ADVS</item>
+        <item>MULT</item>
+        <item>YPRO</item>
+        <item>AEGR</item>
+        <item>AEGN</item>
+        <item>AEHR</item>
+        <item>AMTX</item>
+        <item>AEPI</item>
+        <item>AERI</item>
+        <item>AVAV</item>
+        <item>AEZS</item>
+        <item>AFMD</item>
+        <item>AFFX</item>
+        <item>AGEN</item>
+        <item>AGRX</item>
+        <item>AGYS</item>
+        <item>AGIO</item>
+        <item>AIRM</item>
+        <item>AIRT</item>
+        <item>ATSG</item>
+        <item>AMCN</item>
+        <item>AIXG</item>
+        <item>AKAM</item>
+        <item>AKBA</item>
+        <item>AKER</item>
+        <item>AKRX</item>
+        <item>ALSK</item>
+
+    </string-array>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <MultiSelectListPreference
+        android:key="quote_list"
+        android:title="Quoted companies"
+        android:summary="Pick a portfolio of companies to follow"
+        android:dialogTitle="Your portfolio"
+        android:entries="@array/stocks_array"
+        android:entryValues="@array/symbols_array"/>
+
+
+</PreferenceScreen>

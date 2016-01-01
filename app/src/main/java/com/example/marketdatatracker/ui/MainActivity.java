@@ -3,6 +3,7 @@ package com.example.marketdatatracker.ui;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             // fetch stock data
-            new GetStockQuoteThread().start();
+            new GetStockQuoteThread(this).start();
         }
 
         // cache the req'd layout elements
@@ -85,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(mCoordinatorLayout, "Clicked FAB", Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(mCoordinatorLayout, "Clicked FAB", Snackbar.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, StockPrefsActivity.class));
             }
         });
 

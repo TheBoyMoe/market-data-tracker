@@ -8,4 +8,5 @@
     <string name="nav_sub_title">Sub items</string>
     <string name="stock_day_hi_lo">Day Hi/Lo</string>
     <string name="screen_dimensions">Screen dimensions</string>
+    <string name="title_activity_stock_prefs">StockPrefsActivity</string>
 </resources>
