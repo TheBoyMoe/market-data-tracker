@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
         // display any posted messages to the user
-        Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_LONG).show();
     }
 
 }

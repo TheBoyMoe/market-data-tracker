@@ -2,6 +2,10 @@ package com.example.marketdatatracker.service;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.*;
+import android.os.Process;
+import android.preference.PreferenceManager;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
@@ -10,6 +14,7 @@ import com.example.marketdatatracker.model.StockDataCache;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,37 +33,57 @@ import yahoofinance.YahooFinance;
 public class GetStockQuoteThread extends Thread{
 
     private Context mContext;
+    private SharedPreferences mPrefs;
 
     public GetStockQuoteThread(Context context) {
-        mContext = context;
+        mContext = context.getApplicationContext();
     }
 
     @Override
     public void run() {
         super.run();
+        android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
-        // TODO check shared preferences for stock choices - pass into query
+        synchronized (this) {
+            mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        }
+
+        List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
+        com.example.marketdatatracker.model.Stock stockItem;
+
+        // read the symbol codes from the xml array
+        /*List<String> symbolList = Arrays.asList(mContext.getResources().getStringArray(R.array.symbols_array));
+        String[] symbols = symbolList.toArray(new String[symbolList.size()]);
+        Timber.i("QUERY: %s", Arrays.toString(symbols));*/
+
+
+        // create a data set with default stock query
+        /*List<String> list = new ArrayList<String>(){{add("INTC"); add("AAPL"); add("BABA"); add("TSLA");
+            add("AIR.PA"); add("YHOO"); add("BP"); add("BT");}};*/
+
+        Set<String> defaultPortfolio = new HashSet<>();
+        defaultPortfolio.addAll(new ArrayList<String>());
+
+        // fetch user preferences, otherwise pass in the default
+        Set<String> portfolio = mPrefs.getStringSet("quote_list", defaultPortfolio);
+        String[] symbols = portfolio.toArray(new String[portfolio.size()]);
+        if(symbols.length == 0) {
+            // if the returned string set is empty, post a message to the user
+            StockDataCache.getStockDataCache().setStocks(stockList);
+            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED));
+            return;
+        }
 
         try {
-            // read the symbol codes from the xml array
-            /*List<String> symbolList = Arrays.asList(mContext.getApplicationContext().getResources().getStringArray(R.array.symbols_array));
-            String[] query = symbolList.toArray(new String[symbolList.size()]);
-            Timber.i("QUERY: %s", Arrays.toString(query));*/
-
-
-            // query multiple stocks
-            String[] query = {"INTC", "AAPL", "BABA", "TSLA", "AIR.PA", "YHOO", "BP", "BT"};
-            Map<String, Stock> stocks = YahooFinance.get(query);
+            // query the Yahoo Finance API
+            Map<String, Stock> stocks = YahooFinance.get(symbols);
             Stock stock;
-
-            List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
-            com.example.marketdatatracker.model.Stock stockItem;
 
             if (stocks != null) {
 
                 // create a custom stock object for every stock object received
-                Set<String> keys = stocks.keySet();
-                String[] symbols = keys.toArray(new String[keys.size()]);
+                //Set<String> keys = stocks.keySet();
+                //String[] symbols = keys.toArray(new String[keys.size()]);
                 for (String symbol : symbols) {
                     stock = stocks.get(symbol);
                     stockItem = buildCustomStockItem(stock);

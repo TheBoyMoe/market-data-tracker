@@ -21,6 +21,7 @@ import com.example.marketdatatracker.ui.recycler.StockAdapter;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import timber.log.Timber;
 
 
 public class StockFragment extends Fragment{
@@ -92,6 +93,8 @@ public class StockFragment extends Fragment{
         // fetch data from the cache when confirmation of successful download received
         if(event.getMessage().equals(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE)) {
             updateUI();
+        } else if(event.getMessage().equals(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED)) {
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 
