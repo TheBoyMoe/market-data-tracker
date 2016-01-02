@@ -93,11 +93,17 @@ public class StockFragment extends Fragment{
 
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
-        // fetch data from the cache when confirmation of successful download received
-        if(event.getMessage().equals(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE)) {
-            updateUI();
-        } else if(event.getMessage().equals(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED)) {
-            mProgressBar.setVisibility(View.GONE);
+        String message = event.getMessage();
+        switch (message) {
+            case AppMessageEvent.STOCK_DOWNLOAD_COMPLETE:
+                updateUI();
+                break;
+            case AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED:
+                mProgressBar.setVisibility(View.GONE);
+                break;
+            case AppMessageEvent.STOCK_PORTFOLIO_HAS_CHANGED:
+                new GetStockQuoteThread(getActivity()).start();
+                break;
         }
     }
 
