@@ -3,17 +3,14 @@ package com.example.marketdatatracker.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.*;
 import android.os.Process;
 import android.preference.PreferenceManager;
 
-import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.StockDataCache;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -51,16 +48,6 @@ public class GetStockQuoteThread extends Thread{
         List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
         com.example.marketdatatracker.model.Stock stockItem;
 
-        // read the symbol codes from the xml array
-        /*List<String> symbolList = Arrays.asList(mContext.getResources().getStringArray(R.array.symbols_array));
-        String[] symbols = symbolList.toArray(new String[symbolList.size()]);
-        Timber.i("QUERY: %s", Arrays.toString(symbols));*/
-
-
-        // create a data set with default stock query
-        /*List<String> list = new ArrayList<String>(){{add("INTC"); add("AAPL"); add("BABA"); add("TSLA");
-            add("AIR.PA"); add("YHOO"); add("BP"); add("BT");}};*/
-
         Set<String> defaultPortfolio = new HashSet<>();
         defaultPortfolio.addAll(new ArrayList<String>());
 
@@ -69,7 +56,6 @@ public class GetStockQuoteThread extends Thread{
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
         if(symbols.length == 0) {
             // if the returned string set is empty, post a message to the user
-            //StockDataCache.getStockDataCache().setStocks(stockList);
             EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED));
             return;
         }
@@ -80,10 +66,6 @@ public class GetStockQuoteThread extends Thread{
             Stock stock;
 
             if (stocks != null) {
-
-                // create a custom stock object for every stock object received
-                //Set<String> keys = stocks.keySet();
-                //String[] symbols = keys.toArray(new String[keys.size()]);
                 for (String symbol : symbols) {
                     stock = stocks.get(symbol);
                     stockItem = buildCustomStockItem(stock);
@@ -94,16 +76,6 @@ public class GetStockQuoteThread extends Thread{
                 // stash the data to the cache, let any interested parties know
                 StockDataCache.getStockDataCache().setStocks(stockList);
                 EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE));
-
-
-                /*for (String symbol : query) {
-                    stock = stocks.get(symbol);
-                    name = stock.getName();
-                    names.add(name);
-                }*/
-
-                // print the name list to the log
-                //Timber.i("Quote names: %s", names);
 
             } else
                 EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));

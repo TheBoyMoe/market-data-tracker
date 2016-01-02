@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null) {
-            // fetch stock data
-            //new GetStockQuoteThread(this).start();
-        }
-
         // cache the req'd layout elements
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -133,19 +128,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        // open the drawer on clicking the 'hamburger'
-//        if(item.getItemId() == android.R.id.home) {
-//            mDrawerLayout.openDrawer(GravityCompat.START);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
