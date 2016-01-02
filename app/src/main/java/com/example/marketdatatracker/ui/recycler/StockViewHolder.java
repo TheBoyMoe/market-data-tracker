@@ -10,6 +10,13 @@ import android.widget.TextView;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 
+/**
+ * References
+ * [1] https://www.safaribooksonline.com/library/view/android-programming-the/9780134171517/ch09s03.html
+ * [2] https://www.safaribooksonline.com/library/view/android-programming-the/9780134171517/ch09s04.html
+ * [3] https://www.safaribooksonline.com/library/view/android-programming-the/9780134171517/ch09s05.html
+ */
+
 public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private Stock mStock;

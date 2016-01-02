@@ -69,7 +69,7 @@ public class GetStockQuoteThread extends Thread{
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
         if(symbols.length == 0) {
             // if the returned string set is empty, post a message to the user
-            StockDataCache.getStockDataCache().setStocks(stockList);
+            //StockDataCache.getStockDataCache().setStocks(stockList);
             EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED));
             return;
         }

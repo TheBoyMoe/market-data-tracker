@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             // fetch stock data
-            new GetStockQuoteThread(this).start();
+            //new GetStockQuoteThread(this).start();
         }
 
         // cache the req'd layout elements

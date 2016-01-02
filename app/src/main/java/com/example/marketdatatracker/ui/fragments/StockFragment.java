@@ -16,8 +16,10 @@ import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.service.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.recycler.StockAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -42,6 +44,7 @@ public class StockFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        new GetStockQuoteThread(getActivity()).start();
     }
 
     @Nullable
@@ -101,11 +104,12 @@ public class StockFragment extends Fragment{
 
     private void updateUI() {
         mStocks = StockDataCache.getStockDataCache().getStocks();
-        if(mStocks != null) {
-            mStockAdapter = new StockAdapter(mStocks, getActivity());
-            mRecyclerView.setAdapter(mStockAdapter);
-            mProgressBar.setVisibility(View.GONE);
+        if(mStocks == null) {
+            mStocks = new ArrayList<>();
         }
+        mStockAdapter = new StockAdapter(mStocks, getActivity());
+        mRecyclerView.setAdapter(mStockAdapter);
+        mProgressBar.setVisibility(View.GONE);
     }
 
 
