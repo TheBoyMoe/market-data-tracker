@@ -9,4 +9,6 @@
     <string name="stock_day_hi_lo">Day Hi/Lo</string>
     <string name="screen_dimensions">Screen dimensions</string>
     <string name="title_activity_stock_prefs">StockPrefsActivity</string>
+    <string name="stock_detail_title">Stock results</string>
+    <string name="stock_graph_title">Stock graph</string>
 </resources>

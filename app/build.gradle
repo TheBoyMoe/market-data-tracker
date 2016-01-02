@@ -31,4 +31,5 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'com.jakewharton.timber:timber:4.1.0'
     compile 'com.yahoofinance-api:YahooFinanceAPI:2.0.0'
+    compile project(':library')
 }

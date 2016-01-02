@@ -1,6 +1,7 @@
 package com.example.marketdatatracker.ui.recycler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
+import com.example.marketdatatracker.ui.StockDetailActivity;
 
 /**
  * References
@@ -103,8 +105,11 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View view) {
         // display the item position and stock name
-        Snackbar.make(view, String.format("#%d %s", getAdapterPosition(), mStock.getName()),
-                                                                Snackbar.LENGTH_SHORT).show();
-        // TODO launch the StockDetailActivity passing in the stock symbol to id stock
+        //Snackbar.make(view, String.format("#%d %s", getAdapterPosition(), mStock.getName()),
+        //                                                      Snackbar.LENGTH_SHORT).show();
+
+        // launch the StockDetailActivity passing in the stock symbol to id stock
+        mContext.startActivity(new Intent(mContext, StockDetailActivity.class));
+
     }
 }
