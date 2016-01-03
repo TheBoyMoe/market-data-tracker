@@ -4,6 +4,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <include layout="@layout/stock_item_overview"/>
+
+    <!-- toolbar drop shadow-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"/>
+
     <!-- displays two fragments above one another in portrait orientation -->
     <FrameLayout
         android:id="@+id/frame_left"

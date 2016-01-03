@@ -32,7 +32,6 @@
 
         <activity
             android:name=".ui.StockDetailActivity"
-            android:label="@string/stock_detail_title"
             android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

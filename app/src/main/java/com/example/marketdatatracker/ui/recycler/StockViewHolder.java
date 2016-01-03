@@ -104,12 +104,11 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
     // handle click events
     @Override
     public void onClick(View view) {
-        // display the item position and stock name
-        //Snackbar.make(view, String.format("#%d %s", getAdapterPosition(), mStock.getName()),
-        //                                                      Snackbar.LENGTH_SHORT).show();
-
         // launch the StockDetailActivity passing in the stock symbol to id stock
-        mContext.startActivity(new Intent(mContext, StockDetailActivity.class));
-
+        Intent intent = new Intent(mContext, StockDetailActivity.class);
+        intent.putExtra(StockDetailActivity.STOCK_OBJECT, mStock.getSymbol());
+        mContext.startActivity(intent);
     }
+
+
 }

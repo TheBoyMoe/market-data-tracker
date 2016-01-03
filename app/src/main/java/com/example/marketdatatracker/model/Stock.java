@@ -30,6 +30,8 @@ public class Stock {
     private BigDecimal mEarningsPerShare;
     private BigDecimal mChange;
     private BigDecimal mChangeInPercent;
+    private BigDecimal mAnnualYield;
+    private BigDecimal mAnnualYieldPercentage;
 
 
     public Stock(String name,
@@ -49,7 +51,9 @@ public class Stock {
                  BigDecimal marketCapitalisation,
                  BigDecimal earningsPerShare,
                  BigDecimal change,
-                 BigDecimal changeInPercent) {
+                 BigDecimal changeInPercent,
+                 BigDecimal annualYield,
+                 BigDecimal annualYieldPercentage) {
 
         mName = name;
         mCurrency = currency;
@@ -69,8 +73,17 @@ public class Stock {
         mEarningsPerShare = earningsPerShare;
         mChange = change;
         mChangeInPercent = changeInPercent;
+        mAnnualYield = annualYield;
+        mAnnualYieldPercentage = annualYieldPercentage;
     }
 
+    public BigDecimal getAnnualYield() {
+        return mAnnualYield;
+    }
+
+    public BigDecimal getAnnualYieldPercentage() {
+        return mAnnualYieldPercentage;
+    }
 
     public String getName() {
         return mName;

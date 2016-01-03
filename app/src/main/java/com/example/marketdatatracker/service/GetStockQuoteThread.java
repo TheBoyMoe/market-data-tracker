@@ -108,7 +108,9 @@ public class GetStockQuoteThread extends Thread{
                 stock.getStats().getMarketCap(),
                 stock.getStats().getEps(),
                 stock.getQuote().getChange(),
-                stock.getQuote().getChangeInPercent()
+                stock.getQuote().getChangeInPercent(),
+                stock.getDividend().getAnnualYield(),
+                stock.getDividend().getAnnualYieldPercent()
         );
     }
 
