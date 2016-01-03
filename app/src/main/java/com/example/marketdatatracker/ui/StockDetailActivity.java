@@ -17,7 +17,6 @@ import timber.log.Timber;
 
 public class StockDetailActivity extends AppCompatActivity {
 
-    public static final String STOCK_OBJECT  = "stock";
     private Stock mStock;
 
     @Override
@@ -25,7 +24,7 @@ public class StockDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_detail_container);
 
-        String symbol = getIntent().getStringExtra(STOCK_OBJECT);
+        String symbol = getIntent().getStringExtra(StockDataCache.STOCK_OBJECT);
         mStock = StockDataCache.getStockDataCache().getStock(symbol);
 
         // set the actionbar title
@@ -33,14 +32,14 @@ public class StockDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(mStock.getName());
 
         // display stock overview data
-        displayStockOverview();
+        //displayStockOverview();
 
         // setup the detail and graph fragments
         ViewPager mViewPager = (ViewPager) findViewById(R.id.view_pager);
         if(mViewPager == null) {
             // device >= 600dp, display the detail & graph fragments simultaneously
             if(getFragmentManager().findFragmentById(R.id.frame_left) == null) {
-                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getFragmentManager());
+                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getFragmentManager(), mStock.getSymbol());
                 getFragmentManager().beginTransaction()
                         .add(R.id.frame_left, adapter.getItem(0))
                         .add(R.id.frame_right, adapter.getItem(1))
@@ -52,7 +51,7 @@ public class StockDetailActivity extends AppCompatActivity {
             CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
 
             // set the page indicator and adapter
-            mViewPager.setAdapter(new CustomViewPagerAdapter(getFragmentManager()));
+            mViewPager.setAdapter(new CustomViewPagerAdapter(getFragmentManager(), mStock.getSymbol()));
             mIndicator.setViewPager(mViewPager);
 
             // set and display the page indicator
@@ -102,46 +101,46 @@ public class StockDetailActivity extends AppCompatActivity {
     }
 
 
-    private void displayStockOverview() {
-        TextView mStockName = (TextView) findViewById(R.id.stock_name);
-        TextView mStockExchange = (TextView) findViewById(R.id.stock_exchange);
-        TextView mStockSymbol = (TextView) findViewById(R.id.stock_symbol);
-        TextView mStockPrice = (TextView) findViewById(R.id.stock_price);
-        TextView mStockChange = (TextView) findViewById(R.id.stock_change);
-        TextView mStockChangeInPercent = (TextView) findViewById(R.id.stock_change_in_percent);
-        TextView mStockDayHi = (TextView) findViewById(R.id.stock_day_hi);
-        TextView mStockDayLo = (TextView) findViewById(R.id.stock_day_lo);
-
-        // determine currency
-        String currencySymbol;
-        String currency = mStock.getCurrency();
-
-        switch (currency) {
-            case "EUR":
-                currencySymbol = "€";
-                break;
-            case "USD":
-                currencySymbol = "$";
-                break;
-            default:
-                currencySymbol = "£";
-        }
-
-        String changeSymbol;
-        if(mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue())
-            changeSymbol = "+";
-        else
-            changeSymbol = "";
-
-        mStockName.setText(mStock.getName());
-        mStockExchange.setText(mStock.getStockExchange());
-        mStockSymbol.setText(mStock.getSymbol());
-        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
-        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
-        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
-        mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
-        mStockDayLo.setText(String.valueOf(mStock.getDayLow()));
-    }
+//    private void displayStockOverview() {
+//        TextView mStockName = (TextView) findViewById(R.id.stock_name);
+//        TextView mStockExchange = (TextView) findViewById(R.id.stock_exchange);
+//        TextView mStockSymbol = (TextView) findViewById(R.id.stock_symbol);
+//        TextView mStockPrice = (TextView) findViewById(R.id.stock_price);
+//        TextView mStockChange = (TextView) findViewById(R.id.stock_change);
+//        TextView mStockChangeInPercent = (TextView) findViewById(R.id.stock_change_in_percent);
+//        TextView mStockDayHi = (TextView) findViewById(R.id.stock_day_hi);
+//        TextView mStockDayLo = (TextView) findViewById(R.id.stock_day_lo);
+//
+//        // determine currency
+//        String currencySymbol;
+//        String currency = mStock.getCurrency();
+//
+//        switch (currency) {
+//            case "EUR":
+//                currencySymbol = "€";
+//                break;
+//            case "USD":
+//                currencySymbol = "$";
+//                break;
+//            default:
+//                currencySymbol = "£";
+//        }
+//
+//        String changeSymbol;
+//        if(mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue())
+//            changeSymbol = "+";
+//        else
+//            changeSymbol = "";
+//
+//        mStockName.setText(mStock.getName());
+//        mStockExchange.setText(mStock.getStockExchange());
+//        mStockSymbol.setText(mStock.getSymbol());
+//        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
+//        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
+//        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
+//        mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
+//        mStockDayLo.setText(String.valueOf(mStock.getDayLow()));
+//    }
 
 
 }

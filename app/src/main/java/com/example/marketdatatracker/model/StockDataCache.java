@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class StockDataCache {
 
+    public static final String STOCK_OBJECT = "stock";
     private static StockDataCache sStockDataCache;
     private List<Stock> mStocks;
 

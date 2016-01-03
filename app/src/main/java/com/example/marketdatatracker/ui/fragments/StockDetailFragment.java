@@ -9,20 +9,35 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
+import com.example.marketdatatracker.model.Stock;
+import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.ui.StockDetailActivity;
+
+import timber.log.Timber;
 
 public class StockDetailFragment extends Fragment{
 
+    private Stock mStock;
+
     public StockDetailFragment() {}
 
-    public static StockDetailFragment newInstance() {
-        return new StockDetailFragment();
+    public static StockDetailFragment newInstance(String symbol) {
+        StockDetailFragment fragment = new StockDetailFragment();
+        Bundle args = new Bundle();
+        args.putString(StockDataCache.STOCK_OBJECT, symbol);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        TextView view = (TextView) inflater.inflate(R.layout.generic_fragment, container, false);
-        view.setText(R.string.stock_detail_title);
+        View view =  inflater.inflate(R.layout.stock_item_detail, container, false);
+
+        // fetch the stock object from the data cache
+        String symbol = getArguments().getString(StockDataCache.STOCK_OBJECT);
+        mStock = StockDataCache.getStockDataCache().getStock(symbol);
+        Timber.i("Detail fragment: %s", mStock.toString());
 
         return view;
     }

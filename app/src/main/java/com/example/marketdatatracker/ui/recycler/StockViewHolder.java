@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
+import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.ui.StockDetailActivity;
 
 /**
@@ -106,7 +107,7 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public void onClick(View view) {
         // launch the StockDetailActivity passing in the stock symbol to id stock
         Intent intent = new Intent(mContext, StockDetailActivity.class);
-        intent.putExtra(StockDetailActivity.STOCK_OBJECT, mStock.getSymbol());
+        intent.putExtra(StockDataCache.STOCK_OBJECT, mStock.getSymbol());
         mContext.startActivity(intent);
     }
 
