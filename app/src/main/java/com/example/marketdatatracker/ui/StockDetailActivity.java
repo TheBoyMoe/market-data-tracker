@@ -1,6 +1,9 @@
 package com.example.marketdatatracker.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,53 +22,67 @@ public class StockDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_detail_view);
 
-        // cache the layout's elements
         ViewPager mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
+        if(mViewPager == null) {
+            // device >= 600dp, display the detail & graph fragments simultaneously
+            if(getFragmentManager().findFragmentById(R.id.frame_left) == null) {
+                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getFragmentManager());
+                getFragmentManager().beginTransaction()
+                        .add(R.id.frame_left, adapter.getItem(0))
+                        .add(R.id.frame_right, adapter.getItem(1))
+                        .commit();
+            }
 
-        // set the page indicator and adapter
-        mViewPager.setAdapter(new CustomViewPagerAdapter(getFragmentManager()));
-        mIndicator.setViewPager(mViewPager);
+        } else {
+            // on a phone, use ViewPager and ViewPageIndicator
+            CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
 
-        // set and display the page indicator
-        final float density = getResources().getDisplayMetrics().density;
-        mIndicator.setRadius(6 * density);
-        mIndicator.setStrokeColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        mIndicator.setFillColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        mIndicator.setStrokeWidth(1.4f * density);
-        mIndicator.setPageColor(ContextCompat.getColor(this, android.R.color.white));
-        mIndicator.setSnap(true);
+            // set the page indicator and adapter
+            mViewPager.setAdapter(new CustomViewPagerAdapter(getFragmentManager()));
+            mIndicator.setViewPager(mViewPager);
 
-        mIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            // set and display the page indicator
+            final float density = getResources().getDisplayMetrics().density;
+            mIndicator.setRadius(6 * density);
+            mIndicator.setStrokeColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+            mIndicator.setFillColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            mIndicator.setStrokeWidth(1.4f * density);
+            mIndicator.setPageColor(ContextCompat.getColor(this, android.R.color.white));
+            mIndicator.setSnap(true);
 
-            // update the page title to reflect the change in fragment displayed
-            @Override
-            public void onPageSelected(int position) {
+            mIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-                if (getSupportActionBar() != null) {
-                    switch (position) {
-                        case CustomViewPagerAdapter.STOCK_DETAIL_FRAGMENT:
-                            getSupportActionBar().setTitle(R.string.stock_detail_title);
-                            break;
-                        case CustomViewPagerAdapter.STOCK_GRAPH_FRAGMENT:
-                            getSupportActionBar().setTitle(R.string.stock_graph_title);
-                            break;
-                        default:
-                            getSupportActionBar().setTitle(R.string.stock_detail_title);
+                // update the page title to reflect the change in fragment displayed
+                @Override
+                public void onPageSelected(int position) {
+
+                    if (getSupportActionBar() != null) {
+                        switch (position) {
+                            case CustomViewPagerAdapter.STOCK_DETAIL_FRAGMENT:
+                                getSupportActionBar().setTitle(R.string.stock_detail_title);
+                                break;
+                            case CustomViewPagerAdapter.STOCK_GRAPH_FRAGMENT:
+                                getSupportActionBar().setTitle(R.string.stock_graph_title);
+                                break;
+                            default:
+                                getSupportActionBar().setTitle(R.string.stock_detail_title);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // no-op
-            }
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    // no-op
+                }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // no-op
-            }
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    // no-op
+                }
 
-        });
+            });
+
+        }
+
     }
 }
