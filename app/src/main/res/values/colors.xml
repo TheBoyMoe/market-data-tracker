@@ -10,5 +10,7 @@
     <color name="colorHeaderText">#FFFFFF</color>
     <color name="colorGradientBackground">#858585</color>
     <color name="colorDivider">#DFDFDF</color>
+    <color name="colorPrimaryBackground">#FFFFFF</color>
+
 
 </resources>

@@ -101,46 +101,6 @@ public class StockDetailActivity extends AppCompatActivity {
     }
 
 
-//    private void displayStockOverview() {
-//        TextView mStockName = (TextView) findViewById(R.id.stock_name);
-//        TextView mStockExchange = (TextView) findViewById(R.id.stock_exchange);
-//        TextView mStockSymbol = (TextView) findViewById(R.id.stock_symbol);
-//        TextView mStockPrice = (TextView) findViewById(R.id.stock_price);
-//        TextView mStockChange = (TextView) findViewById(R.id.stock_change);
-//        TextView mStockChangeInPercent = (TextView) findViewById(R.id.stock_change_in_percent);
-//        TextView mStockDayHi = (TextView) findViewById(R.id.stock_day_hi);
-//        TextView mStockDayLo = (TextView) findViewById(R.id.stock_day_lo);
-//
-//        // determine currency
-//        String currencySymbol;
-//        String currency = mStock.getCurrency();
-//
-//        switch (currency) {
-//            case "EUR":
-//                currencySymbol = "€";
-//                break;
-//            case "USD":
-//                currencySymbol = "$";
-//                break;
-//            default:
-//                currencySymbol = "£";
-//        }
-//
-//        String changeSymbol;
-//        if(mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue())
-//            changeSymbol = "+";
-//        else
-//            changeSymbol = "";
-//
-//        mStockName.setText(mStock.getName());
-//        mStockExchange.setText(mStock.getStockExchange());
-//        mStockSymbol.setText(mStock.getSymbol());
-//        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
-//        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
-//        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
-//        mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
-//        mStockDayLo.setText(String.valueOf(mStock.getDayLow()));
-//    }
 
 
 }

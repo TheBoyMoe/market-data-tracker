@@ -1,59 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:padding="@dimen/dimen_normal"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/dimen_small"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryBackground"
+            android:layout_margin="@dimen/dimen_normal">
 
-        <TextView
-            android:id="@+id/stock_name"
-            tools:text="Apple Computers"
-            android:textSize="28sp"
-            android:textColor="@android:color/black"
-            android:singleLine="true"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
-            android:id="@+id/stock_price"
-            tools:text="$1210.35"
-            android:singleLine="true"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-        <!--<TextView-->
-            <!--android:id="@+id/stock_exchange"-->
-            <!--tools:text="NYSE"-->
-            <!--android:singleLine="true"-->
-            <!--android:textAllCaps="true"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"/>-->
+                <TextView
+                    android:id="@+id/stock_name"
+                    tools:text="Apple Computers"
+                    android:textSize="24sp"
+                    android:textColor="@android:color/black"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/stock_symbol"
+                    tools:text="[AAPL]"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/dimen_small"
+                    android:layout_marginStart="@dimen/dimen_small"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryBackground"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginStart="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginEnd="@dimen/dimen_normal">
+
+            <include layout="@layout/stock_item_table_data"/>
+
+        </android.support.v7.widget.CardView>
+
+
+
 
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/stock_symbol"
-        tools:text="AAPL"
-        android:singleLine="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
-    <include layout="@layout/stock_item_table_data"/>
-
-
-
-</LinearLayout>
+</ScrollView>

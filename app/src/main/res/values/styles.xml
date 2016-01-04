@@ -9,6 +9,12 @@
 
     </style>
 
+    <!-- customised theme for stock detail view -->
+    <style name="StockDetailTheme" parent="AppTheme">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
     <!-- Remove the default ActionBar from any Activities employing the toolbar -->
     <style name="AppTheme.NoActionBar">
