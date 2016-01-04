@@ -20,7 +20,6 @@ import android.view.View;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.service.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.fragments.AboutFragment;
 import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;

@@ -5,7 +5,7 @@ import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
 import com.example.marketdatatracker.ui.fragments.StockDetailFragment;
-import com.example.marketdatatracker.ui.fragments.StockGraphFragment;
+import com.example.marketdatatracker.ui.fragments.StockChartFragment;
 
 
 public class CustomViewPagerAdapter extends FragmentPagerAdapter{
@@ -29,7 +29,7 @@ public class CustomViewPagerAdapter extends FragmentPagerAdapter{
             case STOCK_DETAIL_FRAGMENT:
                 return StockDetailFragment.newInstance(mSymbol);
             case STOCK_GRAPH_FRAGMENT:
-                return StockGraphFragment.newInstance(mSymbol);
+                return StockChartFragment.newInstance(mSymbol);
         }
         return null;
     }

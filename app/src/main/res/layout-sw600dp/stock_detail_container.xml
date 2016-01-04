@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="@color/colorPrimaryLight"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
 
-    <!-- displays two fragments above one another in portrait orientation -->
-    <FrameLayout
-        android:id="@+id/frame_left"
-        android:layout_weight="1"
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryLight"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/frame_right"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
 
-</LinearLayout>
+        <!-- displays two fragments above one another in portrait orientation -->
+        <FrameLayout
+            android:id="@+id/frame_left"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <FrameLayout
+            android:id="@+id/frame_right"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

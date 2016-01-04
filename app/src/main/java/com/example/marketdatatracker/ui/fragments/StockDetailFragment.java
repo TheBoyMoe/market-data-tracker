@@ -51,6 +51,7 @@ public class StockDetailFragment extends Fragment{
 
     private void displayStockStats() {
 
+        // TODO add date/time field
         TextView mStockName = (TextView) mView.findViewById(R.id.stock_name);
         TextView mStockPrice = (TextView) mView.findViewById(R.id.stock_price);
         TextView mStockSymbol = (TextView) mView.findViewById(R.id.stock_symbol);

@@ -16,14 +16,13 @@ import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
-import com.example.marketdatatracker.service.GetStockQuoteThread;
+import com.example.marketdatatracker.network.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.recycler.StockAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 
 public class StockFragment extends Fragment{

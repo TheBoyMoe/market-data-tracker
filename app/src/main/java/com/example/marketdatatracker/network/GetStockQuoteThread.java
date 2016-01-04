@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.service;
+package com.example.marketdatatracker.network;
 
 
 import android.content.Context;
@@ -20,6 +20,7 @@ import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.HistoricalQuote;
 
 /**
  * References:

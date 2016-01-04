@@ -1,5 +1,6 @@
 package com.example.marketdatatracker.model;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -32,6 +33,7 @@ public class Stock {
     private BigDecimal mChangeInPercent;
     private BigDecimal mAnnualYield;
     private BigDecimal mAnnualYieldPercentage;
+    private Drawable mPriceChart;
 
 
     public Stock(String name,
@@ -75,6 +77,15 @@ public class Stock {
         mChangeInPercent = changeInPercent;
         mAnnualYield = annualYield;
         mAnnualYieldPercentage = annualYieldPercentage;
+    }
+
+
+    public Drawable getPriceChart() {
+        return mPriceChart;
+    }
+
+    public void setPriceChart(Drawable priceChart) {
+        mPriceChart = priceChart;
     }
 
     public BigDecimal getAnnualYield() {
