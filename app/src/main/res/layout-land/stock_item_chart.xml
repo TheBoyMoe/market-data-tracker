@@ -16,25 +16,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <include
+                android:id="@+id/vertical_buttons"
+                layout="@layout/vertical_button_group"/>
 
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <include
-                layout="@layout/horizontal_button_group"/>
 
             <ImageView
                 android:id="@+id/stock_chart"
-                android:layout_above="@id/horizontal_button_group"
-                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/vertical_buttons"
+                android:layout_toStartOf="@id/vertical_buttons"
                 android:contentDescription="@string/stock_chart_description"
-                android:layout_marginBottom="@dimen/dimen_normal"
+                android:layout_marginRight="@dimen/dimen_normal"
+                android:layout_marginEnd="@dimen/dimen_normal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-
 
 
         </RelativeLayout>

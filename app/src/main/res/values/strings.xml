@@ -12,4 +12,10 @@
     <string name="stock_detail_title">Stock results</string>
     <string name="stock_graph_title">Stock graph</string>
     <string name="stock_chart_description">Stock chart</string>
+    <string name="one_day_chart">1d</string>
+    <string name="five_day_chart">5d</string>
+    <string name="one_month_chart">1m</string>
+    <string name="three_month_chart">3m</string>
+    <string name="one_year_chart">1y</string>
+    <string name="five_year_chart">5y</string>
 </resources>

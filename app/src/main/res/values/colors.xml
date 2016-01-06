@@ -11,6 +11,6 @@
     <color name="colorGradientBackground">#858585</color>
     <color name="colorDivider">#DFDFDF</color>
     <color name="colorPrimaryBackground">#FFFFFF</color>
-
+    <color name="colorButtonText">#FFFFFF</color>
 
 </resources>

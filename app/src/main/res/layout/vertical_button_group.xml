@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vertical_button_group"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/stock_1d"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/one_day_chart"/>
+
+    <RadioButton
+        android:id="@+id/stock_5d"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:checked="true"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/five_day_chart"/>
+
+    <RadioButton
+        android:id="@+id/stock_1m"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/one_month_chart"/>
+
+
+    <RadioButton
+        android:id="@+id/stock_3m"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/three_month_chart"/>
+
+    <RadioButton
+        android:id="@+id/stock_1y"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/one_year_chart"/>
+
+    <RadioButton
+        android:id="@+id/stock_5y"
+        android:layout_width="@dimen/dimen_vertical_button"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/five_year_chart"/>
+
+</RadioGroup>
