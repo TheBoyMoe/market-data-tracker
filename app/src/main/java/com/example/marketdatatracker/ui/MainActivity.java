@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Snackbar.make(mCoordinatorLayout, "Clicked FAB", Snackbar.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, StockPrefsActivity.class));
+                // startActivity(new Intent(MainActivity.this, StockPrefsActivity.class));
+                startActivity(new Intent(MainActivity.this, StockSelectorActivity.class));
             }
         });
 
