@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#607D8B</color>
-    <color name="colorPrimaryDark">#455A64</color>
-    <color name="colorPrimaryLight">#CFD8DC</color>
-    <color name="colorAccent">#009688</color>
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#727272</color>
-    <color name="colorHeaderText">#FFFFFF</color>
-    <color name="colorGradientBackground">#858585</color>
-    <color name="colorDivider">#DFDFDF</color>
-    <color name="colorPrimaryBackground">#FFFFFF</color>
-    <color name="colorButtonText">#FFFFFF</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">@color/primary_dark</color>
+    <color name="colorPrimaryLight">@color/primary_light</color>
+    <color name="colorAccent">@color/accent</color>
+    <color name="colorPrimaryText">@color/primary_text</color>
+    <color name="colorSecondaryText">@color/secondary_text</color>
+    <color name="colorGradientBackground">@color/gradient_background</color>
+    <color name="colorDivider">@color/divider</color>
+    <color name="colorPrimaryBackground">@android:color/white</color>
+    <color name="colorButtonText">@android:color/white</color>
 
 </resources>
