@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.util.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -90,7 +91,7 @@ public class GetStockChartThread extends Thread{
                 if(chart != null) {
                     Stock stock = StockDataCache.getStockDataCache().getStock(mSymbol);
                     stock.setPriceChart(chart);
-                    EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE));
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
                 }
 
             } finally {
@@ -100,7 +101,7 @@ public class GetStockChartThread extends Thread{
 
         } catch (IOException e) {
             Timber.e(e, "Error downloading stock chart: %s", e.getMessage());
-            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));
+            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
         }
 
     }

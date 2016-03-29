@@ -18,6 +18,7 @@ import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.network.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.recycler.StockAdapter;
+import com.example.marketdatatracker.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,13 +95,13 @@ public class StockFragment extends Fragment{
     public void onEventMainThread(AppMessageEvent event) {
         String message = event.getMessage();
         switch (message) {
-            case AppMessageEvent.STOCK_DOWNLOAD_COMPLETE:
+            case Constants.STOCK_DOWNLOAD_COMPLETE:
                 updateUI();
                 break;
-            case AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED:
+            case Constants.STOCK_PORTFOLIO_NOT_DEFINED:
                 mProgressBar.setVisibility(View.GONE);
                 break;
-            case AppMessageEvent.STOCK_PORTFOLIO_HAS_CHANGED:
+            case Constants.STOCK_PORTFOLIO_HAS_CHANGED:
                 new GetStockQuoteThread(getActivity()).start();
                 break;
         }

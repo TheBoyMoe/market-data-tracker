@@ -42,6 +42,7 @@
         <activity
             android:name=".ui.StockSelectorActivity"
             android:theme="@style/StockDetailTheme"
+            android:label="Stock Selector"
             android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

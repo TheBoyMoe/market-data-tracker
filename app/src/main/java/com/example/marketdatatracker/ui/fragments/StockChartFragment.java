@@ -2,7 +2,7 @@ package com.example.marketdatatracker.ui.fragments;
 
 import android.app.Fragment;
 import android.graphics.drawable.Drawable;
-import android.os.*;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -15,9 +15,9 @@ import android.widget.RadioGroup;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.network.GetStockChartThread;
+import com.example.marketdatatracker.util.Constants;
 
 import de.greenrobot.event.EventBus;
 
@@ -145,9 +145,9 @@ public class StockChartFragment extends Fragment implements View.OnClickListener
         String message = event.getMessage();
         mProgressBar.setVisibility(View.GONE);
 
-        if(message.equals(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE)) {
+        if(message.equals(Constants.STOCK_DOWNLOAD_COMPLETE)) {
             setStockChart();
-        } else if(message.equals(AppMessageEvent.STOCK_DOWNLOAD_FAILED)) {
+        } else if(message.equals(Constants.STOCK_DOWNLOAD_FAILED)) {
             Snackbar.make(mView, message, Snackbar.LENGTH_SHORT).show();
         }
     }

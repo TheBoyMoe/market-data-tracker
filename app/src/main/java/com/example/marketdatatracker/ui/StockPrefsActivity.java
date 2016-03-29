@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.util.Constants;
 
 import de.greenrobot.event.EventBus;
 import timber.log.Timber;
@@ -41,7 +42,7 @@ public class StockPrefsActivity extends AppCompatActivity {
                         @Override
                         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                             Timber.i("Portfolio preferences have changed");
-                            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_PORTFOLIO_HAS_CHANGED));
+                            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_HAS_CHANGED));
                         }
                     };
 

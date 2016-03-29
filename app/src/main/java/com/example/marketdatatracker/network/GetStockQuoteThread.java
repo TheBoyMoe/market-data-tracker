@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.util.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
-import yahoofinance.histquotes.HistoricalQuote;
 
 /**
  * References:
@@ -57,7 +57,7 @@ public class GetStockQuoteThread extends Thread{
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
         if(symbols.length == 0) {
             // if the returned string set is empty, post a message to the user
-            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_PORTFOLIO_NOT_DEFINED));
+            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_NOT_DEFINED));
             return;
         }
 
@@ -76,14 +76,14 @@ public class GetStockQuoteThread extends Thread{
 
                 // stash the data to the cache, let any interested parties know
                 StockDataCache.getStockDataCache().setStocks(stockList);
-                EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_COMPLETE));
+                EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
 
             } else
-                EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));
+                EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
 
         } catch (IOException e) {
             Timber.e(e, "Failed to retrieve quote data: %s", e.getMessage());
-            EventBus.getDefault().post(new AppMessageEvent(AppMessageEvent.STOCK_DOWNLOAD_FAILED));
+            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
         }
 
     }

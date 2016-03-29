@@ -17,11 +17,20 @@
             android:layout_height="match_parent">
 
 
+            <!--<ProgressBar-->
+                <!--android:id="@+id/progress_bar"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+
+
             <ProgressBar
                 android:id="@+id/progress_bar"
+                android:indeterminateDrawable="@drawable/progress_bar"
                 android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:visibility="gone"
+                android:layout_width="@dimen/dimen_xxlarge"
+                android:layout_height="@dimen/dimen_xxlarge"/>
 
             <include
                 layout="@layout/horizontal_button_group"/>
