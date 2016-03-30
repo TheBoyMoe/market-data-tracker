@@ -1,14 +1,15 @@
 package com.example.marketdatatracker.ui.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
 
-import com.example.marketdatatracker.ui.fragments.StockDetailFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
 import com.example.marketdatatracker.ui.fragments.StockChartFragment;
+import com.example.marketdatatracker.ui.fragments.StockDetailFragment;
 
 
-public class CustomViewPagerAdapter extends FragmentPagerAdapter{
+public class CustomViewPagerAdapter extends FragmentPagerAdapter {
 
 
     public static final int STOCK_DETAIL_FRAGMENT = 0;

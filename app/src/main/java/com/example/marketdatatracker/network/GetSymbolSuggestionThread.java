@@ -2,9 +2,11 @@ package com.example.marketdatatracker.network;
 
 import android.net.Uri;
 
+import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.FetchStockSymbolsEvent;
 import com.example.marketdatatracker.model.StockSymbol;
 import com.example.marketdatatracker.model.SuggestionQuery;
+import com.example.marketdatatracker.util.Constants;
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -52,16 +54,16 @@ public class GetSymbolSuggestionThread extends Thread{
                     .appendQueryParameter(REGION, region)
                     .appendQueryParameter(LANGUAGE, language)
                     .build();
-            Timber.i("Query url: %s", querySuggestionUri);
 
             // execute the connection and retrieve the data
             try {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url(querySuggestionUri.toString()).build();
+                Timber.i("Request: %s", request);
                 Response response = client.newCall(request).execute();
 
                 if (response.isSuccessful()) {
-                    Timber.i("Query: %s", response.toString());
+                    Timber.i("Response: %s", response);
                     Reader in = response.body().charStream();
                     BufferedReader reader = new BufferedReader(in);
 
@@ -72,7 +74,6 @@ public class GetSymbolSuggestionThread extends Thread{
                     while((line = reader.readLine()) != null) {
                         sb.append(line);
                     }
-                    Timber.i("String response: %s", sb);
 
                     // 2. strip out Yahoo string at beginning of the response
                     Pattern pattern = Pattern.compile("YAHOO\\.Finance\\.SymbolSuggest\\.ssCallback\\((\\{.*?\\})\\)");
@@ -86,25 +87,25 @@ public class GetSymbolSuggestionThread extends Thread{
                                 EventBus.getDefault().post(new FetchStockSymbolsEvent(new ArrayList<>(symbols)));
                             } else {
                                 Timber.i("No matching records found");
-                                // TODO post message & clear the adapter, hide progress bar
+                                EventBus.getDefault().post(new AppMessageEvent(Constants.NO_MATCHING_RECORDS_FOUND));
                             }
                         } else {
                             Timber.i("No results found");
-                            // TODO post message
+                            EventBus.getDefault().post(new AppMessageEvent(Constants.NO_RECORDS_FOUND));
                         }
                     }
 
-
-
-
                 } else {
                     Timber.e("Http response: %s", response.toString());
-                    // TODO post message
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.SERVER_ERROR));
                 }
 
             } catch (IOException e) {
                 Timber.e("Error executing connection: %s", e.getMessage());
+                EventBus.getDefault().post(new AppMessageEvent(Constants.FAILED_TO_CONNECT));
             }
+            // let the caller know you've finished
+            EventBus.getDefault().post(new AppMessageEvent(Constants.THREAD_TASK_COMPLETE));
         }
     }
 

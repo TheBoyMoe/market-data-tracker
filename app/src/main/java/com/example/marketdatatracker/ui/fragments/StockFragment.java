@@ -1,6 +1,5 @@
 package com.example.marketdatatracker.ui.fragments;
 
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,10 +22,8 @@ import com.example.marketdatatracker.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 
-
-public class StockFragment extends Fragment{
+public class StockFragment extends BaseFragment{
 
 
     private List<Stock> mStocks;
@@ -74,20 +71,6 @@ public class StockFragment extends Fragment{
         updateUI();
 
         return view;
-    }
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
     }
 
 

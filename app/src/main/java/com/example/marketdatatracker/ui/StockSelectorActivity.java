@@ -3,7 +3,6 @@ package com.example.marketdatatracker.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.marketdatatracker.R;
@@ -11,11 +10,11 @@ import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.ui.fragments.StockSelectorFragment;
 import com.example.marketdatatracker.ui.fragments.StockSelectorModelFragment;
 import com.example.marketdatatracker.util.Constants;
+import com.example.marketdatatracker.util.Utils;
 
-import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 
-public class StockSelectorActivity extends AppCompatActivity{
+public class StockSelectorActivity extends BaseActivity{
 
     private static final String DATA_MODEL = "data_model";
     private StockSelectorFragment mStockSelectorFragment;
@@ -32,36 +31,29 @@ public class StockSelectorActivity extends AppCompatActivity{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mStockSelectorFragment = (StockSelectorFragment) getFragmentManager().findFragmentById(R.id.fragment_container);
+        mStockSelectorFragment = (StockSelectorFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if(mStockSelectorFragment == null) {
             mStockSelectorFragment = StockSelectorFragment.newInstance();
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, mStockSelectorFragment)
                     .commit();
         }
 
-        mModelFragment = (StockSelectorModelFragment) getFragmentManager().findFragmentByTag(DATA_MODEL);
+        mModelFragment = (StockSelectorModelFragment) getSupportFragmentManager().findFragmentByTag(DATA_MODEL);
         if(mModelFragment == null) {
-            mModelFragment = StockSelectorModelFragment.newInstatnce();
-            getFragmentManager().beginTransaction()
+            mModelFragment = StockSelectorModelFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
                     .add(mModelFragment, DATA_MODEL)
                     .commit();
         }
-        Timber.i("onCreate: Selector fragment: %s, model fragment: %s", mStockSelectorFragment, mModelFragment);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // ensure the fragments are attached and the adapter created
+        // ensures view is maintained between device rotations
         updateDataModel();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
     }
 
     @Override
@@ -82,15 +74,33 @@ public class StockSelectorActivity extends AppCompatActivity{
                 // update the stock selector fragments data model
                 updateDataModel();
                 break;
-            // TODO additional messages with regards to symbol download
+            case Constants.NO_MATCHING_RECORDS_FOUND:
+                showUserMessage(Constants.NO_MATCHING_RECORDS_FOUND);
+                break;
+            case Constants.NO_RECORDS_FOUND:
+                showUserMessage(Constants.NO_RECORDS_FOUND);
+                break;
+            case Constants.SERVER_ERROR:
+                showUserMessage(Constants.SERVER_ERROR);
+                break;
+            case Constants.FAILED_TO_CONNECT:
+                showUserMessage(Constants.FAILED_TO_CONNECT);
+                break;
+            case Constants.CHECK_NETWORK_CONNECTION:
+                showUserMessage(Constants.CHECK_NETWORK_CONNECTION);
+                break;
         }
     }
 
     private void updateDataModel() {
-        Timber.i("Data model update called");
-        Timber.i("Selector fragment: %s, model fragment: %s", mStockSelectorFragment, mModelFragment);
-        if(mStockSelectorFragment != null && mModelFragment != null)
+        if(mStockSelectorFragment != null && mModelFragment != null) {
+            Timber.i("updateDataModel() called");
             mStockSelectorFragment.setDataModel(mModelFragment.getDataModel());
+        }
+    }
+
+    private void showUserMessage(String message) {
+        Utils.showSnackbar(mCoordinatorLayout, message);
     }
 
 }

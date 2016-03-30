@@ -1,6 +1,5 @@
 package com.example.marketdatatracker.ui.fragments;
 
-import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,9 +18,7 @@ import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.network.GetStockChartThread;
 import com.example.marketdatatracker.util.Constants;
 
-import de.greenrobot.event.EventBus;
-
-public class StockChartFragment extends Fragment implements View.OnClickListener{
+public class StockChartFragment extends BaseFragment implements View.OnClickListener{
 
     private static final String INTERVAL = "5d";
     private String mSymbol;
@@ -123,20 +120,6 @@ public class StockChartFragment extends Fragment implements View.OnClickListener
                 new GetStockChartThread(mSymbol, "5y").start();
                 break;
         }
-    }
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
     }
 
 

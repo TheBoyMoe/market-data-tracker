@@ -1,8 +1,9 @@
 package com.example.marketdatatracker.ui.fragments;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,10 @@ import android.widget.TextView;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
-import com.example.marketdatatracker.ui.StockDetailActivity;
 
 import timber.log.Timber;
 
-public class StockDetailFragment extends Fragment{
+public class StockDetailFragment extends Fragment {
 
     private Stock mStock;
     private View mView;

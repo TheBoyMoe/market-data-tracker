@@ -1,19 +1,16 @@
 package com.example.marketdatatracker.ui;
 
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.ui.adapter.CustomViewPagerAdapter;
 import com.viewpagerindicator.CirclePageIndicator;
-
-import timber.log.Timber;
 
 public class StockDetailActivity extends AppCompatActivity {
 
@@ -38,9 +35,9 @@ public class StockDetailActivity extends AppCompatActivity {
         ViewPager mViewPager = (ViewPager) findViewById(R.id.view_pager);
         if(mViewPager == null) {
             // device >= 600dp, display the detail & graph fragments simultaneously
-            if(getFragmentManager().findFragmentById(R.id.frame_left) == null) {
-                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getFragmentManager(), mStock.getSymbol());
-                getFragmentManager().beginTransaction()
+            if(getSupportFragmentManager().findFragmentById(R.id.frame_left) == null) {
+                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getSupportFragmentManager(), mStock.getSymbol());
+                getSupportFragmentManager().beginTransaction()
                         .add(R.id.frame_left, adapter.getItem(0))
                         .add(R.id.frame_right, adapter.getItem(1))
                         .commit();
@@ -51,7 +48,7 @@ public class StockDetailActivity extends AppCompatActivity {
             CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
 
             // set the page indicator and adapter
-            mViewPager.setAdapter(new CustomViewPagerAdapter(getFragmentManager(), mStock.getSymbol()));
+            mViewPager.setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), mStock.getSymbol()));
             mIndicator.setViewPager(mViewPager);
 
             // set and display the page indicator

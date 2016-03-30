@@ -1,18 +1,17 @@
 package com.example.marketdatatracker.ui;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +26,6 @@ import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
 import com.example.marketdatatracker.util.ScreenUtility;
 
-import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 
 
@@ -35,7 +33,7 @@ import timber.log.Timber;
  *  References:
  *  [[1] https://guides.codepath.com/android/Fragment-Navigation-Drawer
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
 
     private static final String CURRENT_TITLE = "current_title";
     private CoordinatorLayout mCoordinatorLayout;
@@ -130,13 +128,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
-            new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem item) {
-                    selectDrawerItem(item);
-                    return true;
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem item) {
+                        selectDrawerItem(item);
+                        return true;
+                    }
                 }
-            }
         );
     }
 
@@ -174,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
@@ -209,24 +207,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void displayInitialFragment() {
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, StockFragment.newInstance())
                 .commit();
         mCurrentTitle = "Current prices";
         setTitle(mCurrentTitle);
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    protected void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
     }
 
 
