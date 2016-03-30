@@ -10,6 +10,7 @@
     <color name="colorGradientBackground">@color/gradient_background</color>
     <color name="colorDivider">@color/divider</color>
     <color name="colorPrimaryBackground">@android:color/white</color>
+    <color name="colorSecondaryBackground">@color/secondary_background</color>
     <color name="colorButtonText">@android:color/white</color>
 
 </resources>

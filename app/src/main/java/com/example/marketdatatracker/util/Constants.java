@@ -17,5 +17,6 @@ public class Constants {
 
     public static final String THREAD_TASK_COMPLETE = "Thread task complete";
 
+    public static final String PREFS_STOCK_SYMBOL_SET = "Prefs stock symbol list";
 
 }

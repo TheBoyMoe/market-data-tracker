@@ -3,12 +3,18 @@ package com.example.marketdatatracker.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,7 +29,9 @@ import com.example.marketdatatracker.util.Constants;
 import com.example.marketdatatracker.util.Utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import de.greenrobot.event.EventBus;
 import timber.log.Timber;
@@ -52,8 +60,8 @@ public class StockSelectorFragment extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.stock_selector_content, container, false);
-        ListView suggestionList = (ListView) view.findViewById(R.id.suggestion_list);
+        final View view = inflater.inflate(R.layout.stock_selector_content, container, false);
+        final ListView suggestionList = (ListView) view.findViewById(R.id.suggestion_list);
         EditText suggestion = (EditText) view.findViewById(R.id.symbol_suggestion);
         mInProgress = (ProgressBar) view.findViewById(R.id.in_progress);
         if (isAdded())
@@ -85,14 +93,67 @@ public class StockSelectorFragment extends BaseFragment{
 
         });
 
+        // implement context action bar
+        suggestionList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        suggestionList.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                // inflate the context resource, displayed in the CAB
+                MenuInflater inflater = mode.getMenuInflater();
+                inflater.inflate(R.menu.menu_context, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                if(item.getItemId() == R.id.action_addition) {
+                    // retrieve the currently saved stock portfolio
+                    Set<String> symbols = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                            .getStringSet(Constants.PREFS_STOCK_SYMBOL_SET, null);
+
+                    if (symbols == null) {
+                        symbols = new HashSet<>();
+                    }
+
+                    // retrieve the symbol for each item selected and add to the symbol set
+                    for (int i = 0; i < mAdapter.getCount(); i++) {
+                        if (suggestionList.isItemChecked(i)) {
+                            String stockSymbol = mAdapter.getItem(i).getSymbol();
+                            symbols.add(stockSymbol);
+                        }
+                    }
+
+                    // save the symbol set to shared preferences
+                    PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                            .putStringSet(Constants.PREFS_STOCK_SYMBOL_SET, symbols)
+                            .commit();
+
+                    mode.finish();
+                    Utils.showSnackbar(view, "Stock portfolio has been updated");
+                }
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+
+            }
+
+        });
+
         return view;
-    }
-
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
     }
 
     // set the data model and refresh the adapter

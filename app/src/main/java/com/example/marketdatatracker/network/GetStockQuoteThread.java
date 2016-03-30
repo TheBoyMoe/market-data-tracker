@@ -52,9 +52,10 @@ public class GetStockQuoteThread extends Thread{
         Set<String> defaultPortfolio = new HashSet<>();
         defaultPortfolio.addAll(new ArrayList<String>());
 
-        // fetch user preferences, otherwise pass in the default
+        // TODO fetch user preferences, otherwise pass in the default
         Set<String> portfolio = mPrefs.getStringSet("quote_list", defaultPortfolio);
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
+
         if(symbols.length == 0) {
             // if the returned string set is empty, post a message to the user
             EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_NOT_DEFINED));
