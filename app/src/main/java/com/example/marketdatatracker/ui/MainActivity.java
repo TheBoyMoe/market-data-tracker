@@ -19,6 +19,7 @@ import android.view.View;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.network.GetStockQuoteThread;
 import com.example.marketdatatracker.ui.fragments.AboutFragment;
 import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;
@@ -92,6 +93,13 @@ public class MainActivity extends BaseActivity{
         outState.putString(CURRENT_TITLE, mCurrentTitle);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Timber.i("onRestart() called");
+        // FIXME check the back stack, execute when stock fragment is loaded
+        new GetStockQuoteThread(this).start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

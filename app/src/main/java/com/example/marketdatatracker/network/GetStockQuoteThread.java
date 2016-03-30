@@ -49,11 +49,12 @@ public class GetStockQuoteThread extends Thread{
         List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
         com.example.marketdatatracker.model.Stock stockItem;
 
+        // empty array list should nothing be found in shared preferences
         Set<String> defaultPortfolio = new HashSet<>();
         defaultPortfolio.addAll(new ArrayList<String>());
 
-        // TODO fetch user preferences, otherwise pass in the default
-        Set<String> portfolio = mPrefs.getStringSet("quote_list", defaultPortfolio);
+        // fetch user preferences, otherwise pass in the default
+        Set<String> portfolio = mPrefs.getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, defaultPortfolio);
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
 
         if(symbols.length == 0) {
@@ -71,7 +72,6 @@ public class GetStockQuoteThread extends Thread{
                 for (String symbol : symbols) {
                     stock = stocks.get(symbol);
                     stockItem = buildCustomStockItem(stock);
-                    Timber.i("Stock: %s", stockItem);
                     stockList.add(stockItem);
                 }
 

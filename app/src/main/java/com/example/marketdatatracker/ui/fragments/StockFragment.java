@@ -41,8 +41,11 @@ public class StockFragment extends BaseFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        new GetStockQuoteThread(getActivity()).start();
+
+        if(savedInstanceState == null)
+            new GetStockQuoteThread(getActivity()).start();
     }
+
 
     @Nullable
     @Override
@@ -84,9 +87,9 @@ public class StockFragment extends BaseFragment{
             case Constants.STOCK_PORTFOLIO_NOT_DEFINED:
                 mProgressBar.setVisibility(View.GONE);
                 break;
-            case Constants.STOCK_PORTFOLIO_HAS_CHANGED:
-                new GetStockQuoteThread(getActivity()).start();
-                break;
+//            case Constants.STOCK_PORTFOLIO_UPDATED: // FIXME
+//                new GetStockQuoteThread(getActivity()).start();
+//                break;
         }
     }
 

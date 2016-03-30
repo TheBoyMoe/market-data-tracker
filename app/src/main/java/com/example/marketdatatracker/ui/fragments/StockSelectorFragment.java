@@ -107,10 +107,10 @@ public class StockSelectorFragment extends BaseFragment{
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                if(item.getItemId() == R.id.action_addition) {
+                if (item.getItemId() == R.id.action_addition) {
                     // retrieve the currently saved stock portfolio
                     Set<String> symbols = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                            .getStringSet(Constants.PREFS_STOCK_SYMBOL_SET, null);
+                            .getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, null);
 
                     if (symbols == null) {
                         symbols = new HashSet<>();
@@ -126,11 +126,13 @@ public class StockSelectorFragment extends BaseFragment{
 
                     // save the symbol set to shared preferences
                     PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
-                            .putStringSet(Constants.PREFS_STOCK_SYMBOL_SET, symbols)
+                            .putStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, symbols)
                             .commit();
 
                     mode.finish();
-                    Utils.showSnackbar(view, "Stock portfolio has been updated");
+                    Utils.showSnackbar(view, Constants.STOCK_PORTFOLIO_UPDATED);
+                    // FIXME
+                    //EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_UPDATED));
                 }
 
                 return true;
