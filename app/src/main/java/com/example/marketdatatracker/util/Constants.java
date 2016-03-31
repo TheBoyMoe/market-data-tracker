@@ -18,6 +18,6 @@ public class Constants {
 
     public static final String THREAD_TASK_COMPLETE = "Thread task complete";
 
-    public static final String PREFS_STOCK_PORTFOLIO_SET = "Prefs stock symbol list";
+    public static final String PREFS_STOCK_PORTFOLIO_SET = "prefs_stock_portfolio";
 
 }

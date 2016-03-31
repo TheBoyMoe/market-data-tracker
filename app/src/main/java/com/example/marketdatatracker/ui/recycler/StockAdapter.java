@@ -21,7 +21,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
     private List<Stock> mStocks;
     private Context mContext;
-    private StockViewHolder mStockViewHolder;
 
     public StockAdapter(List<Stock> stocks, Context context) {
         mStocks = stocks;
@@ -33,15 +32,15 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.stock_item, parent, false);
-        mStockViewHolder = new StockViewHolder(view);
+        StockViewHolder holder = new StockViewHolder(view);
 
-        return mStockViewHolder;
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(StockViewHolder holder, int position) {
         Stock mStock = mStocks.get(position);
-        mStockViewHolder.bindStock(mStock, mContext);
+        holder.bindStock(mStock, mContext);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.example.marketdatatracker.ui.recycler;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -35,7 +34,7 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
     TextView mStockDayLo;
 
 
-    // enable the viewholder to handle click events & cache references to the view's elements
+    // enable the view holder to handle click events & cache references to the view's elements
     public StockViewHolder(View view) {
         super(view);
         view.setOnClickListener(this);
