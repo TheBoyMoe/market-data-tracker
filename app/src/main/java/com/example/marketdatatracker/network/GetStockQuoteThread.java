@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import de.greenrobot.event.EventBus;
 import timber.log.Timber;
@@ -54,7 +55,8 @@ public class GetStockQuoteThread extends Thread{
         defaultPortfolio.addAll(new ArrayList<String>());
 
         // fetch user preferences, otherwise pass in the default
-        Set<String> portfolio = mPrefs.getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, defaultPortfolio);
+        Set<String> temp = mPrefs.getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, defaultPortfolio);
+        Set<String> portfolio = new TreeSet<>(temp); // sort
         String[] symbols = portfolio.toArray(new String[portfolio.size()]);
 
         if(symbols.length == 0) {

@@ -87,7 +87,7 @@ public class StockFragment extends BaseFragment{
             case Constants.STOCK_PORTFOLIO_NOT_DEFINED:
                 mProgressBar.setVisibility(View.GONE);
                 break;
-//            case Constants.STOCK_PORTFOLIO_UPDATED: // FIXME
+//            case Constants.STOCK_PORTFOLIO_UPDATED:
 //                new GetStockQuoteThread(getActivity()).start();
 //                break;
         }
