@@ -27,6 +27,8 @@ import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
 import com.example.marketdatatracker.util.ScreenUtility;
 
+import java.util.List;
+
 import timber.log.Timber;
 
 
@@ -97,8 +99,14 @@ public class MainActivity extends BaseActivity{
     protected void onRestart() {
         super.onRestart();
         Timber.i("onRestart() called");
-        // FIXME check the back stack, execute when stock fragment is loaded
-        new GetStockQuoteThread(this).start();
+        // check the back stack, execute when stock fragment is loaded
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (int i = 0; i < fragments.size(); i++) {
+            Fragment fragment = fragments.get(i);
+            if(fragment instanceof StockFragment){
+                new GetStockQuoteThread(this).start();
+            }
+        }
     }
 
     @Override
