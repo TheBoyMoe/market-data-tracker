@@ -116,23 +116,24 @@ public class StockSelectorFragment extends BaseFragment{
                         symbols = new HashSet<>();
                     }
 
+                    String symbol;
                     // retrieve the symbol for each item selected and add to the symbol set
                     for (int i = 0; i < mAdapter.getCount(); i++) {
                         if (suggestionList.isItemChecked(i)) {
-                            String stockSymbol = mAdapter.getItem(i).getSymbol();
-                            symbols.add(stockSymbol);
+                            symbol = mAdapter.getItem(i).getSymbol();
+                            symbols.add(symbol);
                         }
                     }
 
                     // save the symbol set to shared preferences
                     PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                            .clear()
                             .putStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, symbols)
-                            .commit();
+                            .apply();
+
 
                     mode.finish();
                     Utils.showSnackbar(view, Constants.STOCK_PORTFOLIO_UPDATED);
-                    // FIXME
-                    //EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_UPDATED));
                 }
 
                 return true;
