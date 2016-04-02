@@ -3,10 +3,13 @@ package com.example.marketdatatracker.ui.recycler;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
+import com.bignerdranch.android.multiselector.MultiSelector;
+import com.bignerdranch.android.multiselector.SwappingHolder;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
@@ -19,10 +22,12 @@ import com.example.marketdatatracker.ui.StockDetailActivity;
  * [3] https://www.safaribooksonline.com/library/view/android-programming-the/9780134171517/ch09s05.html
  */
 
-public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class StockViewHolder extends SwappingHolder implements View.OnClickListener, View.OnLongClickListener{
 
     private Stock mStock;
     private Context mContext;
+    private MultiSelector mMultiSelector;
+    private ModalMultiSelectorCallback mSaveSelectionMode;
 
     TextView mStockName;
     TextView mStockExchange;
@@ -35,9 +40,13 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
 
     // enable the view holder to handle click events & cache references to the view's elements
-    public StockViewHolder(View view) {
-        super(view);
+    public StockViewHolder(View view, MultiSelector multiSelector, ModalMultiSelectorCallback saveSelectionMode) {
+        super(view, multiSelector);
         view.setOnClickListener(this);
+        view.setLongClickable(true);
+        view.setOnLongClickListener(this);
+        mMultiSelector = multiSelector;
+        mSaveSelectionMode = saveSelectionMode;
 
         mStockName = (TextView) view.findViewById(R.id.stock_name);
         mStockExchange = (TextView) view.findViewById(R.id.stock_exchange);
@@ -104,11 +113,20 @@ public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnC
     // handle click events
     @Override
     public void onClick(View view) {
-        // launch the StockDetailActivity passing in the stock symbol to id stock
-        Intent intent = new Intent(mContext, StockDetailActivity.class);
-        intent.putExtra(StockDataCache.STOCK_OBJECT, mStock.getSymbol());
-        mContext.startActivity(intent);
+        if(!mMultiSelector.tapSelection(this)) {
+            // selection off, handle click as normal
+            // launch the StockDetailActivity passing in the stock symbol to id stock
+            Intent intent = new Intent(mContext, StockDetailActivity.class);
+            intent.putExtra(StockDataCache.STOCK_OBJECT, mStock.getSymbol());
+            mContext.startActivity(intent);
+        }
     }
 
-
+    @Override
+    public boolean onLongClick(View v) {
+        // launch the contextual actionbar
+        ((AppCompatActivity)mContext).startSupportActionMode(mSaveSelectionMode);
+        mMultiSelector.setSelected(this, true);
+        return true;
+    }
 }

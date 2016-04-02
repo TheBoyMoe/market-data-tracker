@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
+import com.bignerdranch.android.multiselector.MultiSelector;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 
@@ -21,10 +23,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
     private List<Stock> mStocks;
     private Context mContext;
+    private MultiSelector mMultiSelector;
+    private ModalMultiSelectorCallback mSaveSelectionMode;
 
-    public StockAdapter(List<Stock> stocks, Context context) {
+    public StockAdapter(List<Stock> stocks, Context context, MultiSelector multiSelector, ModalMultiSelectorCallback saveSelectionMode) {
         mStocks = stocks;
         mContext = context;
+        mMultiSelector = multiSelector;
+        mSaveSelectionMode = saveSelectionMode;
     }
 
     @Override
@@ -32,7 +38,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.stock_item, parent, false);
-        StockViewHolder holder = new StockViewHolder(view);
+        StockViewHolder holder = new StockViewHolder(view, mMultiSelector, mSaveSelectionMode);
 
         return holder;
     }

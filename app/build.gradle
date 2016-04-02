@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.example.marketdatatracker"
@@ -38,5 +38,7 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.3.0'
     compile 'com.facebook.stetho:stetho-timber:1.3.0'
     compile 'com.facebook.stetho:stetho-okhttp:1.3.0'
+    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
     compile project(':library')
+
 }

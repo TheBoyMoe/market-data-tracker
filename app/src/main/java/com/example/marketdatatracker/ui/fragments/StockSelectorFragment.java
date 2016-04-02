@@ -101,7 +101,7 @@ public class StockSelectorFragment extends BaseFragment{
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 // inflate the context resource, displayed in the CAB
                 MenuInflater inflater = mode.getMenuInflater();
-                inflater.inflate(R.menu.menu_context, menu);
+                inflater.inflate(R.menu.menu_add, menu);
                 return true;
             }
 
