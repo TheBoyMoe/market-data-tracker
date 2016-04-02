@@ -81,6 +81,11 @@ public class StockFragment extends BaseFragment{
                     return false;
                 }
 
+                @Override
+                public void onDestroyActionMode(ActionMode actionMode) {
+                    super.onDestroyActionMode(actionMode);
+                    mMultiSelector.clearSelections();
+                }
             };
 
     public StockFragment() {}
@@ -110,12 +115,23 @@ public class StockFragment extends BaseFragment{
         // set the layout for the appropriate size
         Configuration config = getResources().getConfiguration();
 
-        if(config.screenWidthDp >= 540) {
+        if(config.screenWidthDp >= 800) {
+            GridLayoutManager gridLayoutManager = null;
+            if(config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                // two col layout on screens width >= 800dp and in portrait
+                gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+                mRecyclerView.setLayoutManager(gridLayoutManager);
+            } else {
+                // else use a three col grid
+                gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+                mRecyclerView.setLayoutManager(gridLayoutManager);
+            }
+        }
+        else if(config.screenWidthDp >= 540){
             // use a two col grid layout on all screens with a width >= 540dp
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
             mRecyclerView.setLayoutManager(gridLayoutManager);
-        }
-        else {
+        } else {
             LinearLayoutManager linearLayoutMgr = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(linearLayoutMgr);
         }
@@ -179,6 +195,7 @@ public class StockFragment extends BaseFragment{
         mRecyclerView.setAdapter(mStockAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.marketdatatracker.ui.recycler;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
     public void onBindViewHolder(StockViewHolder holder, int position) {
         Stock mStock = mStocks.get(position);
         holder.bindStock(mStock, mContext);
+        // override multi-select library defaults
+        if(Build.VERSION.SDK_INT >= 21) {
+            holder.setSelectionModeStateListAnimator(null);
+            holder.setDefaultModeStateListAnimator(null);
+        }
+        //holder.setDefaultModeBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.touch_selector));
     }
 
     @Override

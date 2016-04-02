@@ -22,10 +22,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.AppBarOverlay"
-           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <!-- allow contextual actionbar to float over the toolbar when visible -->
+    <style name="AppTheme.ContextActionBar" parent="AppTheme.NoActionBar">
+        <item name="windowActionModeOverlay">true</item>
+    </style>
 
 </resources>
