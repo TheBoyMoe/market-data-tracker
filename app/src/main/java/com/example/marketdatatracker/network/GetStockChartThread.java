@@ -50,58 +50,61 @@ public class GetStockChartThread extends Thread{
         super.run();
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
 
-        String chartType = "l";
-        String scaling = "on";
-        String size = "m";
-        String volume = "v";
+        if(!isInterrupted()) {
 
-        HttpURLConnection urlConnection = null;
+            String chartType = "l";
+            String scaling = "on";
+            String size = "m";
+            String volume = "v";
 
-        try {
+            HttpURLConnection urlConnection = null;
 
             try {
-                final String PRICE_CHART = "stock_chart";
-                final String SYMBOL_PARAM = "s";
-                final String INTERVAL_PARAM = "t";
-                final String CHART_TYPE_PARAM = "q";
-                final String SCALE_PARAM = "l";
-                final String SIZE_PARAM = "z";
-                final String VOLUME_PARAM = "a";
 
-                Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                        .appendQueryParameter(SYMBOL_PARAM, mSymbol)
-                        .appendQueryParameter(INTERVAL_PARAM, mInterval)
-                        .appendQueryParameter(CHART_TYPE_PARAM, chartType)
-                        .appendQueryParameter(SCALE_PARAM, scaling)
-                        .appendQueryParameter(SIZE_PARAM, size)
-                        .appendQueryParameter(VOLUME_PARAM, volume)
-                        .build();
+                try {
+                    final String PRICE_CHART = "stock_chart";
+                    final String SYMBOL_PARAM = "s";
+                    final String INTERVAL_PARAM = "t";
+                    final String CHART_TYPE_PARAM = "q";
+                    final String SCALE_PARAM = "l";
+                    final String SIZE_PARAM = "z";
+                    final String VOLUME_PARAM = "a";
 
-                URL url = new URL(builtUri.toString());
+                    Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                            .appendQueryParameter(SYMBOL_PARAM, mSymbol)
+                            .appendQueryParameter(INTERVAL_PARAM, mInterval)
+                            .appendQueryParameter(CHART_TYPE_PARAM, chartType)
+                            .appendQueryParameter(SCALE_PARAM, scaling)
+                            .appendQueryParameter(SIZE_PARAM, size)
+                            .appendQueryParameter(VOLUME_PARAM, volume)
+                            .build();
 
-                // open the connection and download the content
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.connect();
+                    URL url = new URL(builtUri.toString());
 
-                InputStream is = (InputStream) urlConnection.getContent();
-                Drawable chart = Drawable.createFromStream(is, PRICE_CHART);
+                    // open the connection and download the content
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.connect();
 
-                // save the chart
-                if(chart != null) {
-                    Stock stock = StockDataCache.getStockDataCache().getStock(mSymbol);
-                    stock.setPriceChart(chart);
-                    EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
+                    InputStream is = (InputStream) urlConnection.getContent();
+                    Drawable chart = Drawable.createFromStream(is, PRICE_CHART);
+
+                    // save the chart
+                    if (chart != null) {
+                        Stock stock = StockDataCache.getStockDataCache().getStock(mSymbol);
+                        stock.setPriceChart(chart);
+                        EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
+                    }
+
+                } finally {
+                    if (urlConnection != null)
+                        urlConnection.disconnect();
                 }
 
-            } finally {
-                if(urlConnection != null)
-                    urlConnection.disconnect();
+            } catch (IOException e) {
+                Timber.e(e, "Error downloading stock chart: %s", e.getMessage());
+                EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
             }
-
-        } catch (IOException e) {
-            Timber.e(e, "Error downloading stock chart: %s", e.getMessage());
-            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
         }
 
     }

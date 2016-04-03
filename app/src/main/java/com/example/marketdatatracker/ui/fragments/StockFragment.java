@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
@@ -37,6 +38,8 @@ import java.util.List;
  * [2] https://www.bignerdranch.com/blog/recyclerview-part-2-choice-modes/
  * [3] https://github.com/bignerdranch/recyclerview-multiselect
  *
+ * Pull-to-refresh
+ * https://guides.codepath.com/android/Implementing-Pull-to-Refresh-Guide
  */
 public class StockFragment extends BaseFragment{
 
@@ -46,6 +49,8 @@ public class StockFragment extends BaseFragment{
     private RecyclerView mRecyclerView;
     private StockAdapter mStockAdapter;
     private ProgressBar mProgressBar;
+    private boolean mRefreshing;
+    private SwipeRefreshLayout mSwipeLayout;
 
     private MultiSelector mMultiSelector = new MultiSelector();
     private ModalMultiSelectorCallback mSaveSelectionMode =
@@ -104,7 +109,6 @@ public class StockFragment extends BaseFragment{
             new GetStockQuoteThread(getActivity()).start();
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,10 +116,10 @@ public class StockFragment extends BaseFragment{
         View view = inflater.inflate(R.layout.stock_recycler_view, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
         // set the layout for the appropriate size
         Configuration config = getResources().getConfiguration();
-
         if(config.screenWidthDp >= 800) {
             GridLayoutManager gridLayoutManager = null;
             if(config.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -138,6 +142,23 @@ public class StockFragment extends BaseFragment{
         }
 
         mRecyclerView.setHasFixedSize(true);
+
+
+        // update stock quotes on swipe
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mRefreshing = true;
+                new GetStockQuoteThread(getActivity()).start();
+            }
+        });
+        // set refresh colors
+        mSwipeLayout.setColorSchemeResources(
+                R.color.pullToFreshOne,
+                R.color.pullToFreshTwo,
+                R.color.pullToFreshThree,
+                R.color.pullToFreshFour
+        );
 
         // populate and bind the adapter to the view
         updateUI();
@@ -179,6 +200,10 @@ public class StockFragment extends BaseFragment{
         switch (message) {
             case Constants.CONFIRM_STOCK_ITEM_DELETION:
             case Constants.STOCK_DOWNLOAD_COMPLETE:
+                if(mRefreshing) {
+                    mRefreshing = false;
+                    mSwipeLayout.setRefreshing(false);
+                }
                 updateUI();
                 break;
             case Constants.STOCK_PORTFOLIO_NOT_DEFINED:

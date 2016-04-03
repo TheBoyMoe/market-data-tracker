@@ -45,6 +45,7 @@ public class GetSymbolSuggestionThread extends Thread{
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
 
         if(!isInterrupted()) {
+
             Timber.i("Executing %s thread", super.getName());
             String callback = "YAHOO.Finance.SymbolSuggest.ssCallback";
             String region = "US";
