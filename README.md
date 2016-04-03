@@ -17,12 +17,6 @@ Getting Started
 This sample uses the Gradle build system. To build this project, use the
 "gradlew build" command or use "Import Project" in Android Studio.
 
-Screenshots
------------
-
-![Phone](screenshots/phone_interaction.gif "Interacting with the app on a phone")
-
-![Tablet](screenshots/tablet_screenshot.png "Tabletscreenshot")
 
 MIT License
 -----------
