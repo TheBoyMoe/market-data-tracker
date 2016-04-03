@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.FetchStockSymbolsEvent;
 import com.example.marketdatatracker.event.QueryStockSymbolsEvent;
-import com.example.marketdatatracker.model.StockSymbol;
+import com.example.marketdatatracker.model.suggestion.StockSymbol;
 import com.example.marketdatatracker.network.GetSymbolSuggestionThread;
 import com.example.marketdatatracker.util.Constants;
 

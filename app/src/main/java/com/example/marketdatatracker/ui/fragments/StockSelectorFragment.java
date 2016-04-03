@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.QueryStockSymbolsEvent;
-import com.example.marketdatatracker.model.StockSymbol;
+import com.example.marketdatatracker.model.suggestion.StockSymbol;
 import com.example.marketdatatracker.util.Constants;
 import com.example.marketdatatracker.util.Utils;
 

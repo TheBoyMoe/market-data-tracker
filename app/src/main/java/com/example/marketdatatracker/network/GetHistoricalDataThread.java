@@ -1,8 +1,21 @@
 package com.example.marketdatatracker.network;
 
 
+import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.model.historical.HistoricalQuery;
+import com.example.marketdatatracker.model.historical.StockValues;
 import com.example.marketdatatracker.util.Constants;
+import com.google.gson.Gson;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 
 public class GetHistoricalDataThread extends Thread{
@@ -61,7 +74,28 @@ public class GetHistoricalDataThread extends Thread{
             sb.append(DIAGNOSTICS);
             sb.append(ENV);
 
-            Timber.i("Url: %s", sb);
+            try {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(sb.toString()).build();
+                Response response = client.newCall(request).execute();
+
+                if(response.isSuccessful()) {
+                    Reader in = response.body().charStream();
+                    BufferedReader reader = new BufferedReader(in);
+
+                    // use gson to parse the json and post the result to the bus
+                    HistoricalQuery result = new Gson().fromJson(reader, HistoricalQuery.class);
+                    List<StockValues> values = result.getQuery().getResults().getQuote();
+                    Timber.i("Values: %s", values);
+
+                } else {
+                    Timber.e("Http response: %s", response.toString());
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.SERVER_ERROR));
+                }
+            } catch (IOException e) {
+                Timber.e("Error connecting: %s", e.getMessage());
+                EventBus.getDefault().post(new AppMessageEvent(Constants.FAILED_TO_CONNECT));
+            }
 
         }
     }

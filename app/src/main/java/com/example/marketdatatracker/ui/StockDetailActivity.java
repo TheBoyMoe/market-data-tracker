@@ -1,21 +1,25 @@
 package com.example.marketdatatracker.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.marketdatatracker.R;
+import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.ui.adapter.CustomViewPagerAdapter;
+import com.example.marketdatatracker.util.Constants;
+import com.example.marketdatatracker.util.Utils;
 import com.viewpagerindicator.CirclePageIndicator;
 
-public class StockDetailActivity extends AppCompatActivity {
+public class StockDetailActivity extends BaseActivity {
 
     private Stock mStock;
+    private CoordinatorLayout mCoordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public class StockDetailActivity extends AppCompatActivity {
 
         String symbol = getIntent().getStringExtra(StockDataCache.STOCK_OBJECT);
         mStock = StockDataCache.getStockDataCache().getStock(symbol);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         // set the actionbar title
         if(getSupportActionBar() != null)
@@ -106,6 +111,17 @@ public class StockDetailActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onEventMainThread(AppMessageEvent event) {
+        String message = event.getMessage();
+        switch (message){
+            case Constants.FAILED_TO_CONNECT:
+                Utils.showSnackbar(mCoordinatorLayout, Constants.FAILED_TO_CONNECT);
+            case Constants.SERVER_ERROR:
+                Utils.showSnackbar(mCoordinatorLayout, Constants.SERVER_ERROR);
+                break;
         }
     }
 

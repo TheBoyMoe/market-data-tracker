@@ -77,4 +77,6 @@ public class StockLineGraphFragment extends Fragment implements View.OnClickList
     private void executeQuery(String symbol, String timeFrame) {
         new GetHistoricalDataThread(symbol, timeFrame).start();
     }
+
+
 }
