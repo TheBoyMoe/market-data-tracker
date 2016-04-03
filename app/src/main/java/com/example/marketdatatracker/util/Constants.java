@@ -23,6 +23,12 @@ public class Constants {
     public static final String CONFIRM_STOCK_ITEM_DELETION = "Stock items were removed from your portfolio";
     public static final String ACTION_CANCELLED = "Action cancelled";
     public static final String STOCK_SYMBOL_ARRAY_LIST = "Stock symbol array list";
+    public static final String STOCK_SYMBOL_ITEM = "Stock symbol";
+
+    public static final String HISTORICAL_STOCK_QUERY_FOR_ONE_MONTH = "Stock indices for one month";
+    public static final String HISTORICAL_STOCK_QUERY_FOR_THREE_MONTH = "Stock indices for three months";
+    public static final String HISTORICAL_STOCK_QUERY_FOR_SIX_MONTH = "Stock indices for six months";
+    public static final String HISTORICAL_STOCK_QUERY_FOR_TWELVE_MONTH = "Stock indices for twelve months";
 
 
 }

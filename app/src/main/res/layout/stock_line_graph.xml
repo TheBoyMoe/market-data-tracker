@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/dimen_normal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:indeterminateDrawable="@drawable/progress_bar"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="@dimen/dimen_xxlarge"
+        android:layout_height="@dimen/dimen_xxlarge"/>
+
+    <include
+        layout="@layout/line_graph_timeframe_buttons"/>
+
+    <ImageView
+        android:id="@+id/stock_chart"
+        android:layout_above="@id/horizontal_button_group"
+        android:layout_gravity="center"
+        android:contentDescription="@string/stock_chart_description"
+        android:layout_marginBottom="@dimen/dimen_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</RelativeLayout>
+

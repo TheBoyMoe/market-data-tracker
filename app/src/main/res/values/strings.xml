@@ -16,6 +16,8 @@
     <string name="five_day_chart">5d</string>
     <string name="one_month_chart">1m</string>
     <string name="three_month_chart">3m</string>
+    <string name="six_month_chart">6m</string>
+    <string name="twelve_month_chart">12m</string>
     <string name="one_year_chart">1y</string>
     <string name="five_year_chart">5y</string>
     <string name="symbol_suggestion_hint">Enter one(or more) letters of the stock name</string>
