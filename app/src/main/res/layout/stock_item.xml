@@ -33,7 +33,7 @@
                 android:id="@+id/stock_name"
                 tools:text="Apple Computers"
                 android:textSize="18sp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimaryText"
                 android:singleLine="true"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -44,6 +44,7 @@
                 android:id="@+id/stock_exchange"
                 tools:text="NYSE"
                 android:singleLine="true"
+                android:textColor="@color/colorPrimaryText"
                 android:textAllCaps="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

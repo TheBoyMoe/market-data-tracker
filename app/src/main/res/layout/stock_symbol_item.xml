@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/stock_symbol"
         android:singleLine="true"
+        android:textColor="@drawable/text_style_activated"
         tools:text="AXAS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -16,6 +17,7 @@
     <TextView
         android:id="@+id/stock_exch"
         tools:text="NYQ"
+        android:textColor="@drawable/text_style_activated"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:singleLine="true"
@@ -25,6 +27,7 @@
     <TextView
         android:id="@+id/stock_name"
         android:layout_marginTop="@dimen/dimen_xsmall"
+        android:textColor="@drawable/text_style_activated"
         tools:text="Abraxas Petroleum Corp."
         android:layout_below="@id/stock_symbol"
         android:singleLine="true"

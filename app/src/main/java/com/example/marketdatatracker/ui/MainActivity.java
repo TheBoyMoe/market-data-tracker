@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +25,7 @@ import com.example.marketdatatracker.ui.fragments.NewsFragment;
 import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
 import com.example.marketdatatracker.util.ScreenUtility;
+import com.example.marketdatatracker.util.Utils;
 
 import java.util.List;
 
@@ -234,7 +234,8 @@ public class MainActivity extends BaseActivity{
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
         // display any posted messages to the user
-        Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_LONG).show();
+        Utils.showSnackbar(mCoordinatorLayout, event.getMessage());
+        //Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_LONG).show();
     }
 
 }

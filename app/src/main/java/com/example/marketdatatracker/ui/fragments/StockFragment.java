@@ -51,6 +51,7 @@ public class StockFragment extends BaseFragment{
     private ProgressBar mProgressBar;
     private boolean mRefreshing;
     private SwipeRefreshLayout mSwipeLayout;
+    private View mView;
 
     private MultiSelector mMultiSelector = new MultiSelector();
     private ModalMultiSelectorCallback mSaveSelectionMode =
@@ -94,6 +95,7 @@ public class StockFragment extends BaseFragment{
                 }
             };
 
+
     public StockFragment() {}
 
     public static StockFragment newInstance() {
@@ -113,10 +115,10 @@ public class StockFragment extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.stock_recycler_view, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        mView = inflater.inflate(R.layout.stock_recycler_view, container, false);
+        mRecyclerView = (RecyclerView) mView.findViewById(R.id.recycler_view);
+        mProgressBar = (ProgressBar) mView.findViewById(R.id.progress_bar);
+        mSwipeLayout = (SwipeRefreshLayout) mView.findViewById(R.id.swipe_container);
 
         // set the layout for the appropriate size
         Configuration config = getResources().getConfiguration();
@@ -143,7 +145,6 @@ public class StockFragment extends BaseFragment{
 
         mRecyclerView.setHasFixedSize(true);
 
-
         // update stock quotes on swipe
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -163,7 +164,7 @@ public class StockFragment extends BaseFragment{
         // populate and bind the adapter to the view
         updateUI();
 
-        return view;
+        return mView;
     }
 
 
@@ -212,7 +213,6 @@ public class StockFragment extends BaseFragment{
         }
     }
 
-
     private void updateUI() {
         mStocks = StockDataCache.getStockDataCache().getStocks();
         if(mStocks == null) {
@@ -222,7 +222,5 @@ public class StockFragment extends BaseFragment{
         mRecyclerView.setAdapter(mStockAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
-
-
 
 }

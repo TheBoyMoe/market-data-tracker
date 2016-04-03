@@ -7,8 +7,9 @@
     <color name="accent">#009688</color>
     <color name="primary_background">#FFFFFF</color>
     <color name="secondary_background">#FFefefef</color>
-    <color name="primary_text">#212121</color>
+    <color name="primary_text">#414141</color>
     <color name="secondary_text">#727272</color>
+    <color name="selected_text">@android:color/white</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
     <color name="gradient_background">#858585</color>
