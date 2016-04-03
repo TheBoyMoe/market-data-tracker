@@ -1,5 +1,6 @@
 package com.example.marketdatatracker.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,13 +13,14 @@ public class StockDataCache {
 
     public static final String STOCK_OBJECT = "stock";
     private static StockDataCache sStockDataCache;
-    private List<Stock> mStocks;
+    private static List<Stock> mStocks;
 
     private StockDataCache() {  }
 
     public static StockDataCache getStockDataCache() {
         if(sStockDataCache == null) {
             sStockDataCache = new StockDataCache();
+            mStocks = new ArrayList<>();
         }
         return sStockDataCache;
     }
@@ -29,7 +31,8 @@ public class StockDataCache {
     }
 
     public void setStocks(List<Stock> stocks) {
-        mStocks = stocks;
+        mStocks.clear();
+        mStocks.addAll(stocks);
     }
 
     public Stock getStock(String symbol) {

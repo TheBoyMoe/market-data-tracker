@@ -1,8 +1,6 @@
 package com.example.marketdatatracker.model;
 
 import android.graphics.drawable.Drawable;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -170,9 +168,10 @@ public class Stock {
 
     @Override
     public String toString() {
-        return String.format("Name: %s symbol: %s currency: %s price: %.2f open: %.2f previous close: %.2f change: %.2f percent: %.2f",
-                getName(), getSymbol(), getCurrency(), getPrice(),
-                getOpen(), getPreviousClose(), getChange(), getChangeInPercent());
+//        return String.format("Name: %s symbol: %s currency: %s price: %.2f open: %.2f previous close: %.2f change: %.2f percent: %.2f",
+//                getName(), getSymbol(), getCurrency(), getPrice(),
+//                getOpen(), getPreviousClose(), getChange(), getChangeInPercent());
+        return getSymbol();
     }
 
 

@@ -3,6 +3,7 @@ package com.example.marketdatatracker.ui.fragments;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,8 +29,6 @@ import com.example.marketdatatracker.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 /**
  * References
  *
@@ -41,7 +40,8 @@ import timber.log.Timber;
  */
 public class StockFragment extends BaseFragment{
 
-    private static final String TAG = "stock_fragment";
+    private static final String STOCK_FRAGMENT_TAG = "stock_fragment";
+    private static final String DELETE_STOCK_DIALOG = "delete_stock_dialog";
     private List<Stock> mStocks;
     private RecyclerView mRecyclerView;
     private StockAdapter mStockAdapter;
@@ -61,21 +61,22 @@ public class StockFragment extends BaseFragment{
                 @Override
                 public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                     if(item.getItemId() == R.id.action_remove) {
-                        mode.finish();
-                        List<Stock> removeList = new ArrayList<>();
-                        Stock stock;
+                        List<String> symbols = new ArrayList<>();
+                        String symbol;
                         for (int i = 0; i < mStocks.size(); i++) {
                             if(mMultiSelector.isSelected(i, 0)) {
-                                stock = mStocks.get(i);
-                                removeList.add(stock);
+                                symbol = mStocks.get(i).getSymbol();
+                                symbols.add(symbol);
                             }
                         }
-                        // TODO confirmation dialog
 
-                        // TODO iterate through list and remove items from the cache
+                        // display confirmation dialog
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        DeleteStockItemsDialog deleteStockItemsDialog = DeleteStockItemsDialog.newInstance(symbols);
+                        deleteStockItemsDialog.show(fm, DELETE_STOCK_DIALOG);
 
-                        Timber.i("Remove selection: %s", removeList);
                         mMultiSelector.clearSelections();
+                        mode.finish();
                         return true;
                     }
                     return false;
@@ -151,7 +152,7 @@ public class StockFragment extends BaseFragment{
         // restore the selection state on device rotation
         if (mMultiSelector != null) {
             if (savedInstanceState != null) {
-                Bundle bundle = savedInstanceState.getBundle(TAG);
+                Bundle bundle = savedInstanceState.getBundle(STOCK_FRAGMENT_TAG);
                 if(bundle != null)
                 mMultiSelector.restoreSelectionStates(bundle);
             }
@@ -169,13 +170,14 @@ public class StockFragment extends BaseFragment{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBundle(TAG, mMultiSelector.saveSelectionStates());
+        outState.putBundle(STOCK_FRAGMENT_TAG, mMultiSelector.saveSelectionStates());
     }
 
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
         String message = event.getMessage();
         switch (message) {
+            case Constants.CONFIRM_STOCK_ITEM_DELETION:
             case Constants.STOCK_DOWNLOAD_COMPLETE:
                 updateUI();
                 break;

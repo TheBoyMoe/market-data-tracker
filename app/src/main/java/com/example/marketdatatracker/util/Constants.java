@@ -20,4 +20,9 @@ public class Constants {
 
     public static final String PREFS_STOCK_PORTFOLIO_SET = "prefs_stock_portfolio";
 
+    public static final String CONFIRM_STOCK_ITEM_DELETION = "Stock items were removed from your portfolio";
+    public static final String ACTION_CANCELLED = "Action cancelled";
+    public static final String STOCK_SYMBOL_ARRAY_LIST = "Stock symbol array list";
+
+
 }
