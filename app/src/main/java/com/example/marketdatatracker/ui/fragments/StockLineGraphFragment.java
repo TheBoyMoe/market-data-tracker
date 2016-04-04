@@ -3,19 +3,25 @@ package com.example.marketdatatracker.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.marketdatatracker.R;
+import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.model.historical.HistoricalDataCache;
+import com.example.marketdatatracker.model.historical.StockValues;
 import com.example.marketdatatracker.network.GetHistoricalDataThread;
 import com.example.marketdatatracker.util.Constants;
 
-public class StockLineGraphFragment extends Fragment implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+public class StockLineGraphFragment extends BaseFragment implements View.OnClickListener{
 
     private String mSymbol;
+    private List<StockValues> mList = new ArrayList<>();
 
     public StockLineGraphFragment() {}
 
@@ -78,5 +84,11 @@ public class StockLineGraphFragment extends Fragment implements View.OnClickList
         new GetHistoricalDataThread(symbol, timeFrame).start();
     }
 
+    public void onEventMainThread(AppMessageEvent event) {
+        if(event.getMessage().equals(Constants.HISTORICAL_DATA_CACHE_UPDATED)) {
+            mList.clear();
+            mList.addAll(HistoricalDataCache.getHistoricalDataCache().getHistoricalValues());
+        }
+    }
 
 }

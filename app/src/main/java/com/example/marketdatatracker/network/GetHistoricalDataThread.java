@@ -2,6 +2,7 @@ package com.example.marketdatatracker.network;
 
 
 import com.example.marketdatatracker.event.AppMessageEvent;
+import com.example.marketdatatracker.model.historical.HistoricalDataCache;
 import com.example.marketdatatracker.model.historical.HistoricalQuery;
 import com.example.marketdatatracker.model.historical.StockValues;
 import com.example.marketdatatracker.util.Constants;
@@ -13,6 +14,7 @@ import com.squareup.okhttp.Response;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -83,10 +85,11 @@ public class GetHistoricalDataThread extends Thread{
                     Reader in = response.body().charStream();
                     BufferedReader reader = new BufferedReader(in);
 
-                    // use gson to parse the json and post the result to the bus
+                    // use gson to parse the json and save the data to the cache
                     HistoricalQuery result = new Gson().fromJson(reader, HistoricalQuery.class);
                     List<StockValues> values = result.getQuery().getResults().getQuote();
-                    Timber.i("Values: %s", values);
+                    HistoricalDataCache.getHistoricalDataCache().setHistoricalValues(new ArrayList<>(values));
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.HISTORICAL_DATA_CACHE_UPDATED));
 
                 } else {
                     Timber.e("Http response: %s", response.toString());

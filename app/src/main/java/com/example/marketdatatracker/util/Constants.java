@@ -29,6 +29,7 @@ public class Constants {
     public static final String HISTORICAL_STOCK_QUERY_FOR_THREE_MONTH = "Stock indices for three months";
     public static final String HISTORICAL_STOCK_QUERY_FOR_SIX_MONTH = "Stock indices for six months";
     public static final String HISTORICAL_STOCK_QUERY_FOR_TWELVE_MONTH = "Stock indices for twelve months";
+    public static final String HISTORICAL_DATA_CACHE_UPDATED = "Historical data cache updated";
 
 
 }
