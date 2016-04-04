@@ -16,7 +16,7 @@
     <dimen name="dimen_thumbnail">60dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimen_horizontal_button">40dp</dimen>
-    <dimen name="dimen_vertical_button">30dp</dimen>
+    <dimen name="dimen_vertical_button">40dp</dimen>
 
 
 </resources>

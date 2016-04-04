@@ -15,14 +15,15 @@
         android:layout_height="@dimen/dimen_xxlarge"/>
 
 
-    <!-- graph selector, placed at bottom of parent-->
+    <!-- graph selector, placed at right of parent-->
     <include
-        layout="@layout/line_graph_timeframe_buttons"/>
+        layout="@layout/vertical_line_graph_timeframe_buttons"/>
 
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_graph"
-        android:layout_marginBottom="@dimen/dimen_large"
+        android:layout_marginRight="@dimen/dimen_large"
+        android:layout_marginEnd="@dimen/dimen_large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

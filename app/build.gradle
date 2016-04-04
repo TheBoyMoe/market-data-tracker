@@ -39,6 +39,7 @@ dependencies {
     compile 'com.facebook.stetho:stetho-timber:1.3.0'
     compile 'com.facebook.stetho:stetho-okhttp:1.3.0'
     compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile project(':library')
 
 }
