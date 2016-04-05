@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+    <RadioButton
+        android:id="@+id/time_frame_one_month"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_text_selector"
+        android:text="@string/one_month_chart"
+        />
+
+    <RadioButton
+        android:id="@+id/time_frame_three_months"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_text_selector"
+        android:text="@string/three_month_chart"
+        />
+
+    <RadioButton
+        android:id="@+id/time_frame_six_months"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_text_selector"
+        android:text="@string/six_month_chart"
+        />
+
+    <RadioButton
+        android:id="@+id/time_frame_twelve_months"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_text_selector"
+        android:text="@string/twelve_month_chart"
+        />
+
+
+</RadioGroup>

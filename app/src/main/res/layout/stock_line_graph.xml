@@ -17,7 +17,7 @@
 
     <!-- graph selector, placed at bottom of parent-->
     <include
-        layout="@layout/line_graph_timeframe_buttons"/>
+        layout="@layout/timeline_buttons_horizontal"/>
 
 
     <com.github.mikephil.charting.charts.LineChart

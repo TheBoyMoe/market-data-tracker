@@ -17,13 +17,13 @@
 
     <!-- graph selector, placed at right of parent-->
     <include
-        layout="@layout/vertical_line_graph_timeframe_buttons"/>
+        layout="@layout/timeline_buttons_vertical"/>
 
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_graph"
-        android:layout_marginRight="@dimen/dimen_large"
-        android:layout_marginEnd="@dimen/dimen_large"
+        android:layout_marginRight="@dimen/dimen_xxlarge"
+        android:layout_marginEnd="@dimen/dimen_xxlarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

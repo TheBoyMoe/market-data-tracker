@@ -91,6 +91,7 @@ public class StockLineGraphFragment extends BaseFragment implements
     }
 
     private void displayChart(LineChart lineGraph) {
+
         lineGraph.setDescription(mList.get(0).getSymbol() + " close values");
         lineGraph.setNoDataTextDescription("Data set empty");
         lineGraph.setTouchEnabled(true); // ?REQD
@@ -103,16 +104,16 @@ public class StockLineGraphFragment extends BaseFragment implements
         lineGraph.setMarkerView(mv);
 
         // set upper & lower limit lines
-        // LimitLine lowerLimit = new LimitLine(getLowerLimit() - 5f, "Lower limit");
-        // setLimitLine(lowerLimit, LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        // LimitLine upperLimit = new LimitLine(getUpperLimit() + 5f, "Upper limit");
-        // setLimitLine(upperLimit, LimitLine.LimitLabelPosition.RIGHT_TOP);
+        //LimitLine lowerLimit = new LimitLine(getLowerLimit() - 5f, "Lower limit");
+        //setLimitLine(lowerLimit, LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        //LimitLine upperLimit = new LimitLine(getUpperLimit() + 5f, "Upper limit");
+        //setLimitLine(upperLimit, LimitLine.LimitLabelPosition.RIGHT_TOP);
 
-        // set YAxis & hide XAxis
+        // set scale on YAxis (x-axis shown by default)
         YAxis yAxis = lineGraph.getAxisLeft();
-        // setYAxis(yAxis, lowerLimit, upperLimit);
+        //setYAxis(yAxis, lowerLimit, upperLimit);
         setYAxis(yAxis);
-        lineGraph.getAxisRight().setEnabled(false);
+        lineGraph.getAxisRight().setEnabled(false); // hide axis
 
         // animate graph
         lineGraph.animateY(1500, Easing.EasingOption.EaseInOutQuart);
@@ -123,16 +124,22 @@ public class StockLineGraphFragment extends BaseFragment implements
     }
 
     private void addData(LineChart lineGraph) {
-        // number of data points to display
+        // reverse Stock values list (oldest first)
+        List<StockValues> reversed = new ArrayList<>();
+        for (int i = 0; i < mList.size(); i++) {
+            reversed.add(mList.get(mList.size() - 1 - i));
+        }
+
+        // number of data points to display (one for each date)
         String[] xVals = new String[mList.size()];
         for (int i = 0; i < xVals.length; i++) {
-            xVals[i] = String.valueOf(i);
+            xVals[i] = reversed.get(i).getDate();
         }
 
         // dataset of close values
         List<Entry> yVals = new ArrayList<>();
-        for (int i = 0; i < mList.size(); i++) {
-            yVals.add(new Entry(Float.parseFloat(mList.get(i).getClose()), i));
+        for (int i = 0; i < reversed.size(); i++) {
+            yVals.add(new Entry(Float.parseFloat(reversed.get(i).getClose()), i));
         }
 
         // config the graph
@@ -167,16 +174,16 @@ public class StockLineGraphFragment extends BaseFragment implements
         yAxis.removeAllLimitLines(); // reset
         yAxis.addLimitLine(lower);
         yAxis.addLimitLine(upper);
-        yAxis.setAxisMaxValue(getUpperLimit() + 10f); // FIXME
-        yAxis.setAxisMinValue(getLowerLimit() - 10f); // FIXME
+        yAxis.setAxisMaxValue(getUpperLimit() + setAxisMargin());
+        yAxis.setAxisMinValue(getLowerLimit() - setAxisMargin());
         yAxis.enableGridDashedLine(10f, 10f, 0f);
         yAxis.setDrawZeroLine(true);
         yAxis.setDrawLimitLinesBehindData(true);
     }
 
     private void setYAxis(YAxis yAxis) {
-        yAxis.setAxisMaxValue(getUpperLimit() + 10f);
-        yAxis.setAxisMinValue(getLowerLimit() - 10f);
+        yAxis.setAxisMaxValue(getUpperLimit() + setAxisMargin());
+        yAxis.setAxisMinValue(getLowerLimit() - setAxisMargin());
         yAxis.enableGridDashedLine(10f, 10f, 0f);
         yAxis.setDrawZeroLine(true);
     }
@@ -210,6 +217,18 @@ public class StockLineGraphFragment extends BaseFragment implements
             }
         }
         return minCloseDuringTimeframe;
+    }
+
+    private float setAxisMargin() {
+        float margin;
+        float diff = getUpperLimit() - getLowerLimit();
+        if(diff > 100f) margin = 20f;
+        else if(diff <= 100f && diff > 50f) margin = 10f;
+        else if(diff <= 50f && diff > 20f) margin = 5f;
+        else if(diff <= 20f && diff < 10f) margin = 2f;
+        else margin = 1f;
+
+        return margin;
     }
 
     private void setLimitLine(LimitLine ll, LimitLine.LimitLabelPosition position) {
