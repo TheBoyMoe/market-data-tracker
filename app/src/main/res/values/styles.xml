@@ -31,4 +31,41 @@
         <item name="windowActionModeOverlay">true</item>
     </style>
 
+
+    <!-- Text styles -->
+    <style name="TextStyle">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextStyle.ListItem">
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Title">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextStyle.ListItem.AllCaps">
+        <!--<item name="android:fontFamily">sans-serif-thin</item>-->
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body.StockPrice">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body.Values">
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

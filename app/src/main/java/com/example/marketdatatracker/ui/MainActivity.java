@@ -1,6 +1,5 @@
 package com.example.marketdatatracker.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -24,7 +23,6 @@ import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;
 import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
-import com.example.marketdatatracker.util.ScreenUtility;
 import com.example.marketdatatracker.util.Utils;
 
 import java.util.List;
@@ -119,20 +117,6 @@ public class MainActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_screen_dimensions:
-                // determine the devices dimensions in dp
-                ScreenUtility utility = new ScreenUtility(this);
-                String output = String.format("Width: %d Height: %d",
-                        (int)utility.getWidth(), (int)utility.getHeight());
-
-                // display them on screen
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(output)
-                        .setTitle("Dimensions")
-                        .create()
-                        .show();
-                return true;
-
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;

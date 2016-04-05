@@ -17,6 +17,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimen_horizontal_button">40dp</dimen>
     <dimen name="dimen_vertical_button">40dp</dimen>
+    <dimen name="list_item_spacer">12px</dimen>
 
 
 </resources>

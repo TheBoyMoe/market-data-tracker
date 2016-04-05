@@ -23,4 +23,5 @@
     <string name="symbol_suggestion_hint">Enter one(or more) letters of the stock name</string>
     <string name="action_add_symbol">Add symbol</string>
     <string name="action_remove_stock">Remove stock</string>
+    <string name="stock_item_divider">/</string>
 </resources>

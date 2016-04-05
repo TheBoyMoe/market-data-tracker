@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:background="@drawable/touch_selector"
-              android:layout_height="130dp">
-
-
-    <View
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorDivider"/>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+              <!--xmlns:tools="http://schemas.android.com/tools"-->
+              <!--android:orientation="vertical"-->
+              <!--android:layout_width="match_parent"-->
+              <!--android:background="@drawable/touch_selector"-->
+              <!--android:layout_height="130dp">-->
 
 
     <LinearLayout
-        android:layout_centerInParent="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/dimen_normal"
-        android:paddingRight="@dimen/dimen_normal"
+        android:background="@drawable/touch_selector"
+        android:padding="@dimen/dimen_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Stock name-->
+        <TextView
+            android:id="@+id/stock_name"
+            tools:text="Apple Computers"
+            style="@style/TextStyle.ListItem.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+        <!-- Symbol/Exchange-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -30,22 +32,23 @@
 
 
             <TextView
-                android:id="@+id/stock_name"
-                tools:text="Apple Computers"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimaryText"
-                android:singleLine="true"
-                android:layout_weight="1"
-                android:layout_width="0dp"
+                android:id="@+id/stock_symbol"
+                tools:text="AAPL"
+                style="@style/TextStyle.ListItem.AllCaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                style="@style/TextStyle.ListItem.AllCaps"
+                android:text="@string/stock_item_divider"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
             <TextView
                 android:id="@+id/stock_exchange"
                 tools:text="NYSE"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimaryText"
-                android:textAllCaps="true"
+                style="@style/TextStyle.ListItem.AllCaps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -53,101 +56,72 @@
 
 
         <TextView
-            android:id="@+id/stock_symbol"
-            tools:text="AAPL"
-            android:singleLine="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
             android:id="@+id/stock_day_hi_lo"
             android:text="@string/stock_day_hi_lo"
+            style="@style/TextStyle.ListItem.AllCaps"
             android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <!-- Stock prices -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <TextView
                 android:id="@+id/stock_price"
                 tools:text="$1210.35"
-                android:singleLine="true"
-                android:textSize="28sp"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                style="@style/TextStyle.ListItem.Body.StockPrice"/>
 
             <LinearLayout
+                android:id="@+id/stock_change_wrapper"
                 android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/stock_change"
                     tools:text="-2.00"
                     tools:drawableLeft="@drawable/ic_arrow_drop_up_green_18dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    style="@style/TextStyle.ListItem.Body.Values"
+                    android:layout_gravity="end"/>
 
                 <TextView
                     android:id="@+id/stock_change_in_percent"
                     tools:text="-1.12"
-                    android:paddingLeft="@dimen/dimen_normal"
-                    android:paddingStart="@dimen/dimen_normal"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    style="@style/TextStyle.ListItem.Body.Values"
+                    android:layout_gravity="end"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
-                android:paddingEnd="@dimen/dimen_small"
-                android:paddingRight="@dimen/dimen_small"
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/stock_day_hi"
                     tools:text="133.10"
-                    android:singleLine="true"
-                    android:gravity="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    style="@style/TextStyle.ListItem.Body.Values"/>
 
                 <TextView
                     android:id="@+id/stock_day_lo"
                     tools:text="121.23"
-                    android:singleLine="true"
-                    android:gravity="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    style="@style/TextStyle.ListItem.Body.Values"/>
 
 
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
 
-    <View
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorDivider"/>
-
-
-
-</RelativeLayout>
+<!--</LinearLayout>-->
