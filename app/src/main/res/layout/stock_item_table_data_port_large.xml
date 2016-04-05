@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.StockDetailActivity"
+    android:orientation="horizontal"
+    android:padding="@dimen/dimen_normal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText">
+
+
+    <TableLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+
+        <!-- stock exchange -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Exchange"/>
+
+
+            <TextView
+                android:id="@+id/stock_exchange"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="-2.00"/>
+
+        </TableRow>
+
+
+        <!-- stock price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Stock Price"/>
+
+
+            <TextView
+                android:id="@+id/stock_price"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="$12.00"/>
+
+        </TableRow>
+
+
+        <!-- change in price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Change in Price"/>
+
+
+            <TextView
+                android:id="@+id/stock_change"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="-2.00"/>
+
+        </TableRow>
+
+
+        <!-- % change in price-->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="% Change in Price"/>
+
+            <TextView
+                android:id="@+id/stock_change_in_percent"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="-1.12"/>
+
+        </TableRow>
+
+
+        <!-- opening price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Opening Price"/>
+
+            <TextView
+                android:id="@+id/stock_open"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="12.10"/>
+
+        </TableRow>
+
+
+        <!-- previous closing price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Previous Close"/>
+
+            <TextView
+                android:id="@+id/stock_previous_close"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="12.08"/>
+
+        </TableRow>
+
+
+        <!-- day high -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Day High"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_day_high"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="13.25"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- day low -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Day Low"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_day_low"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="9.56"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- year high -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Year High"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_year_high"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="14.69"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- year low -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Year Low"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_year_low"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="9.02"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- market capitalisation -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Market Capitalisation"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_capitalisation"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="10123.12"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- stock volume -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Volume"/>
+
+            <TextView
+                android:id="@+id/stock_volume"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="120.0"/>
+
+        </TableRow>
+
+
+        <!-- stock average volume -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Average Volume"/>
+
+            <TextView
+                android:id="@+id/stock_average_volume"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="102.0"/>
+
+        </TableRow>
+
+
+        <!-- annual yield -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Annual Yield"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_annual_yield"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="2.25"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- annual % yield -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Annual % Yield"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_annual_percentage_yield"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="4.56"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- earnings per share -->
+        <!--<TableRow>-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Earnings Per Share"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_earnings_per_share"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="2.87"/>-->
+
+        <!--</TableRow>-->
+
+
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+
+        <!-- stock exchange -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Exchange"/>-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_exchange"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="-2.00"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- stock price -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Stock Price"/>-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_price"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="$12.00"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- change in price -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Change in Price"/>-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_change"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="-2.00"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- % change in price-->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="% Change in Price"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_change_in_percent"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="-1.12"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- opening price -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Opening Price"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_open"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="12.10"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- previous closing price -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Previous Close"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_previous_close"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="12.08"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- day high -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Day High"/>
+
+            <TextView
+                android:id="@+id/stock_day_high"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="13.25"/>
+
+        </TableRow>
+
+
+        <!-- day low -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Day Low"/>
+
+            <TextView
+                android:id="@+id/stock_day_low"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="9.56"/>
+
+        </TableRow>
+
+
+        <!-- year high -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Year High"/>
+
+            <TextView
+                android:id="@+id/stock_year_high"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="14.69"/>
+
+        </TableRow>
+
+
+        <!-- year low -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Year Low"/>
+
+            <TextView
+                android:id="@+id/stock_year_low"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="9.02"/>
+
+        </TableRow>
+
+
+        <!-- market capitalisation -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Market Capitalisation"/>
+
+            <TextView
+                android:id="@+id/stock_capitalisation"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="10123.12"/>
+
+        </TableRow>
+
+
+        <!-- stock volume -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Volume"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_volume"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="120.0"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- stock average volume -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="Average Volume"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_average_volume"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--tools:text="102.0"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- annual yield -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Annual Yield"/>
+
+            <TextView
+                android:id="@+id/stock_annual_yield"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="2.25"/>
+
+        </TableRow>
+
+
+        <!-- annual % yield -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Annual % Yield"/>
+
+            <TextView
+                android:id="@+id/stock_annual_percentage_yield"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="4.56"/>
+
+        </TableRow>
+
+
+        <!-- earnings per share -->
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:text="Earnings Per Share"/>
+
+            <TextView
+                android:id="@+id/stock_earnings_per_share"
+                android:layout_column="2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="2.87"/>
+
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+
+</LinearLayout>
+
+
+
+

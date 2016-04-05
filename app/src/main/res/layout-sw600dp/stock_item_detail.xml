@@ -42,7 +42,7 @@
             </LinearLayout>
 
             <!-- Stock values -->
-            <include layout="@layout/stock_item_table_data"/>
+            <include layout="@layout/stock_item_table_data_port_large"/>
 
     </LinearLayout>
 
