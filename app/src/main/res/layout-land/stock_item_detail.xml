@@ -10,6 +10,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
+        android:padding="@dimen/dimen_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,7 +18,7 @@
             <!-- Stock title -->
             <LinearLayout
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen_normal"
+                android:layout_marginBottom="@dimen/dimen_normal"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

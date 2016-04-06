@@ -10,6 +10,15 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen_large"
+        android:layout_marginLeft="@dimen/dimen_large"
+        android:layout_marginRight="@dimen/dimen_large"
+        android:layout_marginBottom="@dimen/dimen_normal"
+        android:paddingTop="@dimen/dimen_normal"
+        android:paddingLeft="@dimen/dimen_large"
+        android:paddingRight="@dimen/dimen_large"
+        android:paddingBottom="@dimen/dimen_large"
+        android:background="@color/colorPrimaryBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,7 +26,7 @@
             <!-- Stock title -->
             <LinearLayout
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen_normal"
+                android:layout_marginBottom="@dimen/dimen_normal"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

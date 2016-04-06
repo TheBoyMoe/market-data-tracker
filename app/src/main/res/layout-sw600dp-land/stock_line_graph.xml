@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="@dimen/dimen_large"
-    android:paddingLeft="@dimen/dimen_normal"
-    android:paddingStart="@dimen/dimen_normal"
-    android:paddingRight="@dimen/dimen_normal"
-    android:paddingEnd="@dimen/dimen_normal"
-    android:paddingBottom="@dimen/dimen_normal"
+    android:layout_marginTop="@dimen/dimen_large"
+    android:layout_marginBottom="@dimen/dimen_large"
+    android:layout_marginLeft="@dimen/dimen_normal"
+    android:layout_marginStart="@dimen/dimen_normal"
+    android:layout_marginRight="@dimen/dimen_large"
+    android:layout_marginEnd="@dimen/dimen_large"
+    android:padding="@dimen/dimen_large"
+    android:background="@color/colorPrimaryBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,14 +22,15 @@
         android:layout_height="@dimen/dimen_xxlarge"/>
 
 
-    <!-- graph selector, placed at bottom of parent-->
+    <!-- graph selector, placed at right of parent-->
     <include
-        layout="@layout/timeline_buttons_horizontal"/>
+        layout="@layout/timeline_buttons_vertical"/>
 
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_graph"
-        android:layout_marginBottom="@dimen/dimen_xlarge"
+        android:layout_marginRight="@dimen/dimen_xxlarge"
+        android:layout_marginEnd="@dimen/dimen_xxlarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

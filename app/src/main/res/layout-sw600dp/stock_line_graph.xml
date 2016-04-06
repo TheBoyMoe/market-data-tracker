@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimaryBackground"
+    android:layout_marginTop="@dimen/dimen_normal"
+    android:layout_marginBottom="@dimen/dimen_large"
+    android:layout_marginLeft="@dimen/dimen_large"
+    android:layout_marginStart="@dimen/dimen_large"
+    android:layout_marginEnd="@dimen/dimen_large"
+    android:layout_marginRight="@dimen/dimen_large"
     android:paddingTop="@dimen/dimen_large"
-    android:paddingLeft="@dimen/dimen_normal"
-    android:paddingStart="@dimen/dimen_normal"
-    android:paddingRight="@dimen/dimen_normal"
-    android:paddingEnd="@dimen/dimen_normal"
     android:paddingBottom="@dimen/dimen_normal"
+    android:paddingLeft="@dimen/dimen_large"
+    android:paddingStart="@dimen/dimen_large"
+    android:paddingRight="@dimen/dimen_large"
+    android:paddingEnd="@dimen/dimen_large"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

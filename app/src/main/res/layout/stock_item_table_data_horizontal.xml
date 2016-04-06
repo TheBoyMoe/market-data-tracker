@@ -5,14 +5,12 @@
     tools:context=".ui.StockDetailActivity"
     android:baselineAligned="true"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/dimen_normal"
-    android:paddingRight="@dimen/dimen_normal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <TableLayout
-        android:padding="@dimen/dimen_normal"
+
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content">
@@ -20,7 +18,7 @@
 
         <!-- stock exchange -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -37,7 +35,7 @@
 
         <!-- stock price -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -54,7 +52,7 @@
 
         <!-- change in price -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -71,7 +69,7 @@
 
         <!-- % change in price-->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -87,7 +85,7 @@
 
         <!-- opening price -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -102,8 +100,7 @@
 
 
         <!-- previous closing price -->
-        <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+        <TableRow>
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -152,7 +149,8 @@
 
 
     <TableLayout
-        android:padding="@dimen/dimen_normal"
+        android:paddingLeft="@dimen/dimen_normal"
+        android:paddingStart="@dimen/dimen_normal"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content">
@@ -160,7 +158,7 @@
 
         <!-- day high -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -176,7 +174,7 @@
 
         <!-- day low -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -192,7 +190,7 @@
 
         <!-- year high -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -208,7 +206,7 @@
 
         <!-- year low -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
@@ -224,7 +222,7 @@
 
         <!-- market capitalisation -->
         <TableRow
-            android:layout_marginBottom="@dimen/dimen_small">
+            android:layout_marginBottom="@dimen/dimen_xsmall">
 
             <TextView
                 style="@style/TextStyle.StockDetail.Label"
