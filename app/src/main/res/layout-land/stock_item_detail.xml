@@ -17,7 +17,8 @@
             <!-- Stock title -->
             <LinearLayout
                 android:orientation="horizontal"
-                android:padding="@dimen/dimen_normal"
+                android:paddingTop="@dimen/dimen_normal"
+                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -37,7 +38,7 @@
             </LinearLayout>
 
             <!-- Stock values -->
-            <include layout="@layout/stock_item_table_data"/>
+            <include layout="@layout/stock_item_table_data_horizontal"/>
 
     </LinearLayout>
 

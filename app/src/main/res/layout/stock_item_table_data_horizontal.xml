@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.StockDetailActivity"
+    android:baselineAligned="true"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen_normal"
+    android:paddingRight="@dimen/dimen_normal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TableLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+
+        <!-- stock exchange -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/stock_exchange_label"/>
+
+
+            <TextView
+                android:id="@+id/stock_exchange"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="-2.00"/>
+
+        </TableRow>
+
+
+        <!-- stock price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/stock_price_label"/>
+
+
+            <TextView
+                android:id="@+id/stock_price"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="$12.00"/>
+
+        </TableRow>
+
+
+        <!-- change in price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/change_in_price_label"/>
+
+
+            <TextView
+                android:id="@+id/stock_change"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="-2.00"/>
+
+        </TableRow>
+
+
+        <!-- % change in price-->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/percentage_change_in_price_label"/>
+
+            <TextView
+                android:id="@+id/stock_change_in_percent"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="-1.12"/>
+
+        </TableRow>
+
+
+        <!-- opening price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/opening_price_label"/>
+
+            <TextView
+                android:id="@+id/stock_open"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="12.10"/>
+
+        </TableRow>
+
+
+        <!-- previous closing price -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/previous_close_label"/>
+
+            <TextView
+                android:id="@+id/stock_previous_close"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="12.08"/>
+
+        </TableRow>
+
+        <!-- stock volume -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--style="@style/TextStyle.StockDetail.Label"-->
+                <!--android:text="@string/volume_label"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_volume"-->
+                <!--style="@style/TextStyle.StockDetail.Value"-->
+                <!--tools:text="120.0"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- stock average volume -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--style="@style/TextStyle.StockDetail.Label"-->
+                <!--android:text="@string/average_volume_label"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_average_volume"-->
+                <!--style="@style/TextStyle.StockDetail.Value"-->
+                <!--tools:text="102.0"/>-->
+
+        <!--</TableRow>-->
+
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+
+        <!-- day high -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/day_high_label"/>
+
+            <TextView
+                android:id="@+id/stock_day_high"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="13.25"/>
+
+        </TableRow>
+
+
+        <!-- day low -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/day_low_label"/>
+
+            <TextView
+                android:id="@+id/stock_day_low"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="9.56"/>
+
+        </TableRow>
+
+
+        <!-- year high -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/year_high_label"/>
+
+            <TextView
+                android:id="@+id/stock_year_high"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="14.69"/>
+
+        </TableRow>
+
+
+        <!-- year low -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/year_low_label"/>
+
+            <TextView
+                android:id="@+id/stock_year_low"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="9.02"/>
+
+        </TableRow>
+
+
+        <!-- market capitalisation -->
+        <TableRow
+            android:layout_marginBottom="@dimen/dimen_small">
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/market_cap_label"/>
+
+            <TextView
+                android:id="@+id/stock_capitalisation"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="10123.12"/>
+
+        </TableRow>
+
+
+        <!-- annual yield -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--style="@style/TextStyle.StockDetail.Label"-->
+                <!--android:text="@string/annual_yield_label"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_annual_yield"-->
+                <!--style="@style/TextStyle.StockDetail.Value"-->
+                <!--tools:text="2.25"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- annual % yield -->
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="@dimen/dimen_small">-->
+
+            <!--<TextView-->
+                <!--style="@style/TextStyle.StockDetail.Label"-->
+                <!--android:text="@string/annual_percentage_yield_label"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/stock_annual_percentage_yield"-->
+                <!--style="@style/TextStyle.StockDetail.Value"-->
+                <!--tools:text="4.56"/>-->
+
+        <!--</TableRow>-->
+
+
+        <!-- earnings per share -->
+        <TableRow>
+
+            <TextView
+                style="@style/TextStyle.StockDetail.Label"
+                android:text="@string/earnings_per_share_label"/>
+
+            <TextView
+                android:id="@+id/stock_earnings_per_share"
+                style="@style/TextStyle.StockDetail.Value"
+                tools:text="2.87"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+
+</LinearLayout>
+
+
+
+

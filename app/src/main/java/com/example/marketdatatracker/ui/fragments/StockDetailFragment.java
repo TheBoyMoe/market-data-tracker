@@ -59,10 +59,10 @@ public class StockDetailFragment extends Fragment {
         TextView stockYearHi = (TextView) view.findViewById(R.id.stock_year_high);
         TextView stockYearLo = (TextView) view.findViewById(R.id.stock_year_low);
         TextView stockCapitalisation = (TextView) view.findViewById(R.id.stock_capitalisation);
-        TextView StockVolume = (TextView) view.findViewById(R.id.stock_volume);
-        TextView StockAverageVolume = (TextView) view.findViewById(R.id.stock_average_volume);
-        TextView StockAnnualYield = (TextView) view.findViewById(R.id.stock_annual_yield);
-        TextView StockAnnualPercentageYield = (TextView) view.findViewById(R.id.stock_annual_percentage_yield);
+        //TextView StockVolume = (TextView) view.findViewById(R.id.stock_volume);
+        //TextView StockAverageVolume = (TextView) view.findViewById(R.id.stock_average_volume);
+        //TextView StockAnnualYield = (TextView) view.findViewById(R.id.stock_annual_yield);
+        //TextView StockAnnualPercentageYield = (TextView) view.findViewById(R.id.stock_annual_percentage_yield);
         TextView stockEarningsPerShare = (TextView) view.findViewById(R.id.stock_earnings_per_share);
 
 
@@ -113,10 +113,10 @@ public class StockDetailFragment extends Fragment {
         stockYearHi.setText(String.format("%s%.2f", currencySymbol, stock.getYearHigh()));
         stockYearLo.setText(String.format("%s%.2f", currencySymbol, stock.getYearLow()));
         stockCapitalisation.setText(String.format("%s%.2f", currencySymbol, stock.getMarketCapitalisation()));
-        StockVolume.setText(String.valueOf(stock.getVolume()));
-        StockAverageVolume.setText(String.valueOf(stock.getAvgVolume()));
-        StockAnnualYield.setText(String.valueOf(stock.getAnnualYield()));
-        StockAnnualPercentageYield.setText(String.valueOf(stock.getAnnualYieldPercentage()));
+        //StockVolume.setText(String.valueOf(stock.getVolume()));
+        //StockAverageVolume.setText(String.valueOf(stock.getAvgVolume()));
+        //StockAnnualYield.setText(String.valueOf(stock.getAnnualYield()));
+        //StockAnnualPercentageYield.setText(String.valueOf(stock.getAnnualYieldPercentage()));
         stockEarningsPerShare.setText(String.valueOf(stock.getEarningsPerShare()));
 
     }

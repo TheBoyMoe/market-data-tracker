@@ -92,4 +92,36 @@
 
     </style>
 
+    <style name="TextStyle.StockDetail.Title">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Title.Name">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Title.Symbol">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Label">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:layout_column">1</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Value">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_column">2</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+
 </resources>
