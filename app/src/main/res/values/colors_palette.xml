@@ -13,6 +13,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
     <color name="gradient_background">#858585</color>
+    <color name="drawer_item_color">#616161</color>
 
     <color name="md_blue_grey_200">#b0bec5</color>
     <color name="md_blue_grey_300">#90a4ae</color>

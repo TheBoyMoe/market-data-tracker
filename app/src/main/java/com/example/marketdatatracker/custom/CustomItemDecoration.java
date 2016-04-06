@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.ui.recycler;
+package com.example.marketdatatracker.custom;
 
 
 import android.graphics.Rect;

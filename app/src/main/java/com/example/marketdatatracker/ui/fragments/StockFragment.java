@@ -24,7 +24,7 @@ import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 import com.example.marketdatatracker.network.GetStockQuoteThread;
-import com.example.marketdatatracker.ui.recycler.CustomItemDecoration;
+import com.example.marketdatatracker.custom.CustomItemDecoration;
 import com.example.marketdatatracker.ui.recycler.StockAdapter;
 import com.example.marketdatatracker.util.Constants;
 

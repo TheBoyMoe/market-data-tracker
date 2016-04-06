@@ -11,7 +11,7 @@ import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
-import com.example.marketdatatracker.ui.adapter.CustomViewPagerAdapter;
+import com.example.marketdatatracker.custom.CustomViewPagerAdapter;
 import com.example.marketdatatracker.util.Constants;
 import com.example.marketdatatracker.util.Utils;
 import com.viewpagerindicator.CirclePageIndicator;

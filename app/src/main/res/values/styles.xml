@@ -39,6 +39,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+
     <style name="TextStyle.ListItem">
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@drawable/text_style_activated</item>
@@ -69,14 +70,22 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <!--<style name="TextStyle.ListItem.Body.Selector">-->
-        <!--<item name="android:textColor">@drawable/text_style_activated</item>-->
-    <!--</style>-->
+    <style name="DrawerTextStyle">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
 
-    <!--<style name="TextStyle.ListItem.Title.Selector">-->
-        <!--<item name="android:textColor">@drawable/text_style_activated</item>-->
-    <!--</style>-->
+    <style name="DrawerTextStyle.HeaderTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">28sp</item>
+    </style>
 
 
+    <style name="ActionBarTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
 </resources>

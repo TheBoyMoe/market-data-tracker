@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.ui.adapter;
+package com.example.marketdatatracker.custom;
 
 
 import android.support.v4.app.Fragment;
