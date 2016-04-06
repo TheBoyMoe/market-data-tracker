@@ -4,8 +4,8 @@ import android.net.Uri;
 
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.FetchStockSymbolsEvent;
-import com.example.marketdatatracker.model.StockSymbol;
-import com.example.marketdatatracker.model.SuggestionQuery;
+import com.example.marketdatatracker.model.suggestion.StockSymbol;
+import com.example.marketdatatracker.model.suggestion.SuggestionQuery;
 import com.example.marketdatatracker.util.Constants;
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
@@ -45,6 +45,7 @@ public class GetSymbolSuggestionThread extends Thread{
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
 
         if(!isInterrupted()) {
+
             Timber.i("Executing %s thread", super.getName());
             String callback = "YAHOO.Finance.SymbolSuggest.ssCallback";
             String region = "US";

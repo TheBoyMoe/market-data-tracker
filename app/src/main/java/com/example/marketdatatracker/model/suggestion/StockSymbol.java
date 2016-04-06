@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.model;
+package com.example.marketdatatracker.model.suggestion;
 
 
 public class StockSymbol {

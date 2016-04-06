@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.event.QueryStockSymbolsEvent;
-import com.example.marketdatatracker.model.StockSymbol;
+import com.example.marketdatatracker.model.suggestion.StockSymbol;
 import com.example.marketdatatracker.util.Constants;
 import com.example.marketdatatracker.util.Utils;
 
@@ -206,7 +206,7 @@ public class StockSelectorFragment extends BaseFragment{
             StockSymbolViewHolder viewHolder = null;
 
             if (convertView == null) {
-                convertView = getActivity().getLayoutInflater().inflate(R.layout.stock_symbol_list_item, null);
+                convertView = getActivity().getLayoutInflater().inflate(R.layout.stock_symbol_item, null);
                 viewHolder = (StockSymbolViewHolder) convertView.getTag();
             }
 

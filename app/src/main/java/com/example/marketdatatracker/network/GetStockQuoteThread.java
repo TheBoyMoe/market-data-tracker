@@ -43,52 +43,54 @@ public class GetStockQuoteThread extends Thread{
         super.run();
         android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
-        synchronized (this) {
-            mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        }
+        if(!isInterrupted()) {
 
-        List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
-        com.example.marketdatatracker.model.Stock stockItem;
+            synchronized (this) {
+                mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+            }
 
-        // empty array list should nothing be found in shared preferences
-        Set<String> defaultPortfolio = new HashSet<>();
-        defaultPortfolio.addAll(new ArrayList<String>());
+            List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
+            com.example.marketdatatracker.model.Stock stockItem;
 
-        // fetch user preferences, otherwise pass in the default
-        Set<String> temp = mPrefs.getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, defaultPortfolio);
-        Set<String> portfolio = new TreeSet<>(temp); // sort
-        String[] symbols = portfolio.toArray(new String[portfolio.size()]);
+            // empty array list should nothing be found in shared preferences
+            Set<String> defaultPortfolio = new HashSet<>();
+            defaultPortfolio.addAll(new ArrayList<String>());
 
-        if(symbols.length == 0) {
-            // if the returned string set is empty, post a message to the user
-            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_NOT_DEFINED));
-            return;
-        }
+            // fetch user preferences, otherwise pass in the default
+            Set<String> temp = mPrefs.getStringSet(Constants.PREFS_STOCK_PORTFOLIO_SET, defaultPortfolio);
+            Set<String> portfolio = new TreeSet<>(temp); // sort
+            String[] symbols = portfolio.toArray(new String[portfolio.size()]);
 
-        try {
-            // query the Yahoo Finance API
-            Map<String, Stock> stocks = YahooFinance.get(symbols);
-            Stock stock;
+            if (symbols.length == 0) {
+                // if the returned string set is empty, post a message to the user
+                EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_PORTFOLIO_NOT_DEFINED));
+                return;
+            }
 
-            if (stocks != null) {
-                for (String symbol : symbols) {
-                    stock = stocks.get(symbol);
-                    stockItem = buildCustomStockItem(stock);
-                    stockList.add(stockItem);
-                }
+            try {
+                // query the Yahoo Finance API
+                Map<String, Stock> stocks = YahooFinance.get(symbols);
+                Stock stock;
 
-                // stash the data to the cache, let any interested parties know
-                StockDataCache.getStockDataCache().setStocks(stockList);
-                EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
+                if (stocks != null) {
+                    for (String symbol : symbols) {
+                        stock = stocks.get(symbol);
+                        stockItem = buildCustomStockItem(stock);
+                        stockList.add(stockItem);
+                    }
 
-            } else
+                    // stash the data to the cache, let any interested parties know
+                    StockDataCache.getStockDataCache().setStocks(stockList);
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
+
+                } else
+                    EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
+
+            } catch (IOException e) {
+                Timber.e(e, "Failed to retrieve quote data: %s", e.getMessage());
                 EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
-
-        } catch (IOException e) {
-            Timber.e(e, "Failed to retrieve quote data: %s", e.getMessage());
-            EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_FAILED));
+            }
         }
-
     }
 
 

@@ -1,6 +1,6 @@
 package com.example.marketdatatracker.event;
 
-import com.example.marketdatatracker.model.StockSymbol;
+import com.example.marketdatatracker.model.suggestion.StockSymbol;
 
 import java.util.ArrayList;
 

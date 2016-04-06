@@ -31,4 +31,97 @@
         <item name="windowActionModeOverlay">true</item>
     </style>
 
+
+    <!-- Text styles -->
+    <style name="TextStyle">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="TextStyle.ListItem">
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/text_style_activated</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Title">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body.AllCaps">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body.StockPrice">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextStyle.ListItem.Body.Values">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DrawerTextStyle">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="DrawerTextStyle.HeaderTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+
+    <style name="ActionBarTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextStyle.StockDetail">
+
+    </style>
+
+    <style name="TextStyle.StockDetail.Title">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Title.Name">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Title.Symbol">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Label">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:layout_column">1</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="TextStyle.StockDetail.Value">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_column">2</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+
 </resources>

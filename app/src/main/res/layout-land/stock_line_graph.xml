@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="@dimen/dimen_large"
+    android:paddingLeft="@dimen/dimen_large"
+    android:paddingStart="@dimen/dimen_large"
+    android:paddingRight="@dimen/dimen_normal"
+    android:paddingEnd="@dimen/dimen_normal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:indeterminateDrawable="@drawable/progress_bar"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="@dimen/dimen_xxlarge"
+        android:layout_height="@dimen/dimen_xxlarge"/>
+
+
+    <!-- graph selector, placed at right of parent-->
+    <include
+        layout="@layout/timeline_buttons_vertical"/>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/line_graph"
+        android:layout_marginRight="@dimen/dimen_xxlarge"
+        android:layout_marginEnd="@dimen/dimen_xxlarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
+

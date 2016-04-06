@@ -1,21 +1,21 @@
 package com.example.marketdatatracker.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
@@ -25,7 +25,7 @@ import com.example.marketdatatracker.ui.fragments.CurrencyFragment;
 import com.example.marketdatatracker.ui.fragments.NewsFragment;
 import com.example.marketdatatracker.ui.fragments.SettingsFragment;
 import com.example.marketdatatracker.ui.fragments.StockFragment;
-import com.example.marketdatatracker.util.ScreenUtility;
+import com.example.marketdatatracker.util.Utils;
 
 import java.util.List;
 
@@ -52,20 +52,42 @@ public class MainActivity extends BaseActivity{
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // setup the navigation drawer
+        // setup & configure the navigation drawer
         NavigationView navigationDrawer = (NavigationView) findViewById(R.id.navigation_drawer);
         setupDrawerContent(navigationDrawer);
+//        navigationDrawer.setItemTextColor(new ColorStateList(
+//                new int[][] {
+//                        new int[] {android.R.attr.state_pressed},
+//                        new int[] {android.R.attr.state_focused},
+//                        new int[] {}
+//                },
+//                new int[] {
+//                        ContextCompat.getColor(this, R.color.colorPrimary),
+//                        ContextCompat.getColor(this, R.color.colorPrimary),
+//                        ContextCompat.getColor(this, R.color.colorGradientBackground)
+//                }
+//        ));
+
 
 
         // setup the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // set custom title
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.stock_custom_title, null);
+        ((TextView)customView.findViewById(R.id.action_bar_title)).setText(this.getTitle());
+
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigation_menu_white);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false); // hide title
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView); // set the custom action bar title
         }
+
 
         // set the initial fragment if first time in
         if(savedInstanceState == null)
@@ -119,20 +141,6 @@ public class MainActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_screen_dimensions:
-                // determine the devices dimensions in dp
-                ScreenUtility utility = new ScreenUtility(this);
-                String output = String.format("Width: %d Height: %d",
-                        (int)utility.getWidth(), (int)utility.getHeight());
-
-                // display them on screen
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(output)
-                        .setTitle("Dimensions")
-                        .create()
-                        .show();
-                return true;
-
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
@@ -234,7 +242,8 @@ public class MainActivity extends BaseActivity{
     @SuppressWarnings("unused")
     public void onEventMainThread(AppMessageEvent event) {
         // display any posted messages to the user
-        Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_LONG).show();
+        Utils.showSnackbar(mCoordinatorLayout, event.getMessage());
+        //Snackbar.make(mCoordinatorLayout, event.getMessage(), Snackbar.LENGTH_LONG).show();
     }
 
 }

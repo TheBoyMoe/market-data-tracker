@@ -1,4 +1,4 @@
-package com.example.marketdatatracker.model;
+package com.example.marketdatatracker.model.suggestion;
 
 
 /**
@@ -65,7 +65,7 @@ package com.example.marketdatatracker.model;
 
 public class SuggestionQuery {
 
-    private ResultSet ResultSet;
+    private com.example.marketdatatracker.model.suggestion.ResultSet ResultSet;
 
     public ResultSet getResultSet() {
         return ResultSet;

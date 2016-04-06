@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/horizontal_button_group"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <RadioButton
+        android:id="@+id/time_frame_one_month"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/one_month_chart"/>
+
+
+    <RadioButton
+        android:id="@+id/time_frame_three_months"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/three_month_chart"/>
+
+
+    <RadioButton
+        android:id="@+id/time_frame_six_months"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/six_month_chart"/>
+
+
+    <RadioButton
+        android:id="@+id/time_frame_twelve_months"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/dimen_vertical_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/button_text_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/twelve_month_chart"/>
+
+
+
+
+</RadioGroup>

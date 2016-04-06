@@ -14,12 +14,8 @@ import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
 
-import timber.log.Timber;
-
 public class StockDetailFragment extends Fragment {
 
-    private Stock mStock;
-    private View mView;
 
     public StockDetailFragment() {}
 
@@ -34,47 +30,45 @@ public class StockDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView =  inflater.inflate(R.layout.stock_item_detail, container, false);
+        View view =  inflater.inflate(R.layout.stock_item_detail, container, false);
 
         // fetch the stock object from the data cache
         String symbol = getArguments().getString(StockDataCache.STOCK_OBJECT);
-        mStock = StockDataCache.getStockDataCache().getStock(symbol);
-        Timber.i("Detail fragment: %s", mStock.toString());
+        Stock stock = StockDataCache.getStockDataCache().getStock(symbol);
 
         // populate view elements
-        displayStockStats();
+        displayStockStats(view, stock);
 
-        return mView;
+        return view;
     }
 
 
-
-    private void displayStockStats() {
+    private void displayStockStats(View view, Stock stock) {
 
         // TODO add date/time field
-        TextView mStockName = (TextView) mView.findViewById(R.id.stock_name);
-        TextView mStockPrice = (TextView) mView.findViewById(R.id.stock_price);
-        TextView mStockSymbol = (TextView) mView.findViewById(R.id.stock_symbol);
-        TextView mStockExchange = (TextView) mView.findViewById(R.id.stock_exchange);
-        TextView mStockChange = (TextView) mView.findViewById(R.id.stock_change);
-        TextView mStockChangeInPercent = (TextView) mView.findViewById(R.id.stock_change_in_percent);
-        TextView mStockOpen = (TextView) mView.findViewById(R.id.stock_open);
-        TextView mStockPreviousClose = (TextView) mView.findViewById(R.id.stock_previous_close);
-        TextView mStockDayHi = (TextView) mView.findViewById(R.id.stock_day_high);
-        TextView mStockDayLo = (TextView) mView.findViewById(R.id.stock_day_low);
-        TextView mStockYearHi = (TextView) mView.findViewById(R.id.stock_year_high);
-        TextView mStockYearLo = (TextView) mView.findViewById(R.id.stock_year_low);
-        TextView mStockCapitalisation = (TextView) mView.findViewById(R.id.stock_capitalisation);
-        TextView mStockVolume = (TextView) mView.findViewById(R.id.stock_volume);
-        TextView mStockAverageVolume = (TextView) mView.findViewById(R.id.stock_average_volume);
-        TextView mStockAnnualYield = (TextView) mView.findViewById(R.id.stock_annual_yield);
-        TextView mStockAnnualPercentageYield = (TextView) mView.findViewById(R.id.stock_annual_percentage_yield);
-        TextView mStockEarningsPerShare = (TextView) mView.findViewById(R.id.stock_earnings_per_share);
+        TextView stockName = (TextView) view.findViewById(R.id.stock_name);
+        TextView stockPrice = (TextView) view.findViewById(R.id.stock_price);
+        TextView stockSymbol = (TextView) view.findViewById(R.id.stock_symbol);
+        TextView stockExchange = (TextView) view.findViewById(R.id.stock_exchange);
+        TextView stockChange = (TextView) view.findViewById(R.id.stock_change);
+        TextView stockChangeInPercent = (TextView) view.findViewById(R.id.stock_change_in_percent);
+        TextView stockOpen = (TextView) view.findViewById(R.id.stock_open);
+        TextView stockPreviousClose = (TextView) view.findViewById(R.id.stock_previous_close);
+        TextView stockDayHi = (TextView) view.findViewById(R.id.stock_day_high);
+        TextView stockDayLo = (TextView) view.findViewById(R.id.stock_day_low);
+        TextView stockYearHi = (TextView) view.findViewById(R.id.stock_year_high);
+        TextView stockYearLo = (TextView) view.findViewById(R.id.stock_year_low);
+        TextView stockCapitalisation = (TextView) view.findViewById(R.id.stock_capitalisation);
+        //TextView StockVolume = (TextView) view.findViewById(R.id.stock_volume);
+        //TextView StockAverageVolume = (TextView) view.findViewById(R.id.stock_average_volume);
+        //TextView StockAnnualYield = (TextView) view.findViewById(R.id.stock_annual_yield);
+        //TextView StockAnnualPercentageYield = (TextView) view.findViewById(R.id.stock_annual_percentage_yield);
+        TextView stockEarningsPerShare = (TextView) view.findViewById(R.id.stock_earnings_per_share);
 
 
         // determine currency
         String currencySymbol;
-        String currency = mStock.getCurrency();
+        String currency = stock.getCurrency();
 
         switch (currency) {
             case "EUR":
@@ -88,42 +82,42 @@ public class StockDetailFragment extends Fragment {
         }
 
         String changeSymbol;
-        if (mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue()) {
+        if (stock.getPrice().doubleValue() > stock.getPreviousClose().doubleValue()) {
             changeSymbol = "+";
-            mStockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
+            stockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
             //mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_up_green_18dp, 0, 0, 0);
-            mStockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
+            stockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_green_light));
         }
-        else if (mStock.getPrice().doubleValue() < mStock.getPreviousClose().doubleValue()) {
+        else if (stock.getPrice().doubleValue() < stock.getPreviousClose().doubleValue()) {
             changeSymbol = "";
-            mStockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
+            stockChange.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
             //mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down_red_18dp, 0, 0, 0);
-            mStockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
+            stockChangeInPercent.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
         }
         else {
             changeSymbol = "";
-            mStockChange.setPadding(18, 0, 0, 0);
+            stockChange.setPadding(18, 0, 0, 0);
         }
 
         // TODO properly format large numbers
-        mStockName.setText(mStock.getName());
-        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
-        mStockSymbol.setText(String.format("[%s]", mStock.getSymbol()));
-        mStockExchange.setText(mStock.getStockExchange());
-        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
-        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
-        mStockOpen.setText(String.format("%s%.2f", currencySymbol, mStock.getOpen()));
-        mStockPreviousClose.setText(String.format("%s%.2f", currencySymbol, mStock.getPreviousClose()));
-        mStockDayHi.setText(String.format("%s%.2f", currencySymbol, mStock.getDayHigh()));
-        mStockDayLo.setText(String.format("%s%.2f", currencySymbol, mStock.getDayLow()));
-        mStockYearHi.setText(String.format("%s%.2f", currencySymbol, mStock.getYearHigh()));
-        mStockYearLo.setText(String.format("%s%.2f", currencySymbol, mStock.getYearLow()));
-        mStockCapitalisation.setText(String.format("%s%.2f", currencySymbol, mStock.getMarketCapitalisation()));
-        mStockVolume.setText(String.valueOf(mStock.getVolume()));
-        mStockAverageVolume.setText(String.valueOf(mStock.getAvgVolume()));
-        mStockAnnualYield.setText(String.valueOf(mStock.getAnnualYield()));
-        mStockAnnualPercentageYield.setText(String.valueOf(mStock.getAnnualYieldPercentage()));
-        mStockEarningsPerShare.setText(String.valueOf(mStock.getEarningsPerShare()));
+        stockName.setText(stock.getName());
+        stockPrice.setText(String.format("%s%.2f", currencySymbol, stock.getPrice()));
+        stockSymbol.setText(String.format("[%s]", stock.getSymbol()));
+        stockExchange.setText(stock.getStockExchange());
+        stockChange.setText(String.format("%s%.2f", changeSymbol, stock.getChange()));
+        stockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, stock.getChangeInPercent()));
+        stockOpen.setText(String.format("%s%.2f", currencySymbol, stock.getOpen()));
+        stockPreviousClose.setText(String.format("%s%.2f", currencySymbol, stock.getPreviousClose()));
+        stockDayHi.setText(String.format("%s%.2f", currencySymbol, stock.getDayHigh()));
+        stockDayLo.setText(String.format("%s%.2f", currencySymbol, stock.getDayLow()));
+        stockYearHi.setText(String.format("%s%.2f", currencySymbol, stock.getYearHigh()));
+        stockYearLo.setText(String.format("%s%.2f", currencySymbol, stock.getYearLow()));
+        stockCapitalisation.setText(String.format("%s%.2f", currencySymbol, stock.getMarketCapitalisation()));
+        //StockVolume.setText(String.valueOf(stock.getVolume()));
+        //StockAverageVolume.setText(String.valueOf(stock.getAvgVolume()));
+        //StockAnnualYield.setText(String.valueOf(stock.getAnnualYield()));
+        //StockAnnualPercentageYield.setText(String.valueOf(stock.getAnnualYieldPercentage()));
+        stockEarningsPerShare.setText(String.valueOf(stock.getEarningsPerShare()));
 
     }
 

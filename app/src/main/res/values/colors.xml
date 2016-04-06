@@ -7,10 +7,15 @@
     <color name="colorAccent">@color/accent</color>
     <color name="colorPrimaryText">@color/primary_text</color>
     <color name="colorSecondaryText">@color/secondary_text</color>
+    <color name="colorSelectedText">@color/selected_text</color>
     <color name="colorGradientBackground">@color/gradient_background</color>
     <color name="colorDivider">@color/divider</color>
     <color name="colorPrimaryBackground">@android:color/white</color>
     <color name="colorSecondaryBackground">@color/secondary_background</color>
     <color name="colorButtonText">@android:color/white</color>
+    <color name="pullToFreshOne">@color/md_blue_grey_200</color>
+    <color name="pullToFreshTwo">@color/md_blue_grey_300</color>
+    <color name="pullToFreshThree">@color/md_blue_grey_400</color>
+    <color name="pullToFreshFour">@color/md_blue_grey_500</color>
 
 </resources>

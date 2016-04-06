@@ -1,21 +1,24 @@
 package com.example.marketdatatracker.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.marketdatatracker.R;
+import com.example.marketdatatracker.event.AppMessageEvent;
 import com.example.marketdatatracker.model.Stock;
 import com.example.marketdatatracker.model.StockDataCache;
-import com.example.marketdatatracker.ui.adapter.CustomViewPagerAdapter;
+import com.example.marketdatatracker.custom.CustomViewPagerAdapter;
+import com.example.marketdatatracker.util.Constants;
+import com.example.marketdatatracker.util.Utils;
 import com.viewpagerindicator.CirclePageIndicator;
 
-public class StockDetailActivity extends AppCompatActivity {
+public class StockDetailActivity extends BaseActivity {
 
-    private Stock mStock;
+    private CoordinatorLayout mCoordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +26,13 @@ public class StockDetailActivity extends AppCompatActivity {
         setContentView(R.layout.stock_detail_container);
 
         String symbol = getIntent().getStringExtra(StockDataCache.STOCK_OBJECT);
-        mStock = StockDataCache.getStockDataCache().getStock(symbol);
+        Stock stock = StockDataCache.getStockDataCache().getStock(symbol);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         // set the actionbar title
         if(getSupportActionBar() != null)
-            getSupportActionBar().setTitle(mStock.getName());
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         // display stock overview data
         //displayStockOverview();
@@ -37,7 +42,7 @@ public class StockDetailActivity extends AppCompatActivity {
         if(mViewPager == null) {
             // device >= 600dp, display the detail & graph fragments simultaneously
             if(getSupportFragmentManager().findFragmentById(R.id.frame_left) == null) {
-                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getSupportFragmentManager(), mStock.getSymbol());
+                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getSupportFragmentManager(), stock.getSymbol());
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.frame_left, adapter.getItem(0))
                         .add(R.id.frame_right, adapter.getItem(1))
@@ -49,7 +54,7 @@ public class StockDetailActivity extends AppCompatActivity {
             CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
 
             // set the page indicator and adapter
-            mViewPager.setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), mStock.getSymbol()));
+            mViewPager.setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), stock.getSymbol()));
             mIndicator.setViewPager(mViewPager);
 
             // set and display the page indicator
@@ -106,6 +111,17 @@ public class StockDetailActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onEventMainThread(AppMessageEvent event) {
+        String message = event.getMessage();
+        switch (message){
+            case Constants.FAILED_TO_CONNECT:
+                Utils.showSnackbar(mCoordinatorLayout, Constants.FAILED_TO_CONNECT);
+            case Constants.SERVER_ERROR:
+                Utils.showSnackbar(mCoordinatorLayout, Constants.SERVER_ERROR);
+                break;
         }
     }
 

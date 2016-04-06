@@ -9,8 +9,16 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:padding="@dimen/dimen_large"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen_large"
+        android:layout_marginLeft="@dimen/dimen_large"
+        android:layout_marginRight="@dimen/dimen_large"
+        android:layout_marginBottom="@dimen/dimen_normal"
+        android:paddingTop="@dimen/dimen_normal"
+        android:paddingLeft="@dimen/dimen_large"
+        android:paddingRight="@dimen/dimen_large"
+        android:paddingBottom="@dimen/dimen_large"
+        android:background="@color/colorPrimaryBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,6 +27,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_marginBottom="@dimen/dimen_normal"
+                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -38,7 +47,7 @@
             </LinearLayout>
 
             <!-- Stock values -->
-            <include layout="@layout/stock_item_table_data"/>
+            <include layout="@layout/stock_item_table_data_horizontal"/>
 
     </LinearLayout>
 
