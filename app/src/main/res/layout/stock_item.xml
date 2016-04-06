@@ -21,8 +21,7 @@
             android:id="@+id/stock_name"
             tools:text="Apple Computers"
             style="@style/TextStyle.ListItem.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            />
 
         <!-- Symbol/Exchange-->
         <LinearLayout
@@ -34,23 +33,20 @@
             <TextView
                 android:id="@+id/stock_symbol"
                 tools:text="AAPL"
-                style="@style/TextStyle.ListItem.AllCaps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/TextStyle.ListItem.Body.AllCaps"
+                />
 
             <TextView
-                style="@style/TextStyle.ListItem.AllCaps"
+                style="@style/TextStyle.ListItem.Body.AllCaps"
                 android:text="@string/stock_item_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                />
 
 
             <TextView
                 android:id="@+id/stock_exchange"
                 tools:text="NYSE"
-                style="@style/TextStyle.ListItem.AllCaps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/TextStyle.ListItem.Body.AllCaps"
+                />
 
         </LinearLayout>
 
@@ -58,10 +54,10 @@
         <TextView
             android:id="@+id/stock_day_hi_lo"
             android:text="@string/stock_day_hi_lo"
-            style="@style/TextStyle.ListItem.AllCaps"
+            style="@style/TextStyle.ListItem.Body.AllCaps"
             android:gravity="end"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            />
 
         <!-- Stock prices -->
         <RelativeLayout

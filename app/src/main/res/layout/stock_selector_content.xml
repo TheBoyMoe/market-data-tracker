@@ -18,10 +18,9 @@
             <EditText
                 android:id="@+id/symbol_suggestion"
                 android:hint="@string/symbol_suggestion_hint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/TextStyle.ListItem.Title"
                 android:imeOptions="actionDone"
-                android:singleLine="true"/>
+                />
 
         </android.support.design.widget.TextInputLayout>
 
