@@ -88,4 +88,8 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="TextStyle.StockDetail">
+
+    </style>
+
 </resources>

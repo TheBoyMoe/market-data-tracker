@@ -24,4 +24,20 @@
     <string name="action_add_symbol">Add symbol</string>
     <string name="action_remove_stock">Remove stock</string>
     <string name="stock_item_divider">/</string>
+    <string name="stock_exchange_label">Exchange</string>
+    <string name="stock_price_label">Stock Price</string>
+    <string name="change_in_price_label">Change in Price</string>
+    <string name="percentage_change_in_price_label">% Change in Price</string>
+    <string name="opening_price_label">Opening Price</string>
+    <string name="previous_close_label">Previous Close</string>
+    <string name="day_high_label">Day High</string>
+    <string name="day_low_label">Day Low</string>
+    <string name="year_high_label">Year High</string>
+    <string name="year_low_label">Year Low</string>
+    <string name="market_cap_label">Market Capitalisation</string>
+    <string name="volume_label">Volume</string>
+    <string name="average_volume_label">Average Volume</string>
+    <string name="annual_yield_label">Annual Yield</string>
+    <string name="annual_percentage_yield_label">Annual % Yield</string>
+    <string name="earnings_per_share_label">Earnings Per Share</string>
 </resources>

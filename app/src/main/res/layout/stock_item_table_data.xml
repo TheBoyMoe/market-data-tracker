@@ -6,8 +6,7 @@
     tools:context=".ui.StockDetailActivity"
     android:padding="@dimen/dimen_normal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="HardcodedText">
+    android:layout_height="wrap_content">
 
 
     <!-- stock exchange -->
@@ -17,7 +16,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Exchange"/>
+            android:text="@string/stock_exchange_label"/>
 
 
         <TextView
@@ -38,7 +37,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Stock Price"/>
+            android:text="@string/stock_price_label"/>
 
 
         <TextView
@@ -59,7 +58,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Change in Price"/>
+            android:text="@string/change_in_price_label"/>
 
 
         <TextView
@@ -80,7 +79,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="% Change in Price"/>
+            android:text="@string/percentage_change_in_price_label"/>
 
         <TextView
             android:id="@+id/stock_change_in_percent"
@@ -100,7 +99,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Opening Price"/>
+            android:text="@string/opening_price_label"/>
 
         <TextView
             android:id="@+id/stock_open"
@@ -120,7 +119,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Previous Close"/>
+            android:text="@string/previous_close_label"/>
 
         <TextView
             android:id="@+id/stock_previous_close"
@@ -140,7 +139,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Day High"/>
+            android:text="@string/day_high_label"/>
 
         <TextView
             android:id="@+id/stock_day_high"
@@ -160,7 +159,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Day Low"/>
+            android:text="@string/day_low_label"/>
 
         <TextView
             android:id="@+id/stock_day_low"
@@ -180,7 +179,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Year High"/>
+            android:text="@string/year_high_label"/>
 
         <TextView
             android:id="@+id/stock_year_high"
@@ -200,7 +199,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Year Low"/>
+            android:text="@string/year_low_label"/>
 
         <TextView
             android:id="@+id/stock_year_low"
@@ -220,7 +219,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Market Capitalisation"/>
+            android:text="@string/market_cap_label"/>
 
         <TextView
             android:id="@+id/stock_capitalisation"
@@ -240,7 +239,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Volume"/>
+            android:text="@string/volume_label"/>
 
         <TextView
             android:id="@+id/stock_volume"
@@ -260,7 +259,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Average Volume"/>
+            android:text="@string/average_volume_label"/>
 
         <TextView
             android:id="@+id/stock_average_volume"
@@ -280,7 +279,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Annual Yield"/>
+            android:text="@string/annual_yield_label"/>
 
         <TextView
             android:id="@+id/stock_annual_yield"
@@ -300,7 +299,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Annual % Yield"/>
+            android:text="@string/annual_percentage_yield_label"/>
 
         <TextView
             android:id="@+id/stock_annual_percentage_yield"
@@ -319,7 +318,7 @@
         <TextView
             android:layout_column="1"
             android:layout_width="wrap_content"
-            android:text="Earnings Per Share"/>
+            android:text="@string/earnings_per_share_label"/>
 
         <TextView
             android:id="@+id/stock_earnings_per_share"
