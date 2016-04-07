@@ -55,20 +55,6 @@ public class MainActivity extends BaseActivity{
         // setup & configure the navigation drawer
         NavigationView navigationDrawer = (NavigationView) findViewById(R.id.navigation_drawer);
         setupDrawerContent(navigationDrawer);
-//        navigationDrawer.setItemTextColor(new ColorStateList(
-//                new int[][] {
-//                        new int[] {android.R.attr.state_pressed},
-//                        new int[] {android.R.attr.state_focused},
-//                        new int[] {}
-//                },
-//                new int[] {
-//                        ContextCompat.getColor(this, R.color.colorPrimary),
-//                        ContextCompat.getColor(this, R.color.colorPrimary),
-//                        ContextCompat.getColor(this, R.color.colorGradientBackground)
-//                }
-//        ));
-
-
 
         // setup the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

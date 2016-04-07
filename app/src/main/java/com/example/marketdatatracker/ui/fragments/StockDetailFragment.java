@@ -45,7 +45,6 @@ public class StockDetailFragment extends Fragment {
 
     private void displayStockStats(View view, StockItem stockItem) {
 
-        // TODO add date/time field
         TextView stockName = (TextView) view.findViewById(R.id.stock_name);
         TextView stockPrice = (TextView) view.findViewById(R.id.stock_price);
         TextView stockSymbol = (TextView) view.findViewById(R.id.stock_symbol);
@@ -99,7 +98,7 @@ public class StockDetailFragment extends Fragment {
             stockChange.setPadding(18, 0, 0, 0);
         }
 
-        // TODO properly format large numbers
+
         stockName.setText(stockItem.getName());
         stockPrice.setText(String.format("%s%.2f", currencySymbol, stockItem.getPrice()));
         stockSymbol.setText(String.format("[%s]", stockItem.getSymbol()));
@@ -112,7 +111,7 @@ public class StockDetailFragment extends Fragment {
         stockDayLo.setText(String.format("%s%.2f", currencySymbol, stockItem.getDayLow()));
         stockYearHi.setText(String.format("%s%.2f", currencySymbol, stockItem.getYearHigh()));
         stockYearLo.setText(String.format("%s%.2f", currencySymbol, stockItem.getYearLow()));
-        stockCapitalisation.setText(String.format("%s%.2f", currencySymbol, stockItem.getMarketCapitalisation()));
+        stockCapitalisation.setText(String.format("%s%s", currencySymbol, String.format("%,.0fM", stockItem.getMarketCapitalisation()/1000000.0)));
         //StockVolume.setText(String.valueOf(stockItem.getVolume()));
         //StockAverageVolume.setText(String.valueOf(stockItem.getAvgVolume()));
         //StockAnnualYield.setText(String.valueOf(stockItem.getAnnualYield()));

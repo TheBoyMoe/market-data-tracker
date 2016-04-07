@@ -1,16 +1,12 @@
 package com.example.marketdatatracker.model;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
 /**
  * Custom stock object POJO
  */
-public class StockItem extends RealmObject{
+public class StockItem {
 
     private String name;
     private String currency;
-    @PrimaryKey
     private String symbol;
     private String stockExchange;
     private double price;

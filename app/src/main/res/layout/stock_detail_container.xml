@@ -23,6 +23,7 @@
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/page_indicator"
+            android:paddingTop="@dimen/dimen_xsmall"
             android:layout_gravity="bottom"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>

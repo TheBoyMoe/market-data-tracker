@@ -94,10 +94,11 @@ public class StockLineGraphFragment extends BaseFragment implements
 
         lineGraph.setDescription(mList.get(0).getSymbol() + " close values");
         lineGraph.setNoDataTextDescription("Data set empty");
-        lineGraph.setTouchEnabled(true); // ?REQD
+        lineGraph.setTouchEnabled(true);
         lineGraph.setDragEnabled(true);
         lineGraph.setScaleEnabled(true);
-        lineGraph.setPinchZoom(true); // END
+        lineGraph.setPinchZoom(true);
+        lineGraph.getLegend().setEnabled(false); // hide legend at base of x-axis
 
         // set marker view
         CustomMarkerView mv = new CustomMarkerView(getActivity(), R.layout.close_value);
