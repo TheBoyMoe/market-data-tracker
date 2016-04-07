@@ -7,7 +7,8 @@ import android.os.Process;
 import android.preference.PreferenceManager;
 
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.model.StockItem;
+import com.example.marketdatatracker.model.data.StockDataCache;
 import com.example.marketdatatracker.util.Constants;
 
 import java.io.IOException;
@@ -49,8 +50,8 @@ public class GetStockQuoteThread extends Thread{
                 mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
             }
 
-            List<com.example.marketdatatracker.model.Stock> stockList = new ArrayList<>();
-            com.example.marketdatatracker.model.Stock stockItem;
+            List<StockItem> stockItemList = new ArrayList<>();
+            StockItem stockItem;
 
             // empty array list should nothing be found in shared preferences
             Set<String> defaultPortfolio = new HashSet<>();
@@ -76,11 +77,11 @@ public class GetStockQuoteThread extends Thread{
                     for (String symbol : symbols) {
                         stock = stocks.get(symbol);
                         stockItem = buildCustomStockItem(stock);
-                        stockList.add(stockItem);
+                        stockItemList.add(stockItem);
                     }
 
                     // stash the data to the cache, let any interested parties know
-                    StockDataCache.getStockDataCache().setStocks(stockList);
+                    StockDataCache.getStockDataCache().setStocks(stockItemList);
                     EventBus.getDefault().post(new AppMessageEvent(Constants.STOCK_DOWNLOAD_COMPLETE));
 
                 } else
@@ -94,30 +95,31 @@ public class GetStockQuoteThread extends Thread{
     }
 
 
-    private com.example.marketdatatracker.model.Stock buildCustomStockItem(Stock stock) {
+    private StockItem buildCustomStockItem(Stock stock) {
 
-        return new com.example.marketdatatracker.model.Stock(
+        // convert BigDecimal to longs, Realm does NOT support BigDecimal (or java.util.Calendar)
+        return new StockItem(
                 stock.getName(),
                 stock.getCurrency(),
                 stock.getSymbol(),
                 stock.getStockExchange(),
-                stock.getQuote().getPrice(),
+                stock.getQuote().getPrice().doubleValue(),
                 stock.getQuote().getAvgVolume(),
                 stock.getQuote().getVolume(),
-                stock.getQuote().getDayHigh(),
-                stock.getQuote().getDayLow(),
-                stock.getQuote().getYearHigh(),
-                stock.getQuote().getYearLow(),
-                stock.getQuote().getOpen(),
-                stock.getQuote().getPreviousClose(),
-                stock.getQuote().getLastTradeTime(),
-                stock.getStats().getMarketCap(),
-                stock.getStats().getEps(),
-                stock.getQuote().getChange(),
-                stock.getQuote().getChangeInPercent(),
-                stock.getDividend().getAnnualYield(),
-                stock.getDividend().getAnnualYieldPercent()
+                stock.getQuote().getDayHigh().longValue(),
+                stock.getQuote().getDayLow().longValue(),
+                stock.getQuote().getYearHigh().longValue(),
+                stock.getQuote().getYearLow().longValue(),
+                stock.getQuote().getOpen().longValue(),
+                stock.getQuote().getPreviousClose().longValue(),
+                stock.getStats().getMarketCap().longValue(),
+                stock.getStats().getEps().longValue(),
+                stock.getQuote().getChange().longValue(),
+                stock.getQuote().getChangeInPercent().longValue(),
+                stock.getDividend().getAnnualYield().longValue(),
+                stock.getDividend().getAnnualYieldPercent().longValue()
         );
+
     }
 
 }

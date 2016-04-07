@@ -1,19 +1,19 @@
 package com.example.marketdatatracker.event;
 
-import com.example.marketdatatracker.model.Stock;
+import com.example.marketdatatracker.model.StockItem;
 
 import java.util.List;
 
 public class FetchStockQuoteEvent {
 
-    private List<Stock> mStocks;
+    private List<StockItem> mStockItems;
 
-    public FetchStockQuoteEvent(List<Stock> stocks) {
-        mStocks = stocks;
+    public FetchStockQuoteEvent(List<StockItem> stockItems) {
+        mStockItems = stockItems;
     }
 
-    public List<Stock> getStocks() {
-        return mStocks;
+    public List<StockItem> getStockItems() {
+        return mStockItems;
     }
 
 

@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.custom.CustomMarkerView;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.historical.HistoricalDataCache;
+import com.example.marketdatatracker.model.data.HistoricalDataCache;
 import com.example.marketdatatracker.model.historical.StockValues;
 import com.example.marketdatatracker.network.GetHistoricalDataThread;
 import com.example.marketdatatracker.util.Constants;
@@ -124,7 +124,7 @@ public class StockLineGraphFragment extends BaseFragment implements
     }
 
     private void addData(LineChart lineGraph) {
-        // reverse Stock values list (oldest first)
+        // reverse StockItem values list (oldest first)
         List<StockValues> reversed = new ArrayList<>();
         for (int i = 0; i < mList.size(); i++) {
             reversed.add(mList.get(mList.size() - 1 - i));

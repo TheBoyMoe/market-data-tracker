@@ -23,7 +23,7 @@
         android:layout_height="wrap_content">
 
 
-            <!-- Stock title -->
+            <!-- StockItem title -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_marginBottom="@dimen/dimen_normal"
@@ -46,7 +46,7 @@
 
             </LinearLayout>
 
-            <!-- Stock values -->
+            <!-- StockItem values -->
             <include layout="@layout/stock_item_table_data_horizontal"/>
 
     </LinearLayout>

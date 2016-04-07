@@ -1,4 +1,6 @@
-package com.example.marketdatatracker.model;
+package com.example.marketdatatracker.model.data;
+
+import com.example.marketdatatracker.model.StockItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +15,33 @@ public class StockDataCache {
 
     public static final String STOCK_OBJECT = "stock";
     private static StockDataCache sStockDataCache;
-    private static List<Stock> sStocks;
+    private static List<StockItem> sStockItems;
 
     private StockDataCache() {  }
 
     public static StockDataCache getStockDataCache() {
         if(sStockDataCache == null) {
             sStockDataCache = new StockDataCache();
-            sStocks = new ArrayList<>();
+            sStockItems = new ArrayList<>();
         }
         return sStockDataCache;
     }
 
 
-    public List<Stock> getStocks() {
-        return sStocks;
+    public List<StockItem> getStocks() {
+        return sStockItems;
     }
 
-    public void setStocks(List<Stock> stocks) {
-        sStocks.clear();
-        sStocks.addAll(stocks);
+    public void setStocks(List<StockItem> stockItems) {
+        sStockItems.clear();
+        sStockItems.addAll(stockItems);
     }
 
-    public Stock getStock(String symbol) {
+    public StockItem getStock(String symbol) {
         if(symbol != null) {
-            for (Stock stock : sStocks) {
-                if(stock.getSymbol().equals(symbol)) {
-                    return stock;
+            for (StockItem stockItem : sStockItems) {
+                if(stockItem.getSymbol().equals(symbol)) {
+                    return stockItem;
                 }
             }
         }

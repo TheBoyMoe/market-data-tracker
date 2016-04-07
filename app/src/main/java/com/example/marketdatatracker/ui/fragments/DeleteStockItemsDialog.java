@@ -11,8 +11,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.Stock;
-import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.model.StockItem;
+import com.example.marketdatatracker.model.data.StockDataCache;
 import com.example.marketdatatracker.util.Constants;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class DeleteStockItemsDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // iterate through the list, delete the items
-                        List<Stock> portfolio = StockDataCache.getStockDataCache().getStocks();
+                        List<StockItem> portfolio = StockDataCache.getStockDataCache().getStocks();
                         if (symbols != null) {
                             PortfolioLoop:
                             for (int i = 0; i < symbols.size(); i++) {

@@ -20,9 +20,9 @@
     <string name="twelve_month_chart">12m</string>
     <string name="one_year_chart">1y</string>
     <string name="five_year_chart">5y</string>
-    <string name="symbol_suggestion_hint">Enter one(or more) letters of the stock name</string>
+    <string name="symbol_suggestion_hint">Enter one(or more) letters of the stockItem name</string>
     <string name="action_add_symbol">Add symbol</string>
-    <string name="action_remove_stock">Remove stock</string>
+    <string name="action_remove_stock">Remove stockItem</string>
     <string name="stock_item_divider">/</string>
     <string name="stock_exchange_label">Exchange</string>
     <string name="stock_price_label">Stock Price</string>

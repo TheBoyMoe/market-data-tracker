@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.example.marketdatatracker.R;
-import com.example.marketdatatracker.model.Stock;
+import com.example.marketdatatracker.model.StockItem;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ import java.util.List;
  */
 public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
-    private List<Stock> mStocks;
+    private List<StockItem> mStockItems;
     private Context mContext;
     private MultiSelector mMultiSelector;
     private ModalMultiSelectorCallback mSaveSelectionMode;
 
-    public StockAdapter(List<Stock> stocks, Context context, MultiSelector multiSelector, ModalMultiSelectorCallback saveSelectionMode) {
-        mStocks = stocks;
+    public StockAdapter(List<StockItem> stockItems, Context context, MultiSelector multiSelector, ModalMultiSelectorCallback saveSelectionMode) {
+        mStockItems = stockItems;
         mContext = context;
         mMultiSelector = multiSelector;
         mSaveSelectionMode = saveSelectionMode;
@@ -46,8 +46,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
     @Override
     public void onBindViewHolder(StockViewHolder holder, int position) {
-        Stock mStock = mStocks.get(position);
-        holder.bindStock(mStock, mContext);
+        StockItem mStockItem = mStockItems.get(position);
+        holder.bindStock(mStockItem, mContext);
         // override multi-select library defaults
         if(Build.VERSION.SDK_INT >= 21) {
             holder.setSelectionModeStateListAnimator(null);
@@ -58,7 +58,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>{
 
     @Override
     public int getItemCount() {
-        return mStocks.size();
+        return mStockItems.size();
     }
 
 

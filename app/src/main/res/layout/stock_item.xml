@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Stock name-->
+        <!-- StockItem name-->
         <TextView
             android:id="@+id/stock_name"
             tools:text="Apple Computers"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             />
 
-        <!-- Stock prices -->
+        <!-- StockItem prices -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

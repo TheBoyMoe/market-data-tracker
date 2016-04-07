@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
 
-        <!-- stock exchange -->
+        <!-- stockItem exchange -->
         <TableRow
             android:layout_marginBottom="@dimen/dimen_xsmall">
 
@@ -33,7 +33,7 @@
         </TableRow>
 
 
-        <!-- stock price -->
+        <!-- stockItem price -->
         <TableRow
             android:layout_marginBottom="@dimen/dimen_xsmall">
 
@@ -113,7 +113,7 @@
 
         </TableRow>
 
-        <!-- stock volume -->
+        <!-- stockItem volume -->
         <!--<TableRow-->
             <!--android:layout_marginBottom="@dimen/dimen_small">-->
 
@@ -129,7 +129,7 @@
         <!--</TableRow>-->
 
 
-        <!-- stock average volume -->
+        <!-- stockItem average volume -->
         <!--<TableRow-->
             <!--android:layout_marginBottom="@dimen/dimen_small">-->
 

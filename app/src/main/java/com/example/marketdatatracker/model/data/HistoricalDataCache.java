@@ -1,4 +1,6 @@
-package com.example.marketdatatracker.model.historical;
+package com.example.marketdatatracker.model.data;
+
+import com.example.marketdatatracker.model.historical.StockValues;
 
 import java.util.ArrayList;
 import java.util.List;

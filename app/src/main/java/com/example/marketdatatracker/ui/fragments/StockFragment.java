@@ -21,8 +21,8 @@ import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.Stock;
-import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.model.StockItem;
+import com.example.marketdatatracker.model.data.StockDataCache;
 import com.example.marketdatatracker.network.GetStockQuoteThread;
 import com.example.marketdatatracker.custom.CustomItemDecoration;
 import com.example.marketdatatracker.ui.recycler.StockAdapter;
@@ -46,7 +46,7 @@ public class StockFragment extends BaseFragment{
 
     private static final String STOCK_FRAGMENT_TAG = "stock_fragment";
     private static final String DELETE_STOCK_DIALOG = "delete_stock_dialog";
-    private List<Stock> mStocks;
+    private List<StockItem> mStockItems;
     private RecyclerView mRecyclerView;
     private StockAdapter mStockAdapter;
     private ProgressBar mProgressBar;
@@ -70,9 +70,9 @@ public class StockFragment extends BaseFragment{
                     if(item.getItemId() == R.id.action_remove) {
                         List<String> symbols = new ArrayList<>();
                         String symbol;
-                        for (int i = 0; i < mStocks.size(); i++) {
+                        for (int i = 0; i < mStockItems.size(); i++) {
                             if(mMultiSelector.isSelected(i, 0)) {
-                                symbol = mStocks.get(i).getSymbol();
+                                symbol = mStockItems.get(i).getSymbol();
                                 symbols.add(symbol);
                             }
                         }
@@ -216,11 +216,11 @@ public class StockFragment extends BaseFragment{
     }
 
     private void updateUI() {
-        mStocks = StockDataCache.getStockDataCache().getStocks();
-        if(mStocks == null) {
-            mStocks = new ArrayList<>();
+        mStockItems = StockDataCache.getStockDataCache().getStocks();
+        if(mStockItems == null) {
+            mStockItems = new ArrayList<>();
         }
-        mStockAdapter = new StockAdapter(mStocks, getActivity(), mMultiSelector, mSaveSelectionMode);
+        mStockAdapter = new StockAdapter(mStockItems, getActivity(), mMultiSelector, mSaveSelectionMode);
         mRecyclerView.setAdapter(mStockAdapter);
         mProgressBar.setVisibility(View.GONE);
     }

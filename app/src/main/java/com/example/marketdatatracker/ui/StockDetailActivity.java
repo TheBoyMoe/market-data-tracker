@@ -9,8 +9,8 @@ import android.view.MenuItem;
 
 import com.example.marketdatatracker.R;
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.Stock;
-import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.model.StockItem;
+import com.example.marketdatatracker.model.data.StockDataCache;
 import com.example.marketdatatracker.custom.CustomViewPagerAdapter;
 import com.example.marketdatatracker.util.Constants;
 import com.example.marketdatatracker.util.Utils;
@@ -26,7 +26,7 @@ public class StockDetailActivity extends BaseActivity {
         setContentView(R.layout.stock_detail_container);
 
         String symbol = getIntent().getStringExtra(StockDataCache.STOCK_OBJECT);
-        Stock stock = StockDataCache.getStockDataCache().getStock(symbol);
+        StockItem stockItem = StockDataCache.getStockDataCache().getStock(symbol);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         // set the actionbar title
@@ -34,7 +34,7 @@ public class StockDetailActivity extends BaseActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        // display stock overview data
+        // display stockItem overview data
         //displayStockOverview();
 
         // setup the detail and graph fragments
@@ -42,7 +42,7 @@ public class StockDetailActivity extends BaseActivity {
         if(mViewPager == null) {
             // device >= 600dp, display the detail & graph fragments simultaneously
             if(getSupportFragmentManager().findFragmentById(R.id.frame_left) == null) {
-                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getSupportFragmentManager(), stock.getSymbol());
+                FragmentPagerAdapter adapter = new CustomViewPagerAdapter(getSupportFragmentManager(), stockItem.getSymbol());
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.frame_left, adapter.getItem(0))
                         .add(R.id.frame_right, adapter.getItem(1))
@@ -54,7 +54,7 @@ public class StockDetailActivity extends BaseActivity {
             CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.page_indicator);
 
             // set the page indicator and adapter
-            mViewPager.setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), stock.getSymbol()));
+            mViewPager.setAdapter(new CustomViewPagerAdapter(getSupportFragmentManager(), stockItem.getSymbol()));
             mIndicator.setViewPager(mViewPager);
 
             // set and display the page indicator

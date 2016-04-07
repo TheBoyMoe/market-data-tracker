@@ -2,7 +2,7 @@ package com.example.marketdatatracker.network;
 
 
 import com.example.marketdatatracker.event.AppMessageEvent;
-import com.example.marketdatatracker.model.historical.HistoricalDataCache;
+import com.example.marketdatatracker.model.data.HistoricalDataCache;
 import com.example.marketdatatracker.model.historical.HistoricalQuery;
 import com.example.marketdatatracker.model.historical.StockValues;
 import com.example.marketdatatracker.util.Constants;

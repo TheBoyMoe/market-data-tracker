@@ -11,8 +11,8 @@ import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bignerdranch.android.multiselector.SwappingHolder;
 import com.example.marketdatatracker.R;
-import com.example.marketdatatracker.model.Stock;
-import com.example.marketdatatracker.model.StockDataCache;
+import com.example.marketdatatracker.model.StockItem;
+import com.example.marketdatatracker.model.data.StockDataCache;
 import com.example.marketdatatracker.ui.StockDetailActivity;
 
 /**
@@ -24,7 +24,7 @@ import com.example.marketdatatracker.ui.StockDetailActivity;
 
 public class StockViewHolder extends SwappingHolder implements View.OnClickListener, View.OnLongClickListener{
 
-    private Stock mStock;
+    private StockItem mStockItem;
     private Context mContext;
     private MultiSelector mMultiSelector;
     private ModalMultiSelectorCallback mSaveSelectionMode;
@@ -60,13 +60,13 @@ public class StockViewHolder extends SwappingHolder implements View.OnClickListe
 
 
     // populate the viewHolder
-    public void bindStock(Stock stock, Context context) {
-        mStock = stock;
+    public void bindStock(StockItem stockItem, Context context) {
+        mStockItem = stockItem;
         mContext = context;
 
         // determine currency
         String currencySymbol;
-        String currency = mStock.getCurrency();
+        String currency = mStockItem.getCurrency();
 
         switch (currency) {
             case "EUR":
@@ -81,13 +81,13 @@ public class StockViewHolder extends SwappingHolder implements View.OnClickListe
 
         // comparing closing and current prices to determine +/- change
         String changeSymbol;
-        if (mStock.getPrice().doubleValue() > mStock.getPreviousClose().doubleValue()) {
+        if (mStockItem.getPrice() > mStockItem.getPreviousClose()) {
             changeSymbol = "+";
             mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
             mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_up_green_18dp, 0, 0, 0);
             mStockChangeInPercent.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_green_light));
         }
-        else if (mStock.getPrice().doubleValue() < mStock.getPreviousClose().doubleValue()) {
+        else if (mStockItem.getPrice() < mStockItem.getPreviousClose()) {
             changeSymbol = "";
             mStockChange.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_red_light));
             mStockChange.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down_red_18dp, 0, 0, 0);
@@ -99,14 +99,14 @@ public class StockViewHolder extends SwappingHolder implements View.OnClickListe
         }
 
         // populate the holder elements
-        mStockName.setText(mStock.getName());
-        mStockExchange.setText(mStock.getStockExchange());
-        mStockSymbol.setText(mStock.getSymbol());
-        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStock.getPrice()));
-        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStock.getChange()));
-        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStock.getChangeInPercent()));
-        mStockDayHi.setText(String.valueOf(mStock.getDayHigh()));
-        mStockDayLo.setText(String.valueOf(mStock.getDayLow()));
+        mStockName.setText(mStockItem.getName());
+        mStockExchange.setText(mStockItem.getStockExchange());
+        mStockSymbol.setText(mStockItem.getSymbol());
+        mStockPrice.setText(String.format("%s%.2f", currencySymbol, mStockItem.getPrice()));
+        mStockChange.setText(String.format("%s%.2f", changeSymbol, mStockItem.getChange()));
+        mStockChangeInPercent.setText(String.format("%s%.2f", changeSymbol, mStockItem.getChangeInPercent()));
+        mStockDayHi.setText(String.valueOf(mStockItem.getDayHigh()));
+        mStockDayLo.setText(String.valueOf(mStockItem.getDayLow()));
     }
 
 
@@ -117,7 +117,7 @@ public class StockViewHolder extends SwappingHolder implements View.OnClickListe
             // selection off, handle click as normal
             // launch the StockDetailActivity passing in the stock symbol to id stock
             Intent intent = new Intent(mContext, StockDetailActivity.class);
-            intent.putExtra(StockDataCache.STOCK_OBJECT, mStock.getSymbol());
+            intent.putExtra(StockDataCache.STOCK_OBJECT, mStockItem.getSymbol());
             mContext.startActivity(intent);
         }
     }

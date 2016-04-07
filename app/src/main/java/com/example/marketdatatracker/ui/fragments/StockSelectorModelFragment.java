@@ -43,7 +43,7 @@ public class StockSelectorModelFragment extends BaseFragment{
         if(mCurrentTask != null && mIsRunning) {
             mCurrentTask.interrupt();
         }
-        mCurrentTask = new GetSymbolSuggestionThread("Stock symbol", event.getQuery());
+        mCurrentTask = new GetSymbolSuggestionThread("StockItem symbol", event.getQuery());
         mCurrentTask.start();
         mIsRunning = true;
     }

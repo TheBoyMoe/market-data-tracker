@@ -5,6 +5,8 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.timber.StethoTree;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
 public class MarketDataTrackerApp extends Application {
@@ -31,6 +33,12 @@ public class MarketDataTrackerApp extends Application {
             // show logs in the Chrome browser console log via Stetho (works with Timber 3.0.1)
             Timber.plant(new StethoTree());
         }
+
+        // realm configuration
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name("stock_quotes.realm")
+                .build();
+        Realm.setDefaultConfiguration(config);
 
     }
 

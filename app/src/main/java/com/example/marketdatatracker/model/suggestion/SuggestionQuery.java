@@ -54,7 +54,7 @@ package com.example.marketdatatracker.model.suggestion;
                 "name":"ABENGOA -A-",
                 "exch":"MCE",
                 "type":"S",
-                "exchDisp":"Madrid Stock Exchange CATS",
+                "exchDisp":"Madrid StockItem Exchange CATS",
                 "typeDisp":"Equity"
         }
         ]
