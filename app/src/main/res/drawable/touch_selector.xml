@@ -4,6 +4,6 @@
     <item android:state_focused="true" android:drawable="@color/colorAccent"/>
     <item android:state_pressed="true" android:drawable="@color/colorAccent"/>
     <item android:state_activated="true" android:drawable="@color/colorAccent"/>
-    <item android:drawable="@color/colorPrimaryBackground"/>
+    <item android:drawable="@android:color/white"/>
 
 </selector>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-              <!--xmlns:tools="http://schemas.android.com/tools"-->
-              <!--android:orientation="vertical"-->
-              <!--android:layout_width="match_parent"-->
-              <!--android:background="@drawable/touch_selector"-->
-              <!--android:layout_height="130dp">-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/colorPrimaryBackground"
+              android:layout_height="wrap_content">
 
-
+    <!-- Added outer LinearLayout with background color so list items maintain white bkgd when one of them is activated -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -120,4 +120,4 @@
     </LinearLayout>
 
 
-<!--</LinearLayout>-->
+</LinearLayout>
